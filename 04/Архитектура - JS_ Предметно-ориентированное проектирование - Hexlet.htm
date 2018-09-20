@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">var _rollbarConfig = {"accessToken":"fc27636027d0460bbc1578d97d0d27ad","captureUncaught":true,"captureUnhandledRejections":true,"hostWhiteList":["https://cdn2.hexlet.io"],"ignoredMessages":["Script error"],"payload":{"client":{"source_map_enabled":true,"code_version":null,"guess_uncaught_frames":true},"environment":"production","person":{"id":111320,"username":"Дмитрий Рюмкин","email":null}}};</script>
+<script type="text/javascript">!function(r){function e(n){if(o[n])return o[n].exports;var t=o[n]={exports:{},id:n,loaded:!1};return r[n].call(t.exports,t,t.exports,e),t.loaded=!0,t.exports}var o={};return e.m=r,e.c=o,e.p="",e(0)}([function(r,e,o){"use strict";var n=o(1),t=o(4);_rollbarConfig=_rollbarConfig||{},_rollbarConfig.rollbarJsUrl=_rollbarConfig.rollbarJsUrl||"https://cdnjs.cloudflare.com/ajax/libs/rollbar.js/2.4.4/rollbar.min.js",_rollbarConfig.async=void 0===_rollbarConfig.async||_rollbarConfig.async;var a=n.setupShim(window,_rollbarConfig),l=t(_rollbarConfig);window.rollbar=n.Rollbar,a.loadFull(window,document,!_rollbarConfig.async,_rollbarConfig,l)},function(r,e,o){"use strict";function n(r){return function(){try{return r.apply(this,arguments)}catch(r){try{console.error("[Rollbar]: Internal error",r)}catch(r){}}}}function t(r,e){this.options=r,this._rollbarOldOnError=null;var o=s++;this.shimId=function(){return o},"undefined"!=typeof window&&window._rollbarShims&&(window._rollbarShims[o]={handler:e,messages:[]})}function a(r,e){if(r){var o=e.globalAlias||"Rollbar";if("object"==typeof r[o])return r[o];r._rollbarShims={},r._rollbarWrappedError=null;var t=new p(e);return n(function(){e.captureUncaught&&(t._rollbarOldOnError=r.onerror,i.captureUncaughtExceptions(r,t,!0),i.wrapGlobals(r,t,!0)),e.captureUnhandledRejections&&i.captureUnhandledRejections(r,t,!0);var n=e.autoInstrument;return e.enabled!==!1&&(void 0===n||n===!0||"object"==typeof n&&n.network)&&r.addEventListener&&(r.addEventListener("load",t.captureLoad.bind(t)),r.addEventListener("DOMContentLoaded",t.captureDomContentLoaded.bind(t))),r[o]=t,t})()}}function l(r){return n(function(){var e=this,o=Array.prototype.slice.call(arguments,0),n={shim:e,method:r,args:o,ts:new Date};window._rollbarShims[this.shimId()].messages.push(n)})}var i=o(2),s=0,d=o(3),c=function(r,e){return new t(r,e)},p=function(r){return new d(c,r)};t.prototype.loadFull=function(r,e,o,t,a){var l=function(){var e;if(void 0===r._rollbarDidLoad){e=new Error("rollbar.js did not load");for(var o,n,t,l,i=0;o=r._rollbarShims[i++];)for(o=o.messages||[];n=o.shift();)for(t=n.args||[],i=0;i<t.length;++i)if(l=t[i],"function"==typeof l){l(e);break}}"function"==typeof a&&a(e)},i=!1,s=e.createElement("script"),d=e.getElementsByTagName("script")[0],c=d.parentNode;s.crossOrigin="",s.src=t.rollbarJsUrl,o||(s.async=!0),s.onload=s.onreadystatechange=n(function(){if(!(i||this.readyState&&"loaded"!==this.readyState&&"complete"!==this.readyState)){s.onload=s.onreadystatechange=null;try{c.removeChild(s)}catch(r){}i=!0,l()}}),c.insertBefore(s,d)},t.prototype.wrap=function(r,e,o){try{var n;if(n="function"==typeof e?e:function(){return e||{}},"function"!=typeof r)return r;if(r._isWrap)return r;if(!r._rollbar_wrapped&&(r._rollbar_wrapped=function(){o&&"function"==typeof o&&o.apply(this,arguments);try{return r.apply(this,arguments)}catch(o){var e=o;throw e&&("string"==typeof e&&(e=new String(e)),e._rollbarContext=n()||{},e._rollbarContext._wrappedSource=r.toString(),window._rollbarWrappedError=e),e}},r._rollbar_wrapped._isWrap=!0,r.hasOwnProperty))for(var t in r)r.hasOwnProperty(t)&&(r._rollbar_wrapped[t]=r[t]);return r._rollbar_wrapped}catch(e){return r}};for(var u="log,debug,info,warn,warning,error,critical,global,configure,handleUncaughtException,handleUnhandledRejection,captureEvent,captureDomContentLoaded,captureLoad".split(","),f=0;f<u.length;++f)t.prototype[u[f]]=l(u[f]);r.exports={setupShim:a,Rollbar:p}},function(r,e){"use strict";function o(r,e,o){if(r){var t;if("function"==typeof e._rollbarOldOnError)t=e._rollbarOldOnError;else if(r.onerror){for(t=r.onerror;t._rollbarOldOnError;)t=t._rollbarOldOnError;e._rollbarOldOnError=t}var a=function(){var o=Array.prototype.slice.call(arguments,0);n(r,e,t,o)};o&&(a._rollbarOldOnError=t),r.onerror=a}}function n(r,e,o,n){r._rollbarWrappedError&&(n[4]||(n[4]=r._rollbarWrappedError),n[5]||(n[5]=r._rollbarWrappedError._rollbarContext),r._rollbarWrappedError=null),e.handleUncaughtException.apply(e,n),o&&o.apply(r,n)}function t(r,e,o){if(r){"function"==typeof r._rollbarURH&&r._rollbarURH.belongsToShim&&r.removeEventListener("unhandledrejection",r._rollbarURH);var n=function(r){var o,n,t;try{o=r.reason}catch(r){o=void 0}try{n=r.promise}catch(r){n="[unhandledrejection] error getting `promise` from event"}try{t=r.detail,!o&&t&&(o=t.reason,n=t.promise)}catch(r){t="[unhandledrejection] error getting `detail` from event"}o||(o="[unhandledrejection] error getting `reason` from event"),e&&e.handleUnhandledRejection&&e.handleUnhandledRejection(o,n)};n.belongsToShim=o,r._rollbarURH=n,r.addEventListener("unhandledrejection",n)}}function a(r,e,o){if(r){var n,t,a="EventTarget,Window,Node,ApplicationCache,AudioTrackList,ChannelMergerNode,CryptoOperation,EventSource,FileReader,HTMLUnknownElement,IDBDatabase,IDBRequest,IDBTransaction,KeyOperation,MediaController,MessagePort,ModalWindow,Notification,SVGElementInstance,Screen,TextTrack,TextTrackCue,TextTrackList,WebSocket,WebSocketWorker,Worker,XMLHttpRequest,XMLHttpRequestEventTarget,XMLHttpRequestUpload".split(",");for(n=0;n<a.length;++n)t=a[n],r[t]&&r[t].prototype&&l(e,r[t].prototype,o)}}function l(r,e,o){if(e.hasOwnProperty&&e.hasOwnProperty("addEventListener")){for(var n=e.addEventListener;n._rollbarOldAdd&&n.belongsToShim;)n=n._rollbarOldAdd;var t=function(e,o,t){n.call(this,e,r.wrap(o),t)};t._rollbarOldAdd=n,t.belongsToShim=o,e.addEventListener=t;for(var a=e.removeEventListener;a._rollbarOldRemove&&a.belongsToShim;)a=a._rollbarOldRemove;var l=function(r,e,o){a.call(this,r,e&&e._rollbar_wrapped||e,o)};l._rollbarOldRemove=a,l.belongsToShim=o,e.removeEventListener=l}}r.exports={captureUncaughtExceptions:o,captureUnhandledRejections:t,wrapGlobals:a}},function(r,e){"use strict";function o(r,e){this.impl=r(e,this),this.options=e,n(o.prototype)}function n(r){for(var e=function(r){return function(){var e=Array.prototype.slice.call(arguments,0);if(this.impl[r])return this.impl[r].apply(this.impl,e)}},o="log,debug,info,warn,warning,error,critical,global,configure,handleUncaughtException,handleUnhandledRejection,_createItem,wrap,loadFull,shimId,captureEvent,captureDomContentLoaded,captureLoad".split(","),n=0;n<o.length;n++)r[o[n]]=e(o[n])}o.prototype._swapAndProcessMessages=function(r,e){this.impl=r(this.options);for(var o,n,t;o=e.shift();)n=o.method,t=o.args,this[n]&&"function"==typeof this[n]&&("captureDomContentLoaded"===n||"captureLoad"===n?this[n].apply(this,[t[0],o.ts]):this[n].apply(this,t));return this},r.exports=o},function(r,e){"use strict";r.exports=function(r){return function(e){if(!e&&!window._rollbarInitialized){r=r||{};for(var o,n,t=r.globalAlias||"Rollbar",a=window.rollbar,l=function(r){return new a(r)},i=0;o=window._rollbarShims[i++];)n||(n=o.handler),o.handler._swapAndProcessMessages(l,o.messages);window[t]=n,window._rollbarInitialized=!0}}}}]);</script>
+<title>Архитектура - JS: Предметно-ориентированное проектирование - Hexlet</title>
+<link rel="shortcut icon" type="image/png" href="https://cdn2.hexlet.io/assets/icons/default/favicon-16x16-76a7cc0d10decf8b3923e1b51d563e38a94a4bdb51318d2db3290763b928d3a0.png" sizes="16x16" />
+<link rel="shortcut icon" type="image/png" href="https://cdn2.hexlet.io/assets/icons/default/favicon-32x32-17169d8194b2cac3aa9a6bac8e522ed43f8555ffa0e426a1041964e7b0ae8725.png" sizes="32x32" />
+<link rel="shortcut icon" type="image/png" href="https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_96x96-c21c74cba95d022d2ff9b3efe82641b1cdc2a8b64c4d3ae66170fae967bf0d48.png" sizes="96x96" />
+<link rel="shortcut icon" type="image/png" href="https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_128x128-7bef1baf3d4c6d9888aaeaad22a2c127ed9416b0dd4c97ef68588465739efc1d.png" sizes="128x128" />
+<link rel="shortcut icon" type="image/png" href="https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_196x196-27f3aa70536c927d5563627d62db6de880899eceacfd490cf6fa5e82d344b782.png" sizes="196x196" />
+<link rel="apple-touch-icon-precomposed" type="image/x-icon" href="https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_96x96-c21c74cba95d022d2ff9b3efe82641b1cdc2a8b64c4d3ae66170fae967bf0d48.png" sizes="57x57" />
+<link rel="apple-touch-icon-precomposed" type="image/x-icon" href="https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_128x128-7bef1baf3d4c6d9888aaeaad22a2c127ed9416b0dd4c97ef68588465739efc1d.png" sizes="114x114" />
+<link rel="apple-touch-icon-precomposed" type="image/x-icon" href="https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_96x96-c21c74cba95d022d2ff9b3efe82641b1cdc2a8b64c4d3ae66170fae967bf0d48.png" sizes="72x72" />
+<link rel="apple-touch-icon-precomposed" type="image/x-icon" href="https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_128x128-7bef1baf3d4c6d9888aaeaad22a2c127ed9416b0dd4c97ef68588465739efc1d.png" sizes="144x144" />
+<link rel="apple-touch-icon-precomposed" type="image/x-icon" href="https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_96x96-c21c74cba95d022d2ff9b3efe82641b1cdc2a8b64c4d3ae66170fae967bf0d48.png" sizes="60x60" />
+<link rel="apple-touch-icon-precomposed" type="image/x-icon" href="https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_128x128-7bef1baf3d4c6d9888aaeaad22a2c127ed9416b0dd4c97ef68588465739efc1d.png" sizes="120x120" />
+<link rel="apple-touch-icon-precomposed" type="image/x-icon" href="https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_96x96-c21c74cba95d022d2ff9b3efe82641b1cdc2a8b64c4d3ae66170fae967bf0d48.png" sizes="76x76" />
+<link rel="apple-touch-icon-precomposed" type="image/x-icon" href="https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_196x196-27f3aa70536c927d5563627d62db6de880899eceacfd490cf6fa5e82d344b782.png" sizes="152x152" />
+<meta content='Hexlet' name='application-name'>
+<meta content='#FFFFFF' name='msapplication-TileColor'>
+<meta content='https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_128x128-7bef1baf3d4c6d9888aaeaad22a2c127ed9416b0dd4c97ef68588465739efc1d.png' name='msapplication-TileImage'>
+<meta content='https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_96x96-c21c74cba95d022d2ff9b3efe82641b1cdc2a8b64c4d3ae66170fae967bf0d48.png' name='msapplication-square70x70logo'>
+<meta content='https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_128x128-7bef1baf3d4c6d9888aaeaad22a2c127ed9416b0dd4c97ef68588465739efc1d.png' name='msapplication-square150x150logo'>
+
+<meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="DBmXa94XTzfOs8UdaE4c1NyflOjyf2cdro/zkh/CqtmBKqIzV/ox/YMYXGaDd5huirZ8yaQcD88BSN98jCZXuQ==" />
+<meta content='width=device-width, initial-scale=1.0' name='viewport'>
+<link href='https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,500,700&amp;subset=cyrillic' rel='stylesheet'>
+<script>
+//<![CDATA[
+window.gon={};gon.hs={"modal":true};gon.applications={};gon.current_user={"id":111320,"email":"riumkin@gmail.com","username":"user-62af874f7ef1c3dd","created_at":"2016-08-06T02:47:30.092+10:00","text":"riumkin@gmail.com (user-62af874f7ef1c3dd)","last_viewed_notification_id":268381,"full_name":"Дмитрий Рюмкин","public_name":"Дмитрий Рюмкин","admin":false,"url":"/u/user-62af874f7ef1c3dd","can_use_paid_features":true,"isGuest":false,"isAdmin":false,"can_send_emails":true,"isMentor":true};gon.token="+2YjaRa0OoviE3BFgRIs\/Z\/nYrNVX4y8xx530EJeV012VRYxn1lEQa+46T5qK6hHyc6KkgM85G5o2Vs+0bqqLQ==";gon.disqus_name="hexletio";gon.locale="ru";gon.rails_env="production";gon.analytics_events="AnalyticsEvents";gon.subdomains=["en.hexlet.io","ru.hexlet.io"];gon.images={"secure_payment":"https:\/\/cdn2.hexlet.io\/assets\/secure_payment-e636c1338a89fba0419c29fb02e716be511e9bce25c60fd53b8fdc8f8bf210a4.png"};gon.notifications=[{"id":268381,"message":"\u003cspan class=\"fa fa-star\"\u003e\u003c/span\u003e\u0026nbsp;Добавлен урок \u003cb\u003eЛексическое окружение (LexicalEnvironment)\u003c/b\u003e в курсе \u003cb\u003eJS: Функции\u003c/b\u003e","url":"http://ru.hexlet.io/courses/js-functions/lessons/lexical-environment/theory_unit","human_created_at":"28 января 2018"},{"id":218975,"message":"\u003cspan class=\"fa fa-star\"\u003e\u003c/span\u003e\u0026nbsp;Добавлен урок \u003cb\u003eЧто дальше?\u003c/b\u003e в курсе \u003cb\u003eВведение в программирование\u003c/b\u003e","url":"http://ru.hexlet.io/courses/introduction_to_programming/lessons/next/theory_unit","human_created_at":"25 августа 2017"},{"id":215934,"message":"\u003cspan class=\"fa fa-star\"\u003e\u003c/span\u003e\u0026nbsp;Добавлен урок \u003cb\u003eUI как конечный автомат\u003c/b\u003e в курсе \u003cb\u003eJS: DOM API\u003c/b\u003e","url":"http://ru.hexlet.io/courses/js-dom/lessons/fsm/theory_unit","human_created_at":"17 августа 2017"},{"id":214942,"message":"\u003cspan class=\"fa fa-star\"\u003e\u003c/span\u003e\u0026nbsp;Добавлен урок \u003cb\u003eТесты\u003c/b\u003e в курсе \u003cb\u003eJS: DOM API\u003c/b\u003e","url":"http://ru.hexlet.io/courses/js-dom/lessons/tests/theory_unit","human_created_at":"14 августа 2017"},{"id":211407,"message":"\u003cspan class=\"fa fa-star\"\u003e\u003c/span\u003e\u0026nbsp;Добавлен урок \u003cb\u003eМоделирование\u003c/b\u003e в курсе \u003cb\u003eJS: Составные данные\n\u003c/b\u003e","url":"http://ru.hexlet.io/courses/compound_data/lessons/modeling/theory_unit","human_created_at":"08 августа 2017"},{"id":194946,"message":"\u003cspan class=\"fa fa-star\"\u003e\u003c/span\u003e\u0026nbsp;\u0026nbsp;New lesson \u003cb\u003eJQuery\u003c/b\u003e in \u003cb\u003eJS: DOM API\u003c/b\u003e","url":"http://ru.hexlet.io/courses/js-dom/lessons/jquery/theory_unit","human_created_at":"05 июня 2017"}];gon.lesson={"id":846,"slug":"architecture"};gon.course={"slug":"js-ddd"};gon.topics=[{"id":17169,"title":"1. В теории даются термины `Инфраструктура`, `Repository`, которые, вроде как, являются слоями, но напрямую об этом не сказано и на картинке архитектуры они тоже не отображены. Все-таки они являются слоями, или нет?\n\n2. На картинке есть такие штуки, как `Library`, `Database`, `UI`, но про взаимодействие с ними ничего не сказано. Это будет в следующих уроках?\n\n3. Что такое `Application` на картинке с архитектурой?\n\nВозможно, правильнее было бы в формате `plain-text` указать слои, про которые идет речь в теории с указанием их расположения.\n","creator":{"id":22488,"public_name":"Артем Лебедев","can_use_paid_features":true,"can_use_mentorship":true,"public_profile_enabled":null,"public_profile_url":"/u/excesst","avatar_img_url":"https://media.licdn.com/dms/image/C5603AQFjHkPTCn474A/profile-displayphoto-shrink_100_100/0?e=1539820800\u0026v=beta\u0026t=Uu9Dbnxzn2ppA_CUGnSBV38EUtmhezfPPsNjYY9mVpY"},"communitable":{"id":846,"slug":"architecture","name":"Архитектура","location":"/courses/js-ddd/lessons/architecture/theory_unit","link":"Курс «\u003ca href=\"https://ru.hexlet.io/courses/js-ddd\"\u003eJS: Предметно-ориентированное проектирование\u003c/a\u003e»\u003cbr\u003e\u0026#8627; Урок «\u003ca href=\"/courses/js-ddd/lessons/architecture/theory_unit\"\u003eАрхитектура\u003c/a\u003e» "},"created_at":"23 июля 2018","location":"/topics/17169","has_solutions":true,"can_show_mentor_info":true,"can_destroy":false,"can_like":true,"can_update":false,"can_subscribe":true,"kind":"question","likes":[],"comments":[{"id":36228,"body":"1. Инфраструктура это даже не один слой, а может быть множество. Репозитории это, можно сказать, слой.\n2. Не будет. В этом курсе идет акцент на предметную область. Остальное только упоминается и проще всего с этим разобраться в конкретных фреймворках.\n3. Это логика вашего приложения. Например там может быть [Service Layer](https://martinfowler.com/eaaCatalog/serviceLayer.html).\n","creator":{"id":1,"public_name":"Kirill Mokevnin","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/mokevnin","avatar_img_url":"https://bitbucket.org/account/mokevnin/avatar/32/?ts=1500267653"},"created_at":"23 июля 2018","solution":true,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]}],"subscribers":[{"id":34151,"user_id":1},{"id":34120,"user_id":22488}],"mentor":{"id":17,"user_id":1,"full_name":"Кирилл Мокевнин","username":"mokevnin"}},{"id":15265,"title":"Добрый вечер. У меня вопрос по репозиторию. В решении автора метод find, если нет результата, выкидывает ошибку. А насколько правильно было бы просто вернуть result, пусть он даже и undefined? Это же нормальное поведение метода? Ведь он отработал и просто такой записи нет, а обработку этой ситуации уже делать в вызывающем методе.","creator":{"id":165983,"public_name":"Кирилл Петров","can_use_paid_features":true,"can_use_mentorship":true,"public_profile_enabled":null,"public_profile_url":"/u/petrovich","avatar_img_url":"https://avatars0.githubusercontent.com/u/36136359?v=4"},"communitable":{"id":846,"slug":"architecture","name":"Архитектура","location":"/courses/js-ddd/lessons/architecture/theory_unit","link":"Курс «\u003ca href=\"https://ru.hexlet.io/courses/js-ddd\"\u003eJS: Предметно-ориентированное проектирование\u003c/a\u003e»\u003cbr\u003e\u0026#8627; Урок «\u003ca href=\"/courses/js-ddd/lessons/architecture/theory_unit\"\u003eАрхитектура\u003c/a\u003e» "},"created_at":"01 мая 2018","location":"/topics/15265","has_solutions":true,"can_show_mentor_info":true,"can_destroy":false,"can_like":true,"can_update":false,"can_subscribe":true,"kind":"question","likes":[],"comments":[{"id":32217,"body":"На практике поведение с исключением требуется значительно чаще чем иное. В вебе, обычно, если запись не найдена, то нужно показывать 404. Если бы find не кидал исключение, то пришлось бы делать это в каждом месте (а таких мест сотни и больше). Поэтому большинство ORM реализуют именно такое поведение. Для поведения без исключения дают другие функции. Но например в django сделано так как вы описываете ","creator":{"id":1,"public_name":"Kirill Mokevnin","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/mokevnin","avatar_img_url":"https://bitbucket.org/account/mokevnin/avatar/32/?ts=1500267653"},"created_at":"03 мая 2018","solution":true,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[{"id":8544,"user_id":132122,"comment_id":32217},{"id":7968,"user_id":7059,"comment_id":32217},{"id":7878,"user_id":165983,"comment_id":32217}]},{"id":32224,"body":"Ясно, спасибо.","creator":{"id":165983,"public_name":"Кирилл Петров","can_use_paid_features":true,"can_use_mentorship":true,"public_profile_enabled":null,"public_profile_url":"/u/petrovich","avatar_img_url":"https://avatars0.githubusercontent.com/u/36136359?v=4"},"created_at":"03 мая 2018","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]}],"subscribers":[{"id":30424,"user_id":1},{"id":30342,"user_id":165983}],"mentor":{"id":17,"user_id":1,"full_name":"Кирилл Мокевнин","username":"mokevnin"}},{"id":14331,"title":"Так много терминов, а есть литература с примерами, где это очень подробно описывается?","creator":{"id":133129,"public_name":"Артём Иванец","can_use_paid_features":true,"can_use_mentorship":true,"public_profile_enabled":null,"public_profile_url":"/u/artem-account","avatar_img_url":"https://cdn2.hexlet.io/attachments/c26058423b19c007a9c29a13c2e6da1111c31b4e/store/fill/185/185/994b9cd7da7f5b9bd2d86809c1fc68c1c0349907413be2924d33a290bf38/avatar.png"},"communitable":{"id":846,"slug":"architecture","name":"Архитектура","location":"/courses/js-ddd/lessons/architecture/theory_unit","link":"Курс «\u003ca href=\"https://ru.hexlet.io/courses/js-ddd\"\u003eJS: Предметно-ориентированное проектирование\u003c/a\u003e»\u003cbr\u003e\u0026#8627; Урок «\u003ca href=\"/courses/js-ddd/lessons/architecture/theory_unit\"\u003eАрхитектура\u003c/a\u003e» "},"created_at":"16 марта 2018","location":"/topics/14331","has_solutions":true,"can_show_mentor_info":true,"can_destroy":false,"can_like":true,"can_update":false,"can_subscribe":true,"kind":"question","likes":[],"comments":[{"id":30092,"body":"Вот прямо от и до наверное нет. Нужно отовсюду дергать. DDD эрика эванса, entity relationship model (на вики).","creator":{"id":1,"public_name":"Kirill Mokevnin","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/mokevnin","avatar_img_url":"https://bitbucket.org/account/mokevnin/avatar/32/?ts=1500267653"},"created_at":"17 марта 2018","solution":true,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]},{"id":30094,"body":"Спасибо!","creator":{"id":133129,"public_name":"Артём Иванец","can_use_paid_features":true,"can_use_mentorship":true,"public_profile_enabled":null,"public_profile_url":"/u/artem-account","avatar_img_url":"https://cdn2.hexlet.io/attachments/c26058423b19c007a9c29a13c2e6da1111c31b4e/store/fill/185/185/994b9cd7da7f5b9bd2d86809c1fc68c1c0349907413be2924d33a290bf38/avatar.png"},"created_at":"17 марта 2018","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]}],"subscribers":[{"id":28510,"user_id":1},{"id":28497,"user_id":133129}],"mentor":{"id":17,"user_id":1,"full_name":"Кирилл Мокевнин","username":"mokevnin"}},{"id":10454,"title":"Опечатка в тестах:  \n_Какие цели преследуют подходы основанны**й** на выделении слоев?_  \nА чтоб два раза не вставать, лучше и запятую добавить:  \n_Какие цели преследуют подходы, основанные на выделении слоев?_\n\nВажные вещи рассматриваются в теории, тема необъятная, конечно. Обо всем не расскажешь, но хотелось бы подкрепления примерами(хоть насколько урезанными) уже высказанных утверждений:\n\n- _Входными данными в функции сервиса не могут быть сущности предметной области._\n- _Тоже самое касается выходных данных. Отдавать наружу сущности не самая клевая идея._\n- _Ни в коем случае не вызывайте сервисы из сервисов._\n- Примеры DTO ([но это хотя бы гуглится быстро](https://yandex.ru/yandsearch?text=dto%20java%20%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D1%80\u0026lr=213\u0026clid=2186618)).\n\nЭто необязательно, ибо даже с примерами, боюсь, на данном этапе развития может не усваиваться, т.к. сейчас больше смотрим на архитектуру снизу/изнутри, а не сверху/снаружи, и глаза разбегаются, а мозг не может составить сколь-нибудь целой картины. Длинной простыни бояться не нужно, кто не захочет читать, нажмет кнопочку \"Далее\". И даже необязательно самому писать, если есть сторонние материалы, можно обойтись ссылками.","creator":{"id":117329,"public_name":"Andy","can_use_paid_features":false,"can_use_mentorship":false,"public_profile_enabled":null,"public_profile_url":"/u/just_another_andy","avatar_img_url":"https://avatars1.githubusercontent.com/u/10694949?v=4"},"communitable":{"id":846,"slug":"architecture","name":"Архитектура","location":"/courses/js-ddd/lessons/architecture/theory_unit","link":"Курс «\u003ca href=\"https://ru.hexlet.io/courses/js-ddd\"\u003eJS: Предметно-ориентированное проектирование\u003c/a\u003e»\u003cbr\u003e\u0026#8627; Урок «\u003ca href=\"/courses/js-ddd/lessons/architecture/theory_unit\"\u003eАрхитектура\u003c/a\u003e» "},"created_at":"29 сентября 2017","location":"/topics/10454","has_solutions":true,"can_show_mentor_info":true,"can_destroy":false,"can_like":true,"can_update":false,"can_subscribe":true,"kind":"question","likes":[],"comments":[{"id":21644,"body":"Чуть чуть изменил теорию, глянь плс.","creator":{"id":1,"public_name":"Kirill Mokevnin","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/mokevnin","avatar_img_url":"https://bitbucket.org/account/mokevnin/avatar/32/?ts=1500267653"},"created_at":"29 сентября 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]},{"id":21674,"body":"Если честно, не заметил каких-либо серьезных изменений по внутреннему содержанию (может кешируется где-то?). \nЗаодно уж по внешнему виду надо пройтись. Как минимум, нужно \"_на смерть_\" слитно написать и везде перед \"_это_\" тире поставить. ","creator":{"id":117329,"public_name":"Andy","can_use_paid_features":false,"can_use_mentorship":false,"public_profile_enabled":null,"public_profile_url":"/u/just_another_andy","avatar_img_url":"https://avatars1.githubusercontent.com/u/10694949?v=4"},"created_at":"30 сентября 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]},{"id":21797,"body":"Исправил спасибо. \n\nЯ немного расширил тексты и дал объяснения. Если хочется об этом поговорить подробнее, давай в слаке.","creator":{"id":1,"public_name":"Kirill Mokevnin","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/mokevnin","avatar_img_url":"https://bitbucket.org/account/mokevnin/avatar/32/?ts=1500267653"},"created_at":"03 октября 2017","solution":true,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]}],"subscribers":[{"id":20857,"user_id":1},{"id":20831,"user_id":117329}],"mentor":{"id":17,"user_id":1,"full_name":"Кирилл Мокевнин","username":"mokevnin"}},{"id":10330,"title":"на 9 шаге (первичная реализация BaseRepository и CinemaService) в реализации BaseRepository у учителя свойство data представлено как статическое свойство класса (если я правильно понял) и как массив. Я же в своем решении реализовал это свойство хранилища в конструкторе как this.storage = {}. Т.е. как свойство конкретного репозитория и через хеш таблицу (что кажется логичней и эффективней). Кажется что мой подход более правильный и больше соответсвует заданию. Поясните пожалуйста какой подход правильнее, и почему это реализовано именно так у учителя? Или может быть это не так критично?","creator":{"id":88518,"public_name":"Андрей Соколов","can_use_paid_features":true,"can_use_mentorship":true,"public_profile_enabled":null,"public_profile_url":"/u/andreanos","avatar_img_url":"https://media.licdn.com/dms/image/C5603AQEAQNHSKUik5g/profile-displayphoto-shrink_100_100/0?e=1542844800\u0026v=beta\u0026t=5CZrxRPohirkLGkxx2h0RMvC0MmtUBykL0gggK-2pfE"},"communitable":{"id":846,"slug":"architecture","name":"Архитектура","location":"/courses/js-ddd/lessons/architecture/theory_unit","link":"Курс «\u003ca href=\"https://ru.hexlet.io/courses/js-ddd\"\u003eJS: Предметно-ориентированное проектирование\u003c/a\u003e»\u003cbr\u003e\u0026#8627; Урок «\u003ca href=\"/courses/js-ddd/lessons/architecture/theory_unit\"\u003eАрхитектура\u003c/a\u003e» "},"created_at":"21 сентября 2017","location":"/topics/10330","has_solutions":false,"can_show_mentor_info":true,"can_destroy":false,"can_like":true,"can_update":false,"can_subscribe":true,"kind":"question","likes":[],"comments":[{"id":21344,"body":"\u003e  у учителя свойство data представлено как статическое свойство класса\n\nЕсли бы оно было статическое, то там было бы слово `static`, но его там нет.\n\n\u003e Я же в своем решении реализовал это свойство хранилища в конструкторе как this.storage = {}\n\nМожно в конструкторе, а можно и так как в моем решении потому что это одно и тоже.","creator":{"id":1,"public_name":"Kirill Mokevnin","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/mokevnin","avatar_img_url":"https://bitbucket.org/account/mokevnin/avatar/32/?ts=1500267653"},"created_at":"22 сентября 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]}],"subscribers":[{"id":20606,"user_id":1},{"id":20586,"user_id":88518}],"mentor":{"id":17,"user_id":1,"full_name":"Кирилл Мокевнин","username":"mokevnin"}},{"id":10093,"title":"\u003e Первым и базовым слоем в приложении является Домен. Это реализация вашей модели предметной области. Чистая бизнес-логика без намека на инфраструктуру.\n\nНе понятна эта фраза, что такое домен?, у этого слова множество определений, что значит чистая бизнес-логика без инфраструктуры. Приведите пожалуйста пару простых примеров.","creator":{"id":88518,"public_name":"Андрей Соколов","can_use_paid_features":true,"can_use_mentorship":true,"public_profile_enabled":null,"public_profile_url":"/u/andreanos","avatar_img_url":"https://media.licdn.com/dms/image/C5603AQEAQNHSKUik5g/profile-displayphoto-shrink_100_100/0?e=1542844800\u0026v=beta\u0026t=5CZrxRPohirkLGkxx2h0RMvC0MmtUBykL0gggK-2pfE"},"communitable":{"id":846,"slug":"architecture","name":"Архитектура","location":"/courses/js-ddd/lessons/architecture/theory_unit","link":"Курс «\u003ca href=\"https://ru.hexlet.io/courses/js-ddd\"\u003eJS: Предметно-ориентированное проектирование\u003c/a\u003e»\u003cbr\u003e\u0026#8627; Урок «\u003ca href=\"/courses/js-ddd/lessons/architecture/theory_unit\"\u003eАрхитектура\u003c/a\u003e» "},"created_at":"07 сентября 2017","location":"/topics/10093","has_solutions":false,"can_show_mentor_info":true,"can_destroy":false,"can_like":true,"can_update":false,"can_subscribe":true,"kind":"question","likes":[],"comments":[{"id":20785,"body":"Домен это предметная область. В коде выражается [доменными объектами](https://ru.wikipedia.org/wiki/%D0%94%D0%BE%D0%BC%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9_%D0%BE%D0%B1%D1%8A%D0%B5%D0%BA%D1%82).\n\n\u003e что значит чистая бизнес-логика без инфраструктуры\n\n* Рассчет траектории полета\n* Рассчет заработной платы\n\nТо есть все то что является чистой бизнес логикой существующей вне программирования и кода как такового.","creator":{"id":1,"public_name":"Kirill Mokevnin","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/mokevnin","avatar_img_url":"https://bitbucket.org/account/mokevnin/avatar/32/?ts=1500267653"},"created_at":"08 сентября 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]}],"subscribers":[{"id":20150,"user_id":1},{"id":20113,"user_id":88518}],"mentor":{"id":17,"user_id":1,"full_name":"Кирилл Мокевнин","username":"mokevnin"}},{"id":10094,"title":"\u003e Ни в коем случае не вызывайте сервисы из сервисов. Если появляется общий код, то выносите общую функциональность, но не позволяйте самому сервису начинать мешаться с доменом.\n\nНе могли бы вы привести пример. Не понятно почему нельзя вызывать сервис из сервиса, и при чем тут общая функциональность? и почему это называется мешать сервис с доменом?","creator":{"id":88518,"public_name":"Андрей Соколов","can_use_paid_features":true,"can_use_mentorship":true,"public_profile_enabled":null,"public_profile_url":"/u/andreanos","avatar_img_url":"https://media.licdn.com/dms/image/C5603AQEAQNHSKUik5g/profile-displayphoto-shrink_100_100/0?e=1542844800\u0026v=beta\u0026t=5CZrxRPohirkLGkxx2h0RMvC0MmtUBykL0gggK-2pfE"},"communitable":{"id":846,"slug":"architecture","name":"Архитектура","location":"/courses/js-ddd/lessons/architecture/theory_unit","link":"Курс «\u003ca href=\"https://ru.hexlet.io/courses/js-ddd\"\u003eJS: Предметно-ориентированное проектирование\u003c/a\u003e»\u003cbr\u003e\u0026#8627; Урок «\u003ca href=\"/courses/js-ddd/lessons/architecture/theory_unit\"\u003eАрхитектура\u003c/a\u003e» "},"created_at":"07 сентября 2017","location":"/topics/10094","has_solutions":false,"can_show_mentor_info":true,"can_destroy":false,"can_like":true,"can_update":false,"can_subscribe":true,"kind":"question","likes":[],"comments":[{"id":20783,"body":"Потому что если у вас в рамках одного кода встречается сервисная функция и работа с сущностями, то это нарушение границ абстракций (функция сервиса это законченная бизнес операция, которая инкапсулирует работу с доменом внутри себя). Поэтому правильный подход заключается в том чтобы не переиспользовать сервисные функции, а выносить общий код на уровень ниже.","creator":{"id":1,"public_name":"Kirill Mokevnin","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/mokevnin","avatar_img_url":"https://bitbucket.org/account/mokevnin/avatar/32/?ts=1500267653"},"created_at":"08 сентября 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]}],"subscribers":[{"id":20148,"user_id":1},{"id":20114,"user_id":88518}],"mentor":{"id":17,"user_id":1,"full_name":"Кирилл Мокевнин","username":"mokevnin"}},{"id":8860,"title":"Здравствуйте, картинки этого и предыдущих уроков(да и курсов) сломаны:\n\u003e \u003cimg src=\"\" alt=\"architecture\"\u003e","creator":{"id":140068,"public_name":"Denis Eremin","can_use_paid_features":false,"can_use_mentorship":false,"public_profile_enabled":null,"public_profile_url":"/u/user-191cc0db1b9760b5","avatar_img_url":"https://cdn2.hexlet.io/assets/team/you-11dc1782520375a399be30e82f4392ded9c055e8a27c49f38d6128c06f1fb9f3.jpg"},"communitable":{"id":846,"slug":"architecture","name":"Архитектура","location":"/courses/js-ddd/lessons/architecture/theory_unit","link":"Курс «\u003ca href=\"https://ru.hexlet.io/courses/js-ddd\"\u003eJS: Предметно-ориентированное проектирование\u003c/a\u003e»\u003cbr\u003e\u0026#8627; Урок «\u003ca href=\"/courses/js-ddd/lessons/architecture/theory_unit\"\u003eАрхитектура\u003c/a\u003e» "},"created_at":"23 июня 2017","location":"/topics/8860","has_solutions":true,"can_show_mentor_info":true,"can_destroy":false,"can_like":true,"can_update":false,"can_subscribe":true,"kind":"question","likes":[],"comments":[{"id":17659,"body":"Поправил, спасибо!","creator":{"id":3,"public_name":"Rakhim Davletkaliyev","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/freetonik","avatar_img_url":"https://cdn2.hexlet.io/attachments/a51aabc9022541ca91ff59534b665194f8e7785a/store/fill/185/185/b9811ddb9a5539fc5867de4e34cc26a247eda4063401deb426f0d73f8c05/avatar.png"},"created_at":"23 июня 2017","solution":true,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]}],"subscribers":[{"id":17592,"user_id":1},{"id":17580,"user_id":3},{"id":17577,"user_id":140068}],"mentor":{"id":19,"user_id":3,"full_name":"Rakhim Davletkaliyev","username":"freetonik"}},{"id":7292,"title":"Про вызов сервисов из сервисов хочется понять подробнее. \nИнтуитивно это кажется нормальной практикой да и встречается постоянно. \n\nМожет быть дело в том, что термин \"сервис\" перегружен, и нужно больше контекста.\nНагуглил обсуждение [softwareengineering.stackexchange.com/questions/218011/](http://softwareengineering.stackexchange.com/questions/218011/how-accurate-is-business-logic-should-be-in-a-service-not-in-a-model) В верхнем ответе есть определение понятия сервис, речь примерно про это?","creator":{"id":42943,"public_name":"Alex Moskvichev","can_use_paid_features":false,"can_use_mentorship":false,"public_profile_enabled":null,"public_profile_url":"/u/user-2288b9679030ba5a","avatar_img_url":"https://avatars3.githubusercontent.com/u/1751926?v=4"},"communitable":{"id":846,"slug":"architecture","name":"Архитектура","location":"/courses/js-ddd/lessons/architecture/theory_unit","link":"Курс «\u003ca href=\"https://ru.hexlet.io/courses/js-ddd\"\u003eJS: Предметно-ориентированное проектирование\u003c/a\u003e»\u003cbr\u003e\u0026#8627; Урок «\u003ca href=\"/courses/js-ddd/lessons/architecture/theory_unit\"\u003eАрхитектура\u003c/a\u003e» "},"created_at":"24 марта 2017","location":"/topics/7292","has_solutions":false,"can_show_mentor_info":true,"can_destroy":false,"can_like":true,"can_update":false,"can_subscribe":true,"kind":"question","likes":[],"comments":[{"id":13542,"body":"Сервис как слой находится поверх доменной модели. Из этого следует, что сервис нельзя использовать на том же уровне, на котором используются сущности. Как только кто-то начинает вызывать сервис внутри метода сервиса, то почти наверняка там будет оперирование сущностями и даже если не будет сразу, то потом оно появится легче легкого. Нарушатся барьеры абстракции.\n\nГораздо более лучшей стратегией будет общий код для сервисов выделять во внутренние блоки, которые можно переиспользовать.","creator":{"id":1,"public_name":"Kirill Mokevnin","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/mokevnin","avatar_img_url":"https://bitbucket.org/account/mokevnin/avatar/32/?ts=1500267653"},"created_at":"24 марта 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]},{"id":13815,"body":"Сервисы бывают разные: доменные, приложения, инфраструктуры. Часть логики, которую нельзя упаковать в какую-либо сущность домена, упаковываем в сервис домена и его уже вызываем в нашем use case (сервис приложения).\n\nПример: сущность создаётся внутри другой сущности, но при этом первая сущность принимает в конструктор некий параметр из общего справочника. Получение данных из справочника это уже инфраструктура, её внутрь домена никак не поставить, иначе нарушится persistence ignorance и SRP.\n\n```\nconst defaultDirection = 'OUTPUT';\n\nclass Func {\n  id,\n  parameters,\n  addParameterByName(name, direction = null) {\n    # в чистом домене так делать нельзя dataProvider.get()\n    direction = direction || dataProvider.get(defaultDirection);\n    this.parameters.push(new Parameter(this, name, direction));\n  }\n}\n\nclass Parameter {\n  id,\n  name,\n  direction,\n  func,\n  constructor(func, name, dir) {\n    this.func = func;\n    this.name = name;\n    this.dir = dir;\n  }\n}\n\nconst func = new Func();\nfunc.addParameterByName('flow_best_parameter');\n```\n\nИз практики 3 урока: код конструктора, содержащий вызов инфраструктуры.\n```\nthis.id = uuid.create().hex;\n```\n\nВозможно, получилось избыточно, но можно потратить кучу времени, чтобы найти правильный путь.","creator":{"id":36683,"public_name":"Юрий Быков","can_use_paid_features":false,"can_use_mentorship":false,"public_profile_enabled":null,"public_profile_url":"/u/bykov","avatar_img_url":"https://cdn2.hexlet.io/assets/team/you-11dc1782520375a399be30e82f4392ded9c055e8a27c49f38d6128c06f1fb9f3.jpg"},"created_at":"31 марта 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]}],"subscribers":[{"id":14519,"user_id":36683},{"id":14310,"user_id":1},{"id":14304,"user_id":42943}],"mentor":{"id":17,"user_id":1,"full_name":"Кирилл Мокевнин","username":"mokevnin"}}];gon.topic_type="community";gon.communitable_type="Lesson";gon.communitable_id=846;gon.can_render_new_topic_box=true;
+//]]>
+</script>
+<script>
+  // in development mode
+  if (!window.Rollbar) {
+    Rollbar = {
+      error: function() {
+      },
+      configure: function() {
+      }
+    }
+  }
+  
+  Rollbar.configure({
+    payload: {
+      person: gon.current_user
+    }
+  });
+</script>
+
+<script type='application/ld+json'>
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "Hexlet",
+  "url": "https://ru.hexlet.io",
+  "logo": "https://cdn2.hexlet.io/assets/hexlet_logo-e99fc2b3b7c1eec88899f3af1435a39aaac6fd29d011dfe2342499c0884b7a96.png",
+  "sameAs": [
+    "https://www.facebook.com/Hexlet",
+    "https://www.youtube.com/user/HexletUniversity",
+    "http://twitter.com/HexletHQ",
+    "https://plus.google.com/b/108226937214888198279/+HexletOrg/posts",
+    "https://soundcloud.com/hexlet"
+  ]
+}
+
+</script>
+
+<script src="https://www.googletagmanager.com/gtag/js?id=UA-1360700-51" async="async"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+  
+  gtag('config', "UA-1360700-51", {
+    'user_id': gon.current_user.id
+  });
+  
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-WK88TH');
+</script>
+
+
+<link rel="stylesheet" media="all" href="https://cdn2.hexlet.io/assets/application-8ce03079c6bc137ea6f0013b0bc7e6110e865912947a64d80d5cc2d6b6451d9f.css" />
+<link href='/courses/js-ddd/lessons/architecture/theory_unit' rel='canonical'>
+<meta content='article' property='og:type'>
+<meta content='Архитектура / JS: Предметно-ориентированное проектирование' property='og:title'>
+<meta content='Познакомиться с несколькими важными аспектами архитектур и рассмотреть стандартные, принятые в индустрии подходы к проектированию систем.
+' property='og:description'>
+<meta content='Познакомиться с несколькими важными аспектами архитектур и рассмотреть стандартные, принятые в индустрии подходы к проектированию систем.
+' name='description'>
+<meta content='https://cdn2.hexlet.io/attachments/58d6bebeba695dc3b1568e7272abf90034eaa2a3/store/fill/600/400/15e77ad793c1830ddca69521c95bd56e3232e24775144569290bdf26e13d/image.png' property='og:image'>
+<link href='https://cdn2.hexlet.io/attachments/58d6bebeba695dc3b1568e7272abf90034eaa2a3/store/fill/600/400/15e77ad793c1830ddca69521c95bd56e3232e24775144569290bdf26e13d/image.png' rel='image_src'>
+
+</head>
+<body>
+<div class='container-fluid px-0'>
+<div class='d-flex flex-row'>
+<div class='hexlet-lesson-container px-3 px-sm-5 pt-3 pt-sm-4 pb-5 flex-fill tab-content'>
+<div class='container px-0 mb-3'>
+<h1 class='h6 pb-3'>
+<span class='x-font-weight-bolder'><a class="x-unstyled-link" href="/courses/js-ddd">JS: Предметно-ориентированное проектирование</a></span>
+<span class='mx-1'>→</span>
+<a class='x-btn-no-active-decor' data-keyboard='true' data-target='#coursenav-modal' data-toggle='modal' href='#coursenav-modal'>
+Архитектура
+<span class='fal fa-sitemap'></span>
+</a>
+</h1>
+
+</div>
+<div aria-labelledby='lesson-tab' class='tab-pane fade show active' id='lesson' role='tabpanel'>
+<div class='container px-0' itemscope itemtype='http://schema.org/Article'>
+<div class='hexlet-theory-body'>
+<div class='mt-3'>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html><body>
+<p>При разработке приложений с богатой предметной областью во весь рост встает
+вопрос о том, как правильно организовать код приложения, а если смотреть шире,
+то какую выбрать архитектуру. О том, какие варианты может предложить вам
+индустрия мы сейчас и поговорим, но перед тем как я расскажу про существующие
+подходы, важно запомнить несколько вещей.</p>
+
+<p>Не существует единственного верного подхода при организации вашего приложения.
+Известные подходы - всего лишь видение конкретных людей для конкретных
+ситуаций и конкретных стеков (язык + инструментарий). Любая хорошая архитектура
+базируется на фундаментальных законах и принципах. Большую часть из них
+вы уже знаете:</p>
+
+<ul>
+<li>Изоляция побочных эффектов</li>
+<li>Хорошая абстракция (абстракция данных, композиция, разделение)</li>
+<li>Сильные барьеры (между абстракциями)</li>
+<li>Слабые связи (возможность замены/независимого развития)</li>
+</ul>
+
+<p>Из популярного можно выделить следующие словосочетания:</p>
+
+<ul>
+<li>The Clean Architecture</li>
+<li>Onion Architecture</li>
+<li>Hexagonal Architecture</li>
+</ul>
+
+<p>Все эти архитектуры сводятся так или иначе к тому, что наше приложение
+представляет из себя набор слоев (тех самых абстракций), которые
+связаны друг с другом определенным образом и отвечают за определенные
+аспекты системы. Лучше всего начать анализ с красивой картинки:</p>
+
+<p><img src="https://cdn2.hexlet.io/attachments/927a0c7700c8f3da17c64e69a12162164f35df4c/store/a299dfdd7e4ff268ee65d7f7aeab8a1956fac41041f3ebab6f0165096341/file" alt="architecture"></p>
+
+<p>Начать стоит с того, что: <code>Фреймворк - это не ваше приложение</code>. Остановитесь на
+секундочку и хорошо обдумайте фразу. В типичных веб приложениях
+фреймворк определяет вообще все. Приложение на 100% переплетается с ним
+и становится его частью. Программист начинает мыслить в рамках возможностей
+фреймворка и его ограничений, и в его голове появляются несуществующие
+причинно-следственные связи.</p>
+
+<p>Да, конечно, сложно (и не нужно) делать абсолютную изоляцию, но и всегда
+нужно проводить четкую грань между вашим приложением и тем фреймворком,
+который использует его.</p>
+
+<h3>Домен</h3>
+
+<p>Первым и базовым слоем в приложении является Домен. Это реализация вашей
+модели предметной области. Чистая бизнес-логика без намека на инфраструктуру.</p>
+
+<p>Вот что обычно характеризует домен:</p>
+
+<ul>
+<li>Чистый код (pure)</li>
+<li>Plain Old X Object (POXO)</li>
+<li>Бизнес-логика</li>
+<li>Валидация</li>
+</ul>
+
+<p><code>POXO</code> - это обобщенное название, которое в каждом конкретном языке приобретает
+свое собственное имя. В java <code>POJO</code>, в ruby <code>PORO</code>, и так далее. Этой аббревиатурой
+описывают объекты, которые построены исключительно на возможностях самого языка, без
+дополнительных абстракций. Так подчеркивается, что домен не использует внешних библиотек,
+которые влияют на его организацию. Не надо фанатично относится к этой идее.
+В некоторых языках сформировались свои правила, и они идут в разрез с общими
+концепциями.</p>
+
+<h3>Персистентность</h3>
+
+<p>Реализовать логику только половина дела. В конце концов нужно сохранить наши изменения.
+Казалось бы, что эта часть должна быть самой простой, но нет. Состояние, его
+мутация и поддержка целостности настолько сложная история, что придуманы
+огромные и сложные фреймворки, называемые <code>ORM</code>. Обычно они построены вокруг
+двух самых распространенных паттернов:</p>
+
+<ul>
+<li>ActiveRecord</li>
+<li>DataMapper</li>
+</ul>
+
+<p>В этом курсе мы их не рассматриваем, но в реальной жизни вам придется с
+ними столкнуться.</p>
+
+<h4>Repository</h4>
+
+<p>Репозиторий - это хранилище однотипных сущностей. Позволяет как делать выборки,
+так и сохранять сущности внутри себя. Для простоты, в нашем приложении репозитории
+будут хранить все данные в памяти.</p>
+
+<pre><code class="javascript">const film = new Film(name, duration);
+repository = new FilmRepository
+repository.save(film);
+
+repository.find(film.id); // film
+repository.find(unknownId); // Boom!
+</code></pre>
+
+<h3>Инфраструктура</h3>
+
+<p>Именно в эту категорию попадает фреймворк, ui и вообще любая прикладная история.
+На картинке этот слой находится на самой внешней стороне. Из него происходит
+посылка емейлов, смс, и выполняется так называемая логика приложения. Например,
+редирект на определенную страницу после создания какой-то сущности.</p>
+
+<h3>Сервисы</h3>
+
+<p>Помните диаграмму вариантов использования? Вот именно эти варианты и являются
+единственным способом изменения состояния вашего приложения. Ваш домен
+обрастает слоем так называемых сервисов. Каждый сервис представляет собой
+набор функций, имитирующих бизнес-сценарии, например, "добавить в друзья",
+"поставить лайк".</p>
+
+<pre><code class="javascript">class CinemaService {
+  createFilm(name, duration) {
+    const film = new Film(name, duration);
+    this.FilmRepository.save(film);
+    return film;
+  }
+}
+</code></pre>
+
+<p>Инфраструктурный слой является главным пользователем вашего слоя сервисов.
+Сервисы могут вызываться в <code>ui</code>, в контроллерах, в асинхронных <code>jobs</code>.
+Слой сервисов настолько важен сам по себе, что Мартин Фаулер описывает его
+как шаблон проектирования <a href="https://martinfowler.com/eaaCatalog/serviceLayer.html" target="_blank">Service Layer</a></p>
+
+<p>При проектировании сервисов нужно придерживаться некоторых правил, которые позволяют абстракции не протекать и максимально поддерживать чистоту.</p>
+
+<p>Входными данными в функции сервиса не могут быть сущности предметной области. Причина такого правила очень проста, сервисы, слой поверх предметной области, он инкапсулирует в себе все сценарии. Если сущности окажутся снаружи, то логика становится размазанной между слоями (потекла абстракция), пропадает изоляция. Но так сделать не всегда возможно. Иногда это связано с устройством конкретных фреймворков, которые не дают нормально абстрагировать предметную область от инфраструктуры. В такой ситуации не стоит бороться насмерть за концептуальную чистоту, идите на компромиссы.</p>
+
+<p>Тоже самое касается выходных данных. В теории, отдавать наружу сущности нельзя по той же причине, по которой нельзя ими оперировать вне сервисов. Так как после возврата крайне просто начать ей оперировать, что сразу повлечет за собой размазывание логики по слоям. Вместо сущности, как правило, отдают специальный "Data Transfer Object". В отличие от сущности он не содержит поведения и используется исключительно как контейнер для чтения.</p>
+
+<blockquote>
+<p>DTO - Используется для передачи данных между подсистемами приложения. DTO, в отличие от business object, не должен содержать какого-либо поведения</p>
+</blockquote>
+
+<ul>
+<li>Неизменяемый</li>
+<li>Просто данные</li>
+</ul>
+
+<p>Опять же, чтобы не усложнять, в тех системах, где нет готовых механизмов для трансляции,
+возвращают и сущности, но на уровне соглашений используют их исключительно как <code>DTO</code>.</p>
+
+<p>И последнее по списку, но не последнее по важности, не вызывайте сервисы из сервисов. Если появляется общий код, то выносите общую функциональность, но не позволяйте самому сервису начинать мешаться с доменом. Последнее означает то, что если сервисы начинают использовать внутри себя сервисы (тот же или другие), то с большой вероятностью происходит нарушение принципа одного уровня абстракции. Сервисы - слой <em>поверх</em> домена, а это значит что на одном уровне нельзя использовать и домен и сервис.</p>
+</body></html>
+
+</div>
+</div>
+</div>
+
+</div>
+<div aria-labelledby='community-tab' class='tab-pane fade' id='community' role='tabpanel'>
+<div class='row justify-content-center w-100'>
+<div class='col-12 col-lg-10 col-xl-9'>
+<div class='hexlet-community d-flex flex-fill'>
+<div class='container' id='community-box'></div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+<div class='px-0 d-flex flex-column justify-content-between sticky-top' id='hexlet-lesson-sidebar'>
+<div class='d-flex flex-column flex-shrink-0'>
+<a role="button" data-disable-with="<span class=&quot;fa fa-spinner fa-spin&quot;></span>" aria-expanded="false" data-html="true" class="btn btn-primary btn-block px-5 rounded-0 d-flex justify-content-center align-items-center" id="finish-button" rel="nofollow" data-method="patch" href="/courses/js-ddd/lessons/architecture/finish_unit?unit=theory"><span class='d-none d-sm-block mr-2'>Далее</span>
+<span class='far fa-arrow-right'></span>
+</a><div class='mt-3'>
+<div class='px-2 mb-4'>
+<span class='d-none d-sm-block small text-center mb-2'>
+пройдено 15 шагов из 21
+</span>
+<div class='mr-2 px-1'>
+<div class='progress mb-1 rounded-0'>
+<div class='progress-bar m-0 bg-success' style='width: 72%'></div>
+</div>
+</div>
+</div>
+<ul class='nav nav-tabs d-flex flex-column pr-2 border-0' id='myTab' role='tablist'>
+<li class='nav-item'>
+<a aria-controls='lesson' aria-selected='true' class='nav-link active rounded-0' data-toggle='tab' href='#lesson' id='lesson-tab' role='tab'>
+<span class='d-none d-sm-inline-block'>
+Шаг:
+</span>
+<span class='d-none d-sm-inline-block'>теория</span>
+<span class='d-inline-block d-sm-none'>
+<span class='far fa-file-alt'></span>
+</span>
+</a>
+</li>
+<li class='nav-item'>
+<a aria-controls='community' aria-selected='false' class='nav-link rounded-0' data-toggle='tab' href='#community' id='community-tab' role='tab'>
+<span class='d-none d-sm-inline-block'>Обсуждение</span>
+<span class='d-inline-block d-sm-none'>
+<span class='far fa-comments'></span>
+</span>
+</a>
+</li>
+</ul>
+
+</div>
+</div>
+<div class='d-flex flex-column mt-3'>
+<a class='hexlet-lesson-sidebar-secondary-button x-btn-no-active-decor' data-keyboard='true' data-target='#coursenav-modal' data-toggle='modal' href='#coursenav-modal'>
+<div class='py-2 pl-3 pr-2 border-left-0 border-right-0 border-bottom-0 border-top'>
+<span class='fal fa-sitemap'></span>
+<span class='d-none d-sm-inline-block ml-2'>Навигация</span>
+</div>
+</a>
+<a class='hexlet-lesson-sidebar-secondary-button x-btn-no-active-decor' href='/my'>
+<div class='py-2 pl-3 pr-2 border-left-0 border-right-0 border-bottom-0 border-top'>
+<span class='fal fa-home'></span>
+<span class='d-none d-sm-inline-block ml-2'>Мой Хекслет</span>
+</div>
+</a>
+<a class='hexlet-lesson-sidebar-secondary-button x-btn-no-active-decor' href='#' id='open-lesson-beacon'>
+<div class='py-2 pl-3 pr-2 border-left-0 border-right-0 border-bottom-0 border-top'>
+<span class='fal fa-question-circle'></span>
+<span class='d-none d-sm-inline-block ml-2'>Техподдержка</span>
+</div>
+</a>
+</div>
+
+</div>
+</div>
+<div aria-hidden='true' aria-labelledby='exampleModalLabel' class='modal fade' id='coursenav-modal' role='dialog' tabindex='-1'>
+<div class='modal-dialog' role='document'>
+<div class='modal-content'>
+<div class='modal-header'>
+<h6 class='modal-title'>
+<a class="x-link" href="/my">Мой Хекслет
+</a>→
+<a class="x-link" href="/courses/js-ddd"><span>Курс</span>
+<span>
+«JS: Предметно-ориентированное проектирование»
+</span>
+</a></h6>
+<button aria-label='Close' class='close' data-dismiss='modal' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+</div>
+<div class='modal-body scrollable px-4'>
+<div class='mb-3'>
+<span class=''>
+1.
+Введение
+</span>
+<p class='m-0'>
+<div class='small'>
+<span class='mr-2'>↳</span>
+<a class=" " href="/courses/js-ddd/lessons/intro/theory_unit"><span class='x-striked'>
+теория
+(текст)
+</span>
+</a></div>
+
+</p>
+</div>
+<div class='mb-3'>
+<span class=''>
+2.
+Use cases
+</span>
+<p class='m-0'>
+<div class='small'>
+<span class='mr-2'>↳</span>
+<a class=" " href="/courses/js-ddd/lessons/use-cases/theory_unit"><span class='x-striked'>
+теория
+(текст)
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/use-cases/quiz_unit"><span class='x-striked'>
+тесты
+</span>
+</a></div>
+
+</p>
+</div>
+<div class='mb-3'>
+<span class=''>
+3.
+Сущности и связи
+</span>
+<p class='m-0'>
+<div class='small'>
+<span class='mr-2'>↳</span>
+<a class=" " href="/courses/js-ddd/lessons/entity-relation/theory_unit"><span class='x-striked'>
+теория
+(текст)
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/entity-relation/quiz_unit"><span class='x-striked'>
+тесты
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/entity-relation/exercise_unit"><span class='x-striked'>
+упражнение
+</span>
+</a></div>
+
+</p>
+</div>
+<div class='mb-3'>
+<span class='x-font-weight-bolder'>
+4.
+Архитектура
+</span>
+<p class='m-0'>
+<div class='small'>
+<span class='mr-2'>↳</span>
+<a class=" " href="/courses/js-ddd/lessons/architecture/theory_unit"><span class='x-striked'>
+<span class='x-font-weight-bolder text-dark'>
+теория
+</span>
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/architecture/quiz_unit"><span class='x-striked'>
+<span class=''>
+тесты
+</span>
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/architecture/exercise_unit"><span class='x-striked'>
+<span class=''>
+упражнение
+</span>
+</span>
+</a></div>
+
+</p>
+</div>
+<div class='mb-3'>
+<span class=''>
+5.
+Валидация
+</span>
+<p class='m-0'>
+<div class='small'>
+<span class='mr-2'>↳</span>
+<a class=" " href="/courses/js-ddd/lessons/validation/theory_unit"><span class='x-striked'>
+теория
+(текст)
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/validation/quiz_unit"><span class='x-striked'>
+тесты
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/validation/exercise_unit"><span class='x-striked'>
+упражнение
+</span>
+</a></div>
+
+</p>
+</div>
+<div class='mb-3'>
+<span class=''>
+6.
+Dependency Injection Container
+</span>
+<p class='m-0'>
+<div class='small'>
+<span class='mr-2'>↳</span>
+<a class=" " href="/courses/js-ddd/lessons/container/theory_unit"><span class='x-striked'>
+теория
+(текст)
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/container/quiz_unit"><span class='x-striked'>
+тесты
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/container/exercise_unit"><span class=''>
+упражнение
+</span>
+</a></div>
+
+</p>
+</div>
+<div class='mb-3'>
+<span class=''>
+7.
+Предметная область
+</span>
+<p class='m-0'>
+<div class='small'>
+<span class='mr-2'>↳</span>
+<a class=" " href="/courses/js-ddd/lessons/domain/theory_unit"><span class='x-striked'>
+теория
+(текст)
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/domain/quiz_unit"><span class=''>
+тесты
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/domain/exercise_unit"><span class=''>
+упражнение
+</span>
+</a></div>
+
+</p>
+</div>
+<div class='mb-3'>
+<span class=''>
+8.
+Мутация
+</span>
+<p class='m-0'>
+<div class='small'>
+<span class='mr-2'>↳</span>
+<a class=" " href="/courses/js-ddd/lessons/mutability/theory_unit"><span class=''>
+теория
+(текст)
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/mutability/quiz_unit"><span class=''>
+тесты
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/mutability/exercise_unit"><span class=''>
+упражнение
+</span>
+</a></div>
+
+</p>
+</div>
+</div>
+<div class='modal-footer'>
+<button class='btn hexlet-btn-main' data-dismiss='modal' type='button'>Закрыть</button>
+</div>
+</div>
+</div>
+</div>
+
+
+</div>
+<script src="https://cdn2.hexlet.io/assets/essential-6773aaf65563d774c8eaf34a9e68d4b66e90d0946f559e78a8cd43a054f4804e.js"></script>
+<script src="https://cdn2.hexlet.io/assets/application-bee47b5de66ce12a65b837dabbc737469aa260f7e7526c6bf154ca1a01a18061.js" defer="defer"></script>
+<script src="https://cdn2.hexlet.io/packs/vendor-87d7e1452406f93a5a7e.chunk.js" defer="defer"></script>
+<script src="https://cdn2.hexlet.io/packs/application-859c8abb3aec62db64c2.js" defer="defer"></script>
+<script src="https://cdn2.hexlet.io/packs/community-b989d308581e4fea4820.js" defer="defer"></script>
+<script>
+  var el = document.getElementById('open-lesson-beacon');
+  el.addEventListener('click', function() {
+    HS.beacon.open();
+  });
+</script>
+
+<script>
+  !function(e,o,n){window.HSCW=o,window.HS=n,n.beacon=n.beacon||{};var t=n.beacon;t.userConfig={},t.readyQueue=[],t.config=function(e){this.userConfig=e},t.ready=function(e){this.readyQueue.push(e)},o.config={docs:{enabled:!0,baseUrl:"//hexlet.helpscoutdocs.com/"},contact:{enabled:!0,formId:"4d3729f5-96ac-11e6-91aa-0a5fecc78a4d"}};var r=e.getElementsByTagName("script")[0],c=e.createElement("script");c.type="text/javascript",c.async=!0,c.src="https://djtflbt20bdde.cloudfront.net/",r.parentNode.insertBefore(c,r)}(document,window.HSCW||{},window.HS||{});
+</script>
+<script>
+  HS.beacon.config({
+    poweredBy: false,
+    modal: gon.hs.modal,
+    icon: 'question',
+    color: "#79afb8",
+    topArticles: true,
+    translation: {
+      searchLabel: 'Чем можем помочь?',
+      searchErrorLabel: 'Запрос занял слишком много времени. Пожалуйста, проверьте свое соединение с интернетом и попробуйте заново.',
+      noResultsLabel: 'Ничего не найдено по запросу',
+      contactLabel: 'Написать в поддержку',
+      attachFileLabel: 'Приложить файл',
+      attachFileError: 'Максимальный размер файла 10мб',
+      nameLabel: 'Ваше имя',
+      nameError: 'Пожалуйста, введите ваше имя',
+      emailLabel: 'Email',
+      emailError: 'Пожалуйста, введите правильный email',
+      topicLabel: 'Выберите тему',
+      topicError: 'Пожалуйста, выберите тему из списка',
+      subjectLabel: 'Заголовок',
+      subjectError: 'Пожалуйста, введите заголовок',
+      messageLabel: 'Чем можем помочь?',
+      messageError: 'Пожалуйста, введите сообщение',
+      sendLabel: 'Отправить',
+      contactSuccessLabel: 'Сообщение отправлено!',
+      contactSuccessDescription: 'Спасибо! Сотрудник Хекслета ответит вам в ближайшее время.'
+    }
+  });
+</script>
+<script>
+  if (!gon.current_user.isGuest) {
+    HS.beacon.ready(function() {
+      HS.beacon.identify({
+        name: gon.current_user.public_name,
+        email: gon.current_user.email,
+        CreatedAt: gon.current_user.created_at,
+        CanUsePaidFeatures: gon.current_user.can_use_paid_features
+      });
+    });
+  }
+</script>
+
+<script>
+  if (!gon.current_user.isGuest) {
+    (function(i,s,o,g,r,a,m){i['ProfitWellObject']=r;i[r]=i[r]||function(){  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m);  })(window,document,'script','https://dna8twue3dlxq.cloudfront.net/js/profitwell.js','profitwell');
+    profitwell('auth_token', '69620c83ec136781432c55c6cb740d8f');
+    profitwell('user_email', gon.current_user.email);
+  }
+</script>
+
+
+</body>
+</html>
