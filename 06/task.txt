@@ -1,0 +1,14 @@
+index.js
+Соберите контейнер bottlejs так чтобы:
+
+свойство repositories хранило все объекты репозиториев, доступные по их именам (например, repositories.User)
+свойство entities хранило в себе все классы сущностей
+свойство validate хранило в себе валидатор с установленными внутрь репозиториями
+свойство services хранило в себе объекты сервисов, доступные по их именам (например, services.User)
+services/CinemaService.js
+Реализуйте бизнес-сценарий создание сеанса:
+
+const time = new Date();
+const [film] = service.createFilm('first glance', 100);
+const [cinemaHall] = service.createCinemaHall('first', 5, 5);
+const [filmScreening] = service.createFilmScreening(film.id, cinemaHall.id, time);

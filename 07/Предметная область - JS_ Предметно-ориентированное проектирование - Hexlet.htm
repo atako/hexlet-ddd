@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">var _rollbarConfig = {"accessToken":"fc27636027d0460bbc1578d97d0d27ad","captureUncaught":true,"captureUnhandledRejections":true,"hostWhiteList":["https://cdn2.hexlet.io"],"ignoredMessages":["Script error"],"payload":{"client":{"source_map_enabled":true,"code_version":null,"guess_uncaught_frames":true},"environment":"production","person":{"id":111320,"username":"Дмитрий Рюмкин","email":null}}};</script>
+<script type="text/javascript">!function(r){function e(n){if(o[n])return o[n].exports;var t=o[n]={exports:{},id:n,loaded:!1};return r[n].call(t.exports,t,t.exports,e),t.loaded=!0,t.exports}var o={};return e.m=r,e.c=o,e.p="",e(0)}([function(r,e,o){"use strict";var n=o(1),t=o(4);_rollbarConfig=_rollbarConfig||{},_rollbarConfig.rollbarJsUrl=_rollbarConfig.rollbarJsUrl||"https://cdnjs.cloudflare.com/ajax/libs/rollbar.js/2.4.4/rollbar.min.js",_rollbarConfig.async=void 0===_rollbarConfig.async||_rollbarConfig.async;var a=n.setupShim(window,_rollbarConfig),l=t(_rollbarConfig);window.rollbar=n.Rollbar,a.loadFull(window,document,!_rollbarConfig.async,_rollbarConfig,l)},function(r,e,o){"use strict";function n(r){return function(){try{return r.apply(this,arguments)}catch(r){try{console.error("[Rollbar]: Internal error",r)}catch(r){}}}}function t(r,e){this.options=r,this._rollbarOldOnError=null;var o=s++;this.shimId=function(){return o},"undefined"!=typeof window&&window._rollbarShims&&(window._rollbarShims[o]={handler:e,messages:[]})}function a(r,e){if(r){var o=e.globalAlias||"Rollbar";if("object"==typeof r[o])return r[o];r._rollbarShims={},r._rollbarWrappedError=null;var t=new p(e);return n(function(){e.captureUncaught&&(t._rollbarOldOnError=r.onerror,i.captureUncaughtExceptions(r,t,!0),i.wrapGlobals(r,t,!0)),e.captureUnhandledRejections&&i.captureUnhandledRejections(r,t,!0);var n=e.autoInstrument;return e.enabled!==!1&&(void 0===n||n===!0||"object"==typeof n&&n.network)&&r.addEventListener&&(r.addEventListener("load",t.captureLoad.bind(t)),r.addEventListener("DOMContentLoaded",t.captureDomContentLoaded.bind(t))),r[o]=t,t})()}}function l(r){return n(function(){var e=this,o=Array.prototype.slice.call(arguments,0),n={shim:e,method:r,args:o,ts:new Date};window._rollbarShims[this.shimId()].messages.push(n)})}var i=o(2),s=0,d=o(3),c=function(r,e){return new t(r,e)},p=function(r){return new d(c,r)};t.prototype.loadFull=function(r,e,o,t,a){var l=function(){var e;if(void 0===r._rollbarDidLoad){e=new Error("rollbar.js did not load");for(var o,n,t,l,i=0;o=r._rollbarShims[i++];)for(o=o.messages||[];n=o.shift();)for(t=n.args||[],i=0;i<t.length;++i)if(l=t[i],"function"==typeof l){l(e);break}}"function"==typeof a&&a(e)},i=!1,s=e.createElement("script"),d=e.getElementsByTagName("script")[0],c=d.parentNode;s.crossOrigin="",s.src=t.rollbarJsUrl,o||(s.async=!0),s.onload=s.onreadystatechange=n(function(){if(!(i||this.readyState&&"loaded"!==this.readyState&&"complete"!==this.readyState)){s.onload=s.onreadystatechange=null;try{c.removeChild(s)}catch(r){}i=!0,l()}}),c.insertBefore(s,d)},t.prototype.wrap=function(r,e,o){try{var n;if(n="function"==typeof e?e:function(){return e||{}},"function"!=typeof r)return r;if(r._isWrap)return r;if(!r._rollbar_wrapped&&(r._rollbar_wrapped=function(){o&&"function"==typeof o&&o.apply(this,arguments);try{return r.apply(this,arguments)}catch(o){var e=o;throw e&&("string"==typeof e&&(e=new String(e)),e._rollbarContext=n()||{},e._rollbarContext._wrappedSource=r.toString(),window._rollbarWrappedError=e),e}},r._rollbar_wrapped._isWrap=!0,r.hasOwnProperty))for(var t in r)r.hasOwnProperty(t)&&(r._rollbar_wrapped[t]=r[t]);return r._rollbar_wrapped}catch(e){return r}};for(var u="log,debug,info,warn,warning,error,critical,global,configure,handleUncaughtException,handleUnhandledRejection,captureEvent,captureDomContentLoaded,captureLoad".split(","),f=0;f<u.length;++f)t.prototype[u[f]]=l(u[f]);r.exports={setupShim:a,Rollbar:p}},function(r,e){"use strict";function o(r,e,o){if(r){var t;if("function"==typeof e._rollbarOldOnError)t=e._rollbarOldOnError;else if(r.onerror){for(t=r.onerror;t._rollbarOldOnError;)t=t._rollbarOldOnError;e._rollbarOldOnError=t}var a=function(){var o=Array.prototype.slice.call(arguments,0);n(r,e,t,o)};o&&(a._rollbarOldOnError=t),r.onerror=a}}function n(r,e,o,n){r._rollbarWrappedError&&(n[4]||(n[4]=r._rollbarWrappedError),n[5]||(n[5]=r._rollbarWrappedError._rollbarContext),r._rollbarWrappedError=null),e.handleUncaughtException.apply(e,n),o&&o.apply(r,n)}function t(r,e,o){if(r){"function"==typeof r._rollbarURH&&r._rollbarURH.belongsToShim&&r.removeEventListener("unhandledrejection",r._rollbarURH);var n=function(r){var o,n,t;try{o=r.reason}catch(r){o=void 0}try{n=r.promise}catch(r){n="[unhandledrejection] error getting `promise` from event"}try{t=r.detail,!o&&t&&(o=t.reason,n=t.promise)}catch(r){t="[unhandledrejection] error getting `detail` from event"}o||(o="[unhandledrejection] error getting `reason` from event"),e&&e.handleUnhandledRejection&&e.handleUnhandledRejection(o,n)};n.belongsToShim=o,r._rollbarURH=n,r.addEventListener("unhandledrejection",n)}}function a(r,e,o){if(r){var n,t,a="EventTarget,Window,Node,ApplicationCache,AudioTrackList,ChannelMergerNode,CryptoOperation,EventSource,FileReader,HTMLUnknownElement,IDBDatabase,IDBRequest,IDBTransaction,KeyOperation,MediaController,MessagePort,ModalWindow,Notification,SVGElementInstance,Screen,TextTrack,TextTrackCue,TextTrackList,WebSocket,WebSocketWorker,Worker,XMLHttpRequest,XMLHttpRequestEventTarget,XMLHttpRequestUpload".split(",");for(n=0;n<a.length;++n)t=a[n],r[t]&&r[t].prototype&&l(e,r[t].prototype,o)}}function l(r,e,o){if(e.hasOwnProperty&&e.hasOwnProperty("addEventListener")){for(var n=e.addEventListener;n._rollbarOldAdd&&n.belongsToShim;)n=n._rollbarOldAdd;var t=function(e,o,t){n.call(this,e,r.wrap(o),t)};t._rollbarOldAdd=n,t.belongsToShim=o,e.addEventListener=t;for(var a=e.removeEventListener;a._rollbarOldRemove&&a.belongsToShim;)a=a._rollbarOldRemove;var l=function(r,e,o){a.call(this,r,e&&e._rollbar_wrapped||e,o)};l._rollbarOldRemove=a,l.belongsToShim=o,e.removeEventListener=l}}r.exports={captureUncaughtExceptions:o,captureUnhandledRejections:t,wrapGlobals:a}},function(r,e){"use strict";function o(r,e){this.impl=r(e,this),this.options=e,n(o.prototype)}function n(r){for(var e=function(r){return function(){var e=Array.prototype.slice.call(arguments,0);if(this.impl[r])return this.impl[r].apply(this.impl,e)}},o="log,debug,info,warn,warning,error,critical,global,configure,handleUncaughtException,handleUnhandledRejection,_createItem,wrap,loadFull,shimId,captureEvent,captureDomContentLoaded,captureLoad".split(","),n=0;n<o.length;n++)r[o[n]]=e(o[n])}o.prototype._swapAndProcessMessages=function(r,e){this.impl=r(this.options);for(var o,n,t;o=e.shift();)n=o.method,t=o.args,this[n]&&"function"==typeof this[n]&&("captureDomContentLoaded"===n||"captureLoad"===n?this[n].apply(this,[t[0],o.ts]):this[n].apply(this,t));return this},r.exports=o},function(r,e){"use strict";r.exports=function(r){return function(e){if(!e&&!window._rollbarInitialized){r=r||{};for(var o,n,t=r.globalAlias||"Rollbar",a=window.rollbar,l=function(r){return new a(r)},i=0;o=window._rollbarShims[i++];)n||(n=o.handler),o.handler._swapAndProcessMessages(l,o.messages);window[t]=n,window._rollbarInitialized=!0}}}}]);</script>
+<title>Предметная область - JS: Предметно-ориентированное проектирование - Hexlet</title>
+<link rel="shortcut icon" type="image/png" href="https://cdn2.hexlet.io/assets/icons/default/favicon-16x16-76a7cc0d10decf8b3923e1b51d563e38a94a4bdb51318d2db3290763b928d3a0.png" sizes="16x16" />
+<link rel="shortcut icon" type="image/png" href="https://cdn2.hexlet.io/assets/icons/default/favicon-32x32-17169d8194b2cac3aa9a6bac8e522ed43f8555ffa0e426a1041964e7b0ae8725.png" sizes="32x32" />
+<link rel="shortcut icon" type="image/png" href="https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_96x96-c21c74cba95d022d2ff9b3efe82641b1cdc2a8b64c4d3ae66170fae967bf0d48.png" sizes="96x96" />
+<link rel="shortcut icon" type="image/png" href="https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_128x128-7bef1baf3d4c6d9888aaeaad22a2c127ed9416b0dd4c97ef68588465739efc1d.png" sizes="128x128" />
+<link rel="shortcut icon" type="image/png" href="https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_196x196-27f3aa70536c927d5563627d62db6de880899eceacfd490cf6fa5e82d344b782.png" sizes="196x196" />
+<link rel="apple-touch-icon-precomposed" type="image/x-icon" href="https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_96x96-c21c74cba95d022d2ff9b3efe82641b1cdc2a8b64c4d3ae66170fae967bf0d48.png" sizes="57x57" />
+<link rel="apple-touch-icon-precomposed" type="image/x-icon" href="https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_128x128-7bef1baf3d4c6d9888aaeaad22a2c127ed9416b0dd4c97ef68588465739efc1d.png" sizes="114x114" />
+<link rel="apple-touch-icon-precomposed" type="image/x-icon" href="https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_96x96-c21c74cba95d022d2ff9b3efe82641b1cdc2a8b64c4d3ae66170fae967bf0d48.png" sizes="72x72" />
+<link rel="apple-touch-icon-precomposed" type="image/x-icon" href="https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_128x128-7bef1baf3d4c6d9888aaeaad22a2c127ed9416b0dd4c97ef68588465739efc1d.png" sizes="144x144" />
+<link rel="apple-touch-icon-precomposed" type="image/x-icon" href="https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_96x96-c21c74cba95d022d2ff9b3efe82641b1cdc2a8b64c4d3ae66170fae967bf0d48.png" sizes="60x60" />
+<link rel="apple-touch-icon-precomposed" type="image/x-icon" href="https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_128x128-7bef1baf3d4c6d9888aaeaad22a2c127ed9416b0dd4c97ef68588465739efc1d.png" sizes="120x120" />
+<link rel="apple-touch-icon-precomposed" type="image/x-icon" href="https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_96x96-c21c74cba95d022d2ff9b3efe82641b1cdc2a8b64c4d3ae66170fae967bf0d48.png" sizes="76x76" />
+<link rel="apple-touch-icon-precomposed" type="image/x-icon" href="https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_196x196-27f3aa70536c927d5563627d62db6de880899eceacfd490cf6fa5e82d344b782.png" sizes="152x152" />
+<meta content='Hexlet' name='application-name'>
+<meta content='#FFFFFF' name='msapplication-TileColor'>
+<meta content='https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_128x128-7bef1baf3d4c6d9888aaeaad22a2c127ed9416b0dd4c97ef68588465739efc1d.png' name='msapplication-TileImage'>
+<meta content='https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_96x96-c21c74cba95d022d2ff9b3efe82641b1cdc2a8b64c4d3ae66170fae967bf0d48.png' name='msapplication-square70x70logo'>
+<meta content='https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_128x128-7bef1baf3d4c6d9888aaeaad22a2c127ed9416b0dd4c97ef68588465739efc1d.png' name='msapplication-square150x150logo'>
+
+<meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="2J/MpyWo6RrYbSiIKRQYQCtpnRPXqYeo45D4eDYQgTxVrPn/rEWX0JXGsfPCLZz6fUB1MoHK73pMV9SWpfR8XA==" />
+<meta content='width=device-width, initial-scale=1.0' name='viewport'>
+<link href='https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,500,700&amp;subset=cyrillic' rel='stylesheet'>
+<script>
+//<![CDATA[
+window.gon={};gon.hs={"modal":true};gon.applications={};gon.current_user={"id":111320,"email":"riumkin@gmail.com","username":"user-62af874f7ef1c3dd","created_at":"2016-08-06T02:47:30.092+10:00","text":"riumkin@gmail.com (user-62af874f7ef1c3dd)","last_viewed_notification_id":268381,"full_name":"Дмитрий Рюмкин","public_name":"Дмитрий Рюмкин","admin":false,"url":"/u/user-62af874f7ef1c3dd","can_use_paid_features":true,"isGuest":false,"isAdmin":false,"can_send_emails":true,"isMentor":true};gon.token="rbuveaBuI9Zrir6LQ6nCGTL+N6eLGFAatLSwSfrm9gYgiJohKYNdHCYhJ\/CokEajZNffht17OMgbc5ynaQILZg==";gon.disqus_name="hexletio";gon.locale="ru";gon.rails_env="production";gon.analytics_events="AnalyticsEvents";gon.subdomains=["en.hexlet.io","ru.hexlet.io"];gon.images={"secure_payment":"https:\/\/cdn2.hexlet.io\/assets\/secure_payment-e636c1338a89fba0419c29fb02e716be511e9bce25c60fd53b8fdc8f8bf210a4.png"};gon.notifications=[{"id":268381,"message":"\u003cspan class=\"fa fa-star\"\u003e\u003c/span\u003e\u0026nbsp;Добавлен урок \u003cb\u003eЛексическое окружение (LexicalEnvironment)\u003c/b\u003e в курсе \u003cb\u003eJS: Функции\u003c/b\u003e","url":"http://ru.hexlet.io/courses/js-functions/lessons/lexical-environment/theory_unit","human_created_at":"28 января 2018"},{"id":218975,"message":"\u003cspan class=\"fa fa-star\"\u003e\u003c/span\u003e\u0026nbsp;Добавлен урок \u003cb\u003eЧто дальше?\u003c/b\u003e в курсе \u003cb\u003eВведение в программирование\u003c/b\u003e","url":"http://ru.hexlet.io/courses/introduction_to_programming/lessons/next/theory_unit","human_created_at":"25 августа 2017"},{"id":215934,"message":"\u003cspan class=\"fa fa-star\"\u003e\u003c/span\u003e\u0026nbsp;Добавлен урок \u003cb\u003eUI как конечный автомат\u003c/b\u003e в курсе \u003cb\u003eJS: DOM API\u003c/b\u003e","url":"http://ru.hexlet.io/courses/js-dom/lessons/fsm/theory_unit","human_created_at":"17 августа 2017"},{"id":214942,"message":"\u003cspan class=\"fa fa-star\"\u003e\u003c/span\u003e\u0026nbsp;Добавлен урок \u003cb\u003eТесты\u003c/b\u003e в курсе \u003cb\u003eJS: DOM API\u003c/b\u003e","url":"http://ru.hexlet.io/courses/js-dom/lessons/tests/theory_unit","human_created_at":"14 августа 2017"},{"id":211407,"message":"\u003cspan class=\"fa fa-star\"\u003e\u003c/span\u003e\u0026nbsp;Добавлен урок \u003cb\u003eМоделирование\u003c/b\u003e в курсе \u003cb\u003eJS: Составные данные\n\u003c/b\u003e","url":"http://ru.hexlet.io/courses/compound_data/lessons/modeling/theory_unit","human_created_at":"08 августа 2017"},{"id":194946,"message":"\u003cspan class=\"fa fa-star\"\u003e\u003c/span\u003e\u0026nbsp;\u0026nbsp;New lesson \u003cb\u003eJQuery\u003c/b\u003e in \u003cb\u003eJS: DOM API\u003c/b\u003e","url":"http://ru.hexlet.io/courses/js-dom/lessons/jquery/theory_unit","human_created_at":"05 июня 2017"}];gon.lesson={"id":844,"slug":"domain"};gon.course={"slug":"js-ddd"};gon.topics=[{"id":10549,"title":"Все-таки тест на создание сущности (в частности, createFilmScreening) лучше делать с проверкой всех параметров, а еще лучше - проверять его наличие в репозитории. А то случилось накосячить с cost, экземпляр создавался, и тест проходил (правда, валился другой), хотя в репозиторий не попадал не пройдя валидацию. Ведь понятие \"создание сущности\" в первую очередь ассоциируется с прохождением валидации и благополучным размещением в репозитории (по крайней мере, у меня).  \nВ принципе, можно и забить, это я так, побрюзжать... :)","creator":{"id":117329,"public_name":"Andy","can_use_paid_features":false,"can_use_mentorship":false,"public_profile_enabled":null,"public_profile_url":"/u/just_another_andy","avatar_img_url":"https://avatars1.githubusercontent.com/u/10694949?v=4"},"communitable":{"id":844,"slug":"domain","name":"Предметная область","location":"/courses/js-ddd/lessons/domain/theory_unit","link":"Курс «\u003ca href=\"https://ru.hexlet.io/courses/js-ddd\"\u003eJS: Предметно-ориентированное проектирование\u003c/a\u003e»\u003cbr\u003e\u0026#8627; Урок «\u003ca href=\"/courses/js-ddd/lessons/domain/theory_unit\"\u003eПредметная область\u003c/a\u003e» "},"created_at":"04 октября 2017","location":"/topics/10549","has_solutions":true,"can_show_mentor_info":true,"can_destroy":false,"can_like":true,"can_update":false,"can_subscribe":true,"kind":"question","likes":[],"comments":[{"id":21864,"body":"Напишешь тест? Я его добавлю.","creator":{"id":1,"public_name":"Kirill Mokevnin","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/mokevnin","avatar_img_url":"https://bitbucket.org/account/mokevnin/avatar/32/?ts=1500267653"},"created_at":"04 октября 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]},{"id":21889,"body":"В конец теста добавить пару строчек:\n```\nconst filmScreening = repositories.FilmScreening.find(localFilmScreening.id);\nexpect(localFilmScreening).toMatchObject(filmScreening);\n```  \n  \nОстальные сущности вроде можно оставить так, они перекрестным опылением покрываются (хотя, это не очень здорово, лучше бы не надеяться на зависимости). Вообще, конечно, и само офф. решение халявное. Тот же capitalTransaction полагается на зависимости и не проверяется на ошибки валидации. Его лучше бы вынести в отдельную функцию (полезно для следующего задания), как createFilmScreening или createPrice. Кстати, сейчас заметил, что createPrice отсутствует в решении. ","creator":{"id":117329,"public_name":"Andy","can_use_paid_features":false,"can_use_mentorship":false,"public_profile_enabled":null,"public_profile_url":"/u/just_another_andy","avatar_img_url":"https://avatars1.githubusercontent.com/u/10694949?v=4"},"created_at":"04 октября 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]},{"id":21950,"body":"Ага, добавил","creator":{"id":1,"public_name":"Kirill Mokevnin","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/mokevnin","avatar_img_url":"https://bitbucket.org/account/mokevnin/avatar/32/?ts=1500267653"},"created_at":"06 октября 2017","solution":true,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]}],"subscribers":[{"id":21043,"user_id":1},{"id":21023,"user_id":117329}],"mentor":{"id":17,"user_id":1,"full_name":"Кирилл Мокевнин","username":"mokevnin"}},{"id":7374,"title":"Не совсем понятно с сущностью Price:  \n```\nconst price = new Price(cinemaHall, value); \n``` \n\u003e Реализуйте сущность Price. Она должна уметь рассчитывать цену билета на основе даты сеанса.   \n   \nНа каком этапе в Прайс должна передаваться дата сеанса и зачем нам репозиторий с этими сущностями?\n\n\u003e Реализуйте сущность CapitalTransaction. Она должна уметь рассчитывать цену билета на основе даты сеанса.  \n\nЭта сущность тоже должна рассчитывать цену билета?","creator":{"id":112007,"public_name":"Ярослав Ветер","can_use_paid_features":false,"can_use_mentorship":false,"public_profile_enabled":null,"public_profile_url":"/u/iskaldvind","avatar_img_url":"https://cdn2.hexlet.io/attachments/91ba5b7264dcc0d3feaeec27fb98c981a93dd1b8/store/fill/185/185/ce1c44e02d8d154c54979623b368f9b5a6605f836dcc49e9332f839e7ccd/avatar.png"},"communitable":{"id":844,"slug":"domain","name":"Предметная область","location":"/courses/js-ddd/lessons/domain/theory_unit","link":"Курс «\u003ca href=\"https://ru.hexlet.io/courses/js-ddd\"\u003eJS: Предметно-ориентированное проектирование\u003c/a\u003e»\u003cbr\u003e\u0026#8627; Урок «\u003ca href=\"/courses/js-ddd/lessons/domain/theory_unit\"\u003eПредметная область\u003c/a\u003e» "},"created_at":"30 марта 2017","location":"/topics/7374","has_solutions":true,"can_show_mentor_info":false,"can_destroy":false,"can_like":true,"can_update":false,"can_subscribe":true,"kind":"question","likes":[],"comments":[{"id":13822,"body":"\u003e На каком этапе в Прайс должна передаваться дата сеанса\n\nВо время вызова `createFilmScreening`. Ведь дата формируется именно здесь.\n\n\u003e зачем нам репозиторий с этими сущностями?\n\nПотому что это сущность. Прайс в будущем может поменяться, но история обязана сохранятся. Следовательно будет создан новый прайс, к которому начнут привязываться новые сеансы.\n\n\u003e Эта сущность тоже должна рассчитывать цену билета?\n\nОна берет цену из тикета.\n\n\nСпасибо за ценные комментарии, я расширил ридми.","creator":{"id":1,"public_name":"Kirill Mokevnin","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/mokevnin","avatar_img_url":"https://bitbucket.org/account/mokevnin/avatar/32/?ts=1500267653"},"created_at":"31 марта 2017","solution":true,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[{"id":4784,"user_id":112007,"comment_id":13822}]},{"id":13849,"body":"И еще вопрос - столкнулся с тем, что в задании тикет задается следующим образом:\n```\nconst [ticket] = moneyService.buyTicket(user.id, filmScreening.id, place);\n```\nТогда как в его конструкторе порядок аргументов другой:\n```\nconstructor(filmScreening, user, place) {...\n```\nЯвляется ли передача аргументов в виде свойств единого объекта-аргумента (при этом не пришлось бы отслеживать их порядок) более удачной практикой, а если нет - то по каким причинам? ","creator":{"id":112007,"public_name":"Ярослав Ветер","can_use_paid_features":false,"can_use_mentorship":false,"public_profile_enabled":null,"public_profile_url":"/u/iskaldvind","avatar_img_url":"https://cdn2.hexlet.io/attachments/91ba5b7264dcc0d3feaeec27fb98c981a93dd1b8/store/fill/185/185/ce1c44e02d8d154c54979623b368f9b5a6605f836dcc49e9332f839e7ccd/avatar.png"},"created_at":"01 апреля 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]},{"id":13850,"body":"Кроме того в тестах:\n```\nconst capital = repositories.CapitalTransaction.findBy({ ticket });\n```\nА в ридми:\n```\nconst capital = capitalTransactionRepository.findBy({ ticket });\n```","creator":{"id":112007,"public_name":"Ярослав Ветер","can_use_paid_features":false,"can_use_mentorship":false,"public_profile_enabled":null,"public_profile_url":"/u/iskaldvind","avatar_img_url":"https://cdn2.hexlet.io/attachments/91ba5b7264dcc0d3feaeec27fb98c981a93dd1b8/store/fill/185/185/ce1c44e02d8d154c54979623b368f9b5a6605f836dcc49e9332f839e7ccd/avatar.png"},"created_at":"01 апреля 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]},{"id":13851,"body":"Интересное задание, одолел.","creator":{"id":112007,"public_name":"Ярослав Ветер","can_use_paid_features":false,"can_use_mentorship":false,"public_profile_enabled":null,"public_profile_url":"/u/iskaldvind","avatar_img_url":"https://cdn2.hexlet.io/attachments/91ba5b7264dcc0d3feaeec27fb98c981a93dd1b8/store/fill/185/185/ce1c44e02d8d154c54979623b368f9b5a6605f836dcc49e9332f839e7ccd/avatar.png"},"created_at":"01 апреля 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]},{"id":13871,"body":"```\nЯвляется ли передача аргументов в виде свойств единого объекта-аргумента (при этом не пришлось бы отслеживать их порядок) более удачной практикой, а если нет - то по каким причинам?\n```\n\nЭто классическая дилемма явный интерфейс vs неявный.\n\nЯвный понятнее и проще в использовании и чтении, но сложнее в модификации.","creator":{"id":1,"public_name":"Kirill Mokevnin","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/mokevnin","avatar_img_url":"https://bitbucket.org/account/mokevnin/avatar/32/?ts=1500267653"},"created_at":"02 апреля 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[{"id":7673,"user_id":94542,"comment_id":13871},{"id":4806,"user_id":112007,"comment_id":13871}]}],"subscribers":[{"id":14524,"user_id":1},{"id":14481,"user_id":112007}],"mentor":{"id":17,"user_id":1,"full_name":"Кирилл Мокевнин","username":"mokevnin"}},{"id":9455,"title":"Показывает решение учителя для следующего упражнения (урок `Мутация`), а в `Мутациях` решение учителя пустое","creator":{"id":130072,"public_name":"Кирилл Вишенков","can_use_paid_features":false,"can_use_mentorship":false,"public_profile_enabled":null,"public_profile_url":"/u/vishkir","avatar_img_url":"https://cdn2.hexlet.io/attachments/ab9d8c02fa90045aab7ce243dd97f097484b886d/store/fill/185/185/c5f3936a87605f1c3dc35b2fc7afe09ceae9651049c7b5eb79446e335ca9/avatar.png"},"communitable":{"id":844,"slug":"domain","name":"Предметная область","location":"/courses/js-ddd/lessons/domain/theory_unit","link":"Курс «\u003ca href=\"https://ru.hexlet.io/courses/js-ddd\"\u003eJS: Предметно-ориентированное проектирование\u003c/a\u003e»\u003cbr\u003e\u0026#8627; Урок «\u003ca href=\"/courses/js-ddd/lessons/domain/theory_unit\"\u003eПредметная область\u003c/a\u003e» "},"created_at":"26 июля 2017","location":"/topics/9455","has_solutions":true,"can_show_mentor_info":true,"can_destroy":false,"can_like":true,"can_update":false,"can_subscribe":true,"kind":"question","likes":[],"comments":[{"id":19391,"body":"сделал!","creator":{"id":1,"public_name":"Kirill Mokevnin","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/mokevnin","avatar_img_url":"https://bitbucket.org/account/mokevnin/avatar/32/?ts=1500267653"},"created_at":"27 июля 2017","solution":true,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]}],"subscribers":[{"id":18882,"user_id":1},{"id":18841,"user_id":130072}],"mentor":{"id":17,"user_id":1,"full_name":"Кирилл Мокевнин","username":"mokevnin"}},{"id":9316,"title":"1. \nВ задании по поводу CapitalTransaction.js не указано свойство createdAt\n\n2.\n\n\u003e import dataFns from 'date-fns’;\n\ndateFns. Зачем он кстати? Ведь в Date есть метод getDay().\n\n3.\n\nВ задании касательно Price.js:\n\u003e Свойство value должно существовать и быть числом\n\nЗдесь может лучше проверку на \u003e0 сделать? Ведь цена здесь никода не будет отрицательной.\n\n4.\n\nВ решении учителя в Price.js ошибка:\n\n```\ncalculateFor({ createdAt }) {\n```\n\nмы в calculateFor передаем объект типа Date. И в тестах в MoneyService.test.js:\n\n```\nit('createFilmScreening', () =\u003e {\n    const time = new Date();\n    const [localFilmScreening] = services.MoneyService\n      .createFilmScreening(film.id, cinemaHall.id, time);\n\n    const expected = {\n      // film,\n      // cinemaHall,\n      time,\n    };\n    expect(localFilmScreening).toMatchObject(expected);\n  });\n```\n\nдолжно проверяться свойство cost.\n\n5.\n\nВ решении учителя в MoneyService.js buyTicket():\n\n```\nthis.validate(capitalTransaction, { exception: true });\n```\n\nзачем здесь exception бросается? Ведь у нас есть механизм возврата ошибки ```return [ticket, errors]```.\n\n6.\n\nВ задании:\n\n```\nconst friday = new Date('31.03.2017');\nprice.calucalteFor(friday); // 500\nconst satuday = new Date('1.04.2017');\nprice.calucalteFor(satuday); // 650\n```\n\ncalucalteFor","creator":{"id":299,"public_name":"user-060fea03108324dd","can_use_paid_features":false,"can_use_mentorship":false,"public_profile_enabled":null,"public_profile_url":"/u/user-060fea03108324dd","avatar_img_url":"https://avatars3.githubusercontent.com/u/31385948?v=4"},"communitable":{"id":844,"slug":"domain","name":"Предметная область","location":"/courses/js-ddd/lessons/domain/theory_unit","link":"Курс «\u003ca href=\"https://ru.hexlet.io/courses/js-ddd\"\u003eJS: Предметно-ориентированное проектирование\u003c/a\u003e»\u003cbr\u003e\u0026#8627; Урок «\u003ca href=\"/courses/js-ddd/lessons/domain/theory_unit\"\u003eПредметная область\u003c/a\u003e» "},"created_at":"17 июля 2017","location":"/topics/9316","has_solutions":false,"can_show_mentor_info":true,"can_destroy":false,"can_like":true,"can_update":false,"can_subscribe":true,"kind":"question","likes":[],"comments":[{"id":18938,"body":"1. fixed\n1. В реальном кодинге без этой либы не обойтись, здесь я ее, можно сказать, рекламирую (и решение более семантическое).\n1. fixed\n1. fixed\n1. Потому что ошибка в данной ситуации возможна только в случае ошибки программирования, а этот тип ошибок ни в коем случае замалчивать нельзя. Нужно сразу падать.\n1. fixed\n\nСпасибо!","creator":{"id":1,"public_name":"Kirill Mokevnin","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/mokevnin","avatar_img_url":"https://bitbucket.org/account/mokevnin/avatar/32/?ts=1500267653"},"created_at":"17 июля 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]},{"id":19070,"body":"У меня нет изменений.","creator":{"id":299,"public_name":"user-060fea03108324dd","can_use_paid_features":false,"can_use_mentorship":false,"public_profile_enabled":null,"public_profile_url":"/u/user-060fea03108324dd","avatar_img_url":"https://avatars3.githubusercontent.com/u/31385948?v=4"},"created_at":"19 июля 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]},{"id":19076,"body":"Вижу, щас поправлю.","creator":{"id":1,"public_name":"Kirill Mokevnin","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/mokevnin","avatar_img_url":"https://bitbucket.org/account/mokevnin/avatar/32/?ts=1500267653"},"created_at":"19 июля 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]},{"id":19147,"body":"1. Из решения учителя исчез Price.js\n\n2. \n\n\u003e import dataFns from 'date-fns';\n\ndataFns =\u003e dateFns\n\n3.\n\nВ validation.js ```const conditions = options.conditions || {};``` тоже лишний.","creator":{"id":299,"public_name":"user-060fea03108324dd","can_use_paid_features":false,"can_use_mentorship":false,"public_profile_enabled":null,"public_profile_url":"/u/user-060fea03108324dd","avatar_img_url":"https://avatars3.githubusercontent.com/u/31385948?v=4"},"created_at":"21 июля 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]},{"id":19164,"body":"1. Отдельно будем разбираться\n1. fixed\n1. fixed","creator":{"id":1,"public_name":"Kirill Mokevnin","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/mokevnin","avatar_img_url":"https://bitbucket.org/account/mokevnin/avatar/32/?ts=1500267653"},"created_at":"21 июля 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]}],"subscribers":[{"id":18550,"user_id":1},{"id":18527,"user_id":299}],"mentor":{"id":17,"user_id":1,"full_name":"Кирилл Мокевнин","username":"mokevnin"}},{"id":8517,"title":"Подскажите пожалуйста по дистракчерингу. Что-то я не могу понять. То ли это бабел и node 8 по разному обрабатывают. В этом уроке сущность синемахол передается вот так { cinemaHall }, а принимается вот так findAllBy(params). Ниже пытаюсь тоже самое реализовать на node 8 без бабеля и не выходит. Спасибо.\n```\nconst price = this.repositories.Price.findBy({ cinemaHall });\n```\nи далее в репозитариях ищется так\n```\n findAllBy(params) {\n    return _.filter(this.data, params);\n  }\n\n  findBy(params) {\n    const result = this.findAllBy(params);\n    return result.length \u003e 0 ? result[0] : null;\n  }\n```\nИ у меня на node 8 без бабеля ничего не находит фильтр. Почему?\n```\nconst _ = require('lodash');\n\nclass TestKlass {\n  constructor(name) {\n    this.name = name;\n  }\n\n  getName() {\n    return this.name;\n  }\n}\n\nconst test = new TestKlass('Alex');\n\nconst users = [\n  test,\n];\n\nconst func1 = params =\u003e _.filter(users, params);\n\nconsole.log(func1({ test }));\n```\n\nА если передаю вот так func1(test), то возвращает то что нужно.","creator":{"id":1141,"public_name":"Aleksandr Zhavruk","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":null,"public_profile_url":"/u/fdully","avatar_img_url":"https://avatars3.githubusercontent.com/u/3643835?v=4"},"communitable":{"id":844,"slug":"domain","name":"Предметная область","location":"/courses/js-ddd/lessons/domain/theory_unit","link":"Курс «\u003ca href=\"https://ru.hexlet.io/courses/js-ddd\"\u003eJS: Предметно-ориентированное проектирование\u003c/a\u003e»\u003cbr\u003e\u0026#8627; Урок «\u003ca href=\"/courses/js-ddd/lessons/domain/theory_unit\"\u003eПредметная область\u003c/a\u003e» "},"created_at":"04 июня 2017","location":"/topics/8517","has_solutions":true,"can_show_mentor_info":false,"can_destroy":false,"can_like":true,"can_update":false,"can_subscribe":true,"kind":"question","likes":[],"comments":[{"id":16728,"body":"Я разобрался. Я же ищу в репозитории Price. Поэтому, передавая { cinemaHall }, я ищу такое же значение свойства cinemaHall по всем Price объектам, сохраненным в репозитарии Price.","creator":{"id":1141,"public_name":"Aleksandr Zhavruk","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":null,"public_profile_url":"/u/fdully","avatar_img_url":"https://avatars3.githubusercontent.com/u/3643835?v=4"},"created_at":"04 июня 2017","solution":true,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]}],"subscribers":[{"id":16843,"user_id":1141}],"mentor":null}];gon.topic_type="community";gon.communitable_type="Lesson";gon.communitable_id=844;gon.can_render_new_topic_box=true;
+//]]>
+</script>
+<script>
+  // in development mode
+  if (!window.Rollbar) {
+    Rollbar = {
+      error: function() {
+      },
+      configure: function() {
+      }
+    }
+  }
+  
+  Rollbar.configure({
+    payload: {
+      person: gon.current_user
+    }
+  });
+</script>
+
+<script type='application/ld+json'>
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "Hexlet",
+  "url": "https://ru.hexlet.io",
+  "logo": "https://cdn2.hexlet.io/assets/hexlet_logo-e99fc2b3b7c1eec88899f3af1435a39aaac6fd29d011dfe2342499c0884b7a96.png",
+  "sameAs": [
+    "https://www.facebook.com/Hexlet",
+    "https://www.youtube.com/user/HexletUniversity",
+    "http://twitter.com/HexletHQ",
+    "https://plus.google.com/b/108226937214888198279/+HexletOrg/posts",
+    "https://soundcloud.com/hexlet"
+  ]
+}
+
+</script>
+
+<script src="https://www.googletagmanager.com/gtag/js?id=UA-1360700-51" async="async"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+  
+  gtag('config', "UA-1360700-51", {
+    'user_id': gon.current_user.id
+  });
+  
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-WK88TH');
+</script>
+
+
+<link rel="stylesheet" media="all" href="https://cdn2.hexlet.io/assets/application-8ce03079c6bc137ea6f0013b0bc7e6110e865912947a64d80d5cc2d6b6451d9f.css" />
+<link href='/courses/js-ddd/lessons/domain/theory_unit' rel='canonical'>
+<meta content='article' property='og:type'>
+<meta content='Предметная область / JS: Предметно-ориентированное проектирование' property='og:title'>
+<meta content='Понять, что такое Domain-Driven Design (предметно-ориентированное проектирование) и ограниченный контекст.' property='og:description'>
+<meta content='Понять, что такое Domain-Driven Design (предметно-ориентированное проектирование) и ограниченный контекст.' name='description'>
+<meta content='https://cdn2.hexlet.io/attachments/58d6bebeba695dc3b1568e7272abf90034eaa2a3/store/fill/600/400/15e77ad793c1830ddca69521c95bd56e3232e24775144569290bdf26e13d/image.png' property='og:image'>
+<link href='https://cdn2.hexlet.io/attachments/58d6bebeba695dc3b1568e7272abf90034eaa2a3/store/fill/600/400/15e77ad793c1830ddca69521c95bd56e3232e24775144569290bdf26e13d/image.png' rel='image_src'>
+
+</head>
+<body>
+<div class='container-fluid px-0'>
+<div class='d-flex flex-row'>
+<div class='hexlet-lesson-container px-3 px-sm-5 pt-3 pt-sm-4 pb-5 flex-fill tab-content'>
+<div class='container px-0 mb-3'>
+<h1 class='h6 pb-3'>
+<span class='x-font-weight-bolder'><a class="x-unstyled-link" href="/courses/js-ddd">JS: Предметно-ориентированное проектирование</a></span>
+<span class='mx-1'>→</span>
+<a class='x-btn-no-active-decor' data-keyboard='true' data-target='#coursenav-modal' data-toggle='modal' href='#coursenav-modal'>
+Предметная область
+<span class='fal fa-sitemap'></span>
+</a>
+</h1>
+
+</div>
+<div aria-labelledby='lesson-tab' class='tab-pane fade show active' id='lesson' role='tabpanel'>
+<div class='container px-0' itemscope itemtype='http://schema.org/Article'>
+<div class='hexlet-theory-body'>
+<div class='mt-3'>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html><body>
+<blockquote>
+<p>Предметно-ориентированное проектирование (Domain-driven design) -
+это набор принципов и схем, направленных на создание оптимальных систем объектов.
+Сводится к созданию программных абстракций, которые называются моделями предметных областей.
+В эти модели входит бизнес-логика, устанавливающая связь между реальными условиями области
+применения продукта и кодом.</p>
+</blockquote>
+
+<p>Данный термин был впервые введен Э. Эвансом в его книге с таким же названием «Domain-Driven Design»</p>
+
+<p><img src="https://cdn2.hexlet.io/attachments/266d240b4e543a1864bf4cb07c1a4d531ec6cbd6/store/52a2c94a44e7edf066ad35f032187bdab9e8c11998c987933645fdce5a01/file" alt="ddd"></p>
+
+<p>Представьте себе, что перед вами поставили задачу разработать биллинг (система тарификации,
+выставление счетов, обработка платежей) для интернет-провайдера. С чего вы начнете проектирование
+такой системы? А начать надо с анализа предметной области.
+Познакомиться с основными сущностями системы и их взаимоотношениями, другими словами, вам будет
+необходимо разобраться в онтологии предметной области.</p>
+
+<p><img src="https://cdn2.hexlet.io/attachments/74dff82fa0e94e7ce3a8608c0a48e37d1d0afd44/store/88a5ac0bbd5e394ef672ad46187aad7af2789e353ae7c4ce2a141b4e1301/file" alt="ddd"></p>
+
+<p>И вот тут на сцену выходит <code>DDD</code>. Центральная идея этого подхода заключается в том, что разработчики
+постоянно активно сотрудничают с экспертами предметной области (со стороны заказчика) и вместе
+с ними формируют так называемый единый язык. Этот язык будет использоваться для общения
+между всеми членами команды, а позже отразится в исходном коде разрабатываемой программы.</p>
+
+<p><code>Ubiquitous Language</code> - Это не бизнес жаргон, навязанный разработчикам, а настоящий язык,
+созданный целостной командой – экспертами в предметной области, разработчиками, бизнес-аналитиками
+и всеми, кто вовлечен в создание системы. Роль в команде не столь существенна, поскольку каждый
+член команды использует для описания проекта единый язык. Процесс создания единого языка более
+творческий чем формальный, так как он, как и любой другой естественный язык, постоянно развивается,
+а те артефакты, которые вначале способствовали разработке полезного единого языка, со временем устаревают.
+В итоге, остаются только самые устойчивые и проверенные элементы.</p>
+
+<p>Наиболее важное для разработчика – это умение слушать экспертов, получать максимальное количество полезных
+знаний о предметной области. В то же время, эксперты также должны прислушиваться к разработчикам и
+их пожеланиям. Команда учится и растет вместе, если она действует сплоченно, получая более
+глубокое понимание бизнеса.</p>
+
+<h3>Bounded context</h3>
+
+<p>Это второе по значимости свойство DDD после единого языка. Оба эти понятия взаимосвязаны и
+не могут существовать друг без друга.</p>
+
+<p>Итак, ограниченный контекст – это явная граница, внутри которой существует модель предметной области,
+которая отображает единый язык в модель программного обеспечения.</p>
+
+<p>В каждом ограниченном контексте существует только один единый язык.</p>
+
+<ul>
+<li>Ограниченные контексты являются относительно небольшими.</li>
+<li>Ограниченный контекст достаточно велик только для единого языка изолированной предметной области, но не больше.</li>
+<li>Единый значит «вездесущий» или «повсеместный», т. е. язык, на котором говорят члены команды
+и на котором выражается отдельная модель предметной области, которую разрабатывает команда.</li>
+<li>Язык является единым только в рамках команды, работающей над проектом в едином ограниченном контексте.</li>
+<li>Попытка применить единый язык в рамках всего предприятия или что хуже, среди нескольких
+предприятий, закончится провалом.</li>
+</ul>
+
+<p><img src="https://cdn2.hexlet.io/attachments/009b6bc41a15a7f1b3b926f3d33c944bb59f5e28/store/f1b582988feb4fcf67086932fc4277df455a2351520eed9f7bdac7810771/file" alt="ddd"></p>
+
+<p>Например, система биллинга крупной телекоммуникационной компании может иметь следующие
+ключевые элементы (контексты):</p>
+
+<ul>
+<li>Клиентское обслуживание</li>
+<li>Система безопасности и защиты</li>
+<li>Резервное копирование</li>
+<li>Взаимодействие с платежными системами</li>
+<li>Ведение отчетности</li>
+<li>Система уведомлений</li>
+</ul>
+
+<p>В этом уроке были представлены самые базовые понятия и идеи предметно-ориентированного проектирования.
+За более подробным описанием можно обратиться к <a href="https://habrahabr.ru/post/316438/" target="_blank">отличной статье</a>
+на хабре, либо к книге Эрика Эванса. Так же не могу не порекомендовать
+<a href="https://www.youtube.com/watch?v=EEq1wdM2M2w" target="_blank">мое выступление</a> на одной из региональных конференций,
+в котором я рассказываю о похожих идеях, помогающих улучшить качество кода, который мы пишем.</p>
+</body></html>
+
+</div>
+</div>
+</div>
+
+</div>
+<div aria-labelledby='community-tab' class='tab-pane fade' id='community' role='tabpanel'>
+<div class='row justify-content-center w-100'>
+<div class='col-12 col-lg-10 col-xl-9'>
+<div class='hexlet-community d-flex flex-fill'>
+<div class='container' id='community-box'></div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+<div class='px-0 d-flex flex-column justify-content-between sticky-top' id='hexlet-lesson-sidebar'>
+<div class='d-flex flex-column flex-shrink-0'>
+<a role="button" data-disable-with="<span class=&quot;fa fa-spinner fa-spin&quot;></span>" aria-expanded="false" data-html="true" class="btn btn-primary btn-block px-5 rounded-0 d-flex justify-content-center align-items-center" id="finish-button" rel="nofollow" data-method="patch" href="/courses/js-ddd/lessons/domain/finish_unit?unit=theory"><span class='d-none d-sm-block mr-2'>Далее</span>
+<span class='far fa-arrow-right'></span>
+</a><div class='mt-3'>
+<div class='px-2 mb-4'>
+<span class='d-none d-sm-block small text-center mb-2'>
+пройдено 15 шагов из 21
+</span>
+<div class='mr-2 px-1'>
+<div class='progress mb-1 rounded-0'>
+<div class='progress-bar m-0 bg-success' style='width: 72%'></div>
+</div>
+</div>
+</div>
+<ul class='nav nav-tabs d-flex flex-column pr-2 border-0' id='myTab' role='tablist'>
+<li class='nav-item'>
+<a aria-controls='lesson' aria-selected='true' class='nav-link active rounded-0' data-toggle='tab' href='#lesson' id='lesson-tab' role='tab'>
+<span class='d-none d-sm-inline-block'>
+Шаг:
+</span>
+<span class='d-none d-sm-inline-block'>теория</span>
+<span class='d-inline-block d-sm-none'>
+<span class='far fa-file-alt'></span>
+</span>
+</a>
+</li>
+<li class='nav-item'>
+<a aria-controls='community' aria-selected='false' class='nav-link rounded-0' data-toggle='tab' href='#community' id='community-tab' role='tab'>
+<span class='d-none d-sm-inline-block'>Обсуждение</span>
+<span class='d-inline-block d-sm-none'>
+<span class='far fa-comments'></span>
+</span>
+</a>
+</li>
+</ul>
+
+</div>
+</div>
+<div class='d-flex flex-column mt-3'>
+<a class='hexlet-lesson-sidebar-secondary-button x-btn-no-active-decor' data-keyboard='true' data-target='#coursenav-modal' data-toggle='modal' href='#coursenav-modal'>
+<div class='py-2 pl-3 pr-2 border-left-0 border-right-0 border-bottom-0 border-top'>
+<span class='fal fa-sitemap'></span>
+<span class='d-none d-sm-inline-block ml-2'>Навигация</span>
+</div>
+</a>
+<a class='hexlet-lesson-sidebar-secondary-button x-btn-no-active-decor' href='/my'>
+<div class='py-2 pl-3 pr-2 border-left-0 border-right-0 border-bottom-0 border-top'>
+<span class='fal fa-home'></span>
+<span class='d-none d-sm-inline-block ml-2'>Мой Хекслет</span>
+</div>
+</a>
+<a class='hexlet-lesson-sidebar-secondary-button x-btn-no-active-decor' href='#' id='open-lesson-beacon'>
+<div class='py-2 pl-3 pr-2 border-left-0 border-right-0 border-bottom-0 border-top'>
+<span class='fal fa-question-circle'></span>
+<span class='d-none d-sm-inline-block ml-2'>Техподдержка</span>
+</div>
+</a>
+</div>
+
+</div>
+</div>
+<div aria-hidden='true' aria-labelledby='exampleModalLabel' class='modal fade' id='coursenav-modal' role='dialog' tabindex='-1'>
+<div class='modal-dialog' role='document'>
+<div class='modal-content'>
+<div class='modal-header'>
+<h6 class='modal-title'>
+<a class="x-link" href="/my">Мой Хекслет
+</a>→
+<a class="x-link" href="/courses/js-ddd"><span>Курс</span>
+<span>
+«JS: Предметно-ориентированное проектирование»
+</span>
+</a></h6>
+<button aria-label='Close' class='close' data-dismiss='modal' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+</div>
+<div class='modal-body scrollable px-4'>
+<div class='mb-3'>
+<span class=''>
+1.
+Введение
+</span>
+<p class='m-0'>
+<div class='small'>
+<span class='mr-2'>↳</span>
+<a class=" " href="/courses/js-ddd/lessons/intro/theory_unit"><span class='x-striked'>
+теория
+(текст)
+</span>
+</a></div>
+
+</p>
+</div>
+<div class='mb-3'>
+<span class=''>
+2.
+Use cases
+</span>
+<p class='m-0'>
+<div class='small'>
+<span class='mr-2'>↳</span>
+<a class=" " href="/courses/js-ddd/lessons/use-cases/theory_unit"><span class='x-striked'>
+теория
+(текст)
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/use-cases/quiz_unit"><span class='x-striked'>
+тесты
+</span>
+</a></div>
+
+</p>
+</div>
+<div class='mb-3'>
+<span class=''>
+3.
+Сущности и связи
+</span>
+<p class='m-0'>
+<div class='small'>
+<span class='mr-2'>↳</span>
+<a class=" " href="/courses/js-ddd/lessons/entity-relation/theory_unit"><span class='x-striked'>
+теория
+(текст)
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/entity-relation/quiz_unit"><span class='x-striked'>
+тесты
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/entity-relation/exercise_unit"><span class='x-striked'>
+упражнение
+</span>
+</a></div>
+
+</p>
+</div>
+<div class='mb-3'>
+<span class=''>
+4.
+Архитектура
+</span>
+<p class='m-0'>
+<div class='small'>
+<span class='mr-2'>↳</span>
+<a class=" " href="/courses/js-ddd/lessons/architecture/theory_unit"><span class='x-striked'>
+теория
+(текст)
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/architecture/quiz_unit"><span class='x-striked'>
+тесты
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/architecture/exercise_unit"><span class='x-striked'>
+упражнение
+</span>
+</a></div>
+
+</p>
+</div>
+<div class='mb-3'>
+<span class=''>
+5.
+Валидация
+</span>
+<p class='m-0'>
+<div class='small'>
+<span class='mr-2'>↳</span>
+<a class=" " href="/courses/js-ddd/lessons/validation/theory_unit"><span class='x-striked'>
+теория
+(текст)
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/validation/quiz_unit"><span class='x-striked'>
+тесты
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/validation/exercise_unit"><span class='x-striked'>
+упражнение
+</span>
+</a></div>
+
+</p>
+</div>
+<div class='mb-3'>
+<span class=''>
+6.
+Dependency Injection Container
+</span>
+<p class='m-0'>
+<div class='small'>
+<span class='mr-2'>↳</span>
+<a class=" " href="/courses/js-ddd/lessons/container/theory_unit"><span class='x-striked'>
+теория
+(текст)
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/container/quiz_unit"><span class='x-striked'>
+тесты
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/container/exercise_unit"><span class=''>
+упражнение
+</span>
+</a></div>
+
+</p>
+</div>
+<div class='mb-3'>
+<span class='x-font-weight-bolder'>
+7.
+Предметная область
+</span>
+<p class='m-0'>
+<div class='small'>
+<span class='mr-2'>↳</span>
+<a class=" " href="/courses/js-ddd/lessons/domain/theory_unit"><span class='x-striked'>
+<span class='x-font-weight-bolder text-dark'>
+теория
+</span>
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/domain/quiz_unit"><span class=''>
+<span class=''>
+тесты
+</span>
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/domain/exercise_unit"><span class=''>
+<span class=''>
+упражнение
+</span>
+</span>
+</a></div>
+
+</p>
+</div>
+<div class='mb-3'>
+<span class=''>
+8.
+Мутация
+</span>
+<p class='m-0'>
+<div class='small'>
+<span class='mr-2'>↳</span>
+<a class=" " href="/courses/js-ddd/lessons/mutability/theory_unit"><span class=''>
+теория
+(текст)
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/mutability/quiz_unit"><span class=''>
+тесты
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/mutability/exercise_unit"><span class=''>
+упражнение
+</span>
+</a></div>
+
+</p>
+</div>
+</div>
+<div class='modal-footer'>
+<button class='btn hexlet-btn-main' data-dismiss='modal' type='button'>Закрыть</button>
+</div>
+</div>
+</div>
+</div>
+
+
+</div>
+<script src="https://cdn2.hexlet.io/assets/essential-6773aaf65563d774c8eaf34a9e68d4b66e90d0946f559e78a8cd43a054f4804e.js"></script>
+<script src="https://cdn2.hexlet.io/assets/application-bee47b5de66ce12a65b837dabbc737469aa260f7e7526c6bf154ca1a01a18061.js" defer="defer"></script>
+<script src="https://cdn2.hexlet.io/packs/vendor-87d7e1452406f93a5a7e.chunk.js" defer="defer"></script>
+<script src="https://cdn2.hexlet.io/packs/application-859c8abb3aec62db64c2.js" defer="defer"></script>
+<script src="https://cdn2.hexlet.io/packs/community-b989d308581e4fea4820.js" defer="defer"></script>
+<script>
+  var el = document.getElementById('open-lesson-beacon');
+  el.addEventListener('click', function() {
+    HS.beacon.open();
+  });
+</script>
+
+<script>
+  !function(e,o,n){window.HSCW=o,window.HS=n,n.beacon=n.beacon||{};var t=n.beacon;t.userConfig={},t.readyQueue=[],t.config=function(e){this.userConfig=e},t.ready=function(e){this.readyQueue.push(e)},o.config={docs:{enabled:!0,baseUrl:"//hexlet.helpscoutdocs.com/"},contact:{enabled:!0,formId:"4d3729f5-96ac-11e6-91aa-0a5fecc78a4d"}};var r=e.getElementsByTagName("script")[0],c=e.createElement("script");c.type="text/javascript",c.async=!0,c.src="https://djtflbt20bdde.cloudfront.net/",r.parentNode.insertBefore(c,r)}(document,window.HSCW||{},window.HS||{});
+</script>
+<script>
+  HS.beacon.config({
+    poweredBy: false,
+    modal: gon.hs.modal,
+    icon: 'question',
+    color: "#79afb8",
+    topArticles: true,
+    translation: {
+      searchLabel: 'Чем можем помочь?',
+      searchErrorLabel: 'Запрос занял слишком много времени. Пожалуйста, проверьте свое соединение с интернетом и попробуйте заново.',
+      noResultsLabel: 'Ничего не найдено по запросу',
+      contactLabel: 'Написать в поддержку',
+      attachFileLabel: 'Приложить файл',
+      attachFileError: 'Максимальный размер файла 10мб',
+      nameLabel: 'Ваше имя',
+      nameError: 'Пожалуйста, введите ваше имя',
+      emailLabel: 'Email',
+      emailError: 'Пожалуйста, введите правильный email',
+      topicLabel: 'Выберите тему',
+      topicError: 'Пожалуйста, выберите тему из списка',
+      subjectLabel: 'Заголовок',
+      subjectError: 'Пожалуйста, введите заголовок',
+      messageLabel: 'Чем можем помочь?',
+      messageError: 'Пожалуйста, введите сообщение',
+      sendLabel: 'Отправить',
+      contactSuccessLabel: 'Сообщение отправлено!',
+      contactSuccessDescription: 'Спасибо! Сотрудник Хекслета ответит вам в ближайшее время.'
+    }
+  });
+</script>
+<script>
+  if (!gon.current_user.isGuest) {
+    HS.beacon.ready(function() {
+      HS.beacon.identify({
+        name: gon.current_user.public_name,
+        email: gon.current_user.email,
+        CreatedAt: gon.current_user.created_at,
+        CanUsePaidFeatures: gon.current_user.can_use_paid_features
+      });
+    });
+  }
+</script>
+
+<script>
+  if (!gon.current_user.isGuest) {
+    (function(i,s,o,g,r,a,m){i['ProfitWellObject']=r;i[r]=i[r]||function(){  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m);  })(window,document,'script','https://dna8twue3dlxq.cloudfront.net/js/profitwell.js','profitwell');
+    profitwell('auth_token', '69620c83ec136781432c55c6cb740d8f');
+    profitwell('user_email', gon.current_user.email);
+  }
+</script>
+
+
+</body>
+</html>

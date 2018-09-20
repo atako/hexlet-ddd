@@ -1,0 +1,49 @@
+В этом упражнении мы добавим в домен две сущности Price и CapitalTransaction.
+
+Price - это цена за билет с привязкой к конкретному залу. Это не единственный возможный вариант формирования цены, но в нашем кинотеатре залы различаются по уровню комфорта. Кроме этого цена увеличивается в выходные. Увеличение происходит по формуле price * weekendMultiplier, где weekendMultiplier это постоянный и единый для всех коэффициент, равный 1.3.
+
+Price связан с CinemaHall как o2o.
+
+const value = 500;
+const price = new Price(cinemaHall, value);
+
+const friday = new Date('31.03.2017');
+price.calculateFor(friday); // 500
+const satuday = new Date('1.04.2017');
+price.calculateFor(satuday); // 650
+Вторая сущность CapitalTransaction - представляет из себя движение денежных средств. Каждый раз когда продается билет, создается CapitalTransaction с привязкой к билету и его стоимости. В будущем эта же сущность будет использоваться и при возврате билета. Она отражает реальный приход и уход денег. Особенно это актуально с применением скидок или частичным возвратом стоимости.
+
+Это разделение позволяет нам избавится от изменений сущности ticket. Любые манипуляции с билетом будут приводить к создании новой CapitalTransaction. Таким образом упрощается код и сохраняется история действий.
+
+const capitalTransaction = new CapitalTransaction(ticket);
+capitalTransaction.cost == ticket.cost; // true
+src/entities/Price.js
+Реализуйте сущность Price. Она должна уметь рассчитывать цену билета на основе даты сеанса.
+
+Валидация:
+
+Свойство cinemaHall должно существовать и быть уникальным
+Свойство value должно существовать и быть числом
+src/entities/CapitalTransaction.js
+Реализуйте сущность CapitalTransaction.
+
+Свойство createdAt равное текущей дате на момент создания сущности
+Валидация:
+
+Свойство ticket должно существовать
+Свойство cost должно существовать и быть числом
+src/services/MoneyService.js
+Реализуйте следующие бизнес-сценарии:
+
+Создание сеанса фильма
+На этом этапе сеанс фильма создается с привязкой к стоимости рассчитанной на основе Price того зала в котором проходит сеанс.
+
+const [filmScreening] = services.MoneyService
+  .createFilmScreening(film.id, cinemaHall.id, time);
+Покупка билета
+Кроме самого билета должна создавать CapitalTransaction.
+
+const [ticket] = moneyService.buyTicket(user.id, filmScreening.id, place);
+const capital = repositories.capitalTransaction.findBy({ ticket });
+capital.ticket === ticket; // true
+capital.cost === ticket.cost; // true

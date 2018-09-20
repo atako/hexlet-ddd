@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">var _rollbarConfig = {"accessToken":"fc27636027d0460bbc1578d97d0d27ad","captureUncaught":true,"captureUnhandledRejections":true,"hostWhiteList":["https://cdn2.hexlet.io"],"ignoredMessages":["Script error"],"payload":{"client":{"source_map_enabled":true,"code_version":null,"guess_uncaught_frames":true},"environment":"production","person":{"id":111320,"username":"Дмитрий Рюмкин","email":null}}};</script>
+<script type="text/javascript">!function(r){function e(n){if(o[n])return o[n].exports;var t=o[n]={exports:{},id:n,loaded:!1};return r[n].call(t.exports,t,t.exports,e),t.loaded=!0,t.exports}var o={};return e.m=r,e.c=o,e.p="",e(0)}([function(r,e,o){"use strict";var n=o(1),t=o(4);_rollbarConfig=_rollbarConfig||{},_rollbarConfig.rollbarJsUrl=_rollbarConfig.rollbarJsUrl||"https://cdnjs.cloudflare.com/ajax/libs/rollbar.js/2.4.4/rollbar.min.js",_rollbarConfig.async=void 0===_rollbarConfig.async||_rollbarConfig.async;var a=n.setupShim(window,_rollbarConfig),l=t(_rollbarConfig);window.rollbar=n.Rollbar,a.loadFull(window,document,!_rollbarConfig.async,_rollbarConfig,l)},function(r,e,o){"use strict";function n(r){return function(){try{return r.apply(this,arguments)}catch(r){try{console.error("[Rollbar]: Internal error",r)}catch(r){}}}}function t(r,e){this.options=r,this._rollbarOldOnError=null;var o=s++;this.shimId=function(){return o},"undefined"!=typeof window&&window._rollbarShims&&(window._rollbarShims[o]={handler:e,messages:[]})}function a(r,e){if(r){var o=e.globalAlias||"Rollbar";if("object"==typeof r[o])return r[o];r._rollbarShims={},r._rollbarWrappedError=null;var t=new p(e);return n(function(){e.captureUncaught&&(t._rollbarOldOnError=r.onerror,i.captureUncaughtExceptions(r,t,!0),i.wrapGlobals(r,t,!0)),e.captureUnhandledRejections&&i.captureUnhandledRejections(r,t,!0);var n=e.autoInstrument;return e.enabled!==!1&&(void 0===n||n===!0||"object"==typeof n&&n.network)&&r.addEventListener&&(r.addEventListener("load",t.captureLoad.bind(t)),r.addEventListener("DOMContentLoaded",t.captureDomContentLoaded.bind(t))),r[o]=t,t})()}}function l(r){return n(function(){var e=this,o=Array.prototype.slice.call(arguments,0),n={shim:e,method:r,args:o,ts:new Date};window._rollbarShims[this.shimId()].messages.push(n)})}var i=o(2),s=0,d=o(3),c=function(r,e){return new t(r,e)},p=function(r){return new d(c,r)};t.prototype.loadFull=function(r,e,o,t,a){var l=function(){var e;if(void 0===r._rollbarDidLoad){e=new Error("rollbar.js did not load");for(var o,n,t,l,i=0;o=r._rollbarShims[i++];)for(o=o.messages||[];n=o.shift();)for(t=n.args||[],i=0;i<t.length;++i)if(l=t[i],"function"==typeof l){l(e);break}}"function"==typeof a&&a(e)},i=!1,s=e.createElement("script"),d=e.getElementsByTagName("script")[0],c=d.parentNode;s.crossOrigin="",s.src=t.rollbarJsUrl,o||(s.async=!0),s.onload=s.onreadystatechange=n(function(){if(!(i||this.readyState&&"loaded"!==this.readyState&&"complete"!==this.readyState)){s.onload=s.onreadystatechange=null;try{c.removeChild(s)}catch(r){}i=!0,l()}}),c.insertBefore(s,d)},t.prototype.wrap=function(r,e,o){try{var n;if(n="function"==typeof e?e:function(){return e||{}},"function"!=typeof r)return r;if(r._isWrap)return r;if(!r._rollbar_wrapped&&(r._rollbar_wrapped=function(){o&&"function"==typeof o&&o.apply(this,arguments);try{return r.apply(this,arguments)}catch(o){var e=o;throw e&&("string"==typeof e&&(e=new String(e)),e._rollbarContext=n()||{},e._rollbarContext._wrappedSource=r.toString(),window._rollbarWrappedError=e),e}},r._rollbar_wrapped._isWrap=!0,r.hasOwnProperty))for(var t in r)r.hasOwnProperty(t)&&(r._rollbar_wrapped[t]=r[t]);return r._rollbar_wrapped}catch(e){return r}};for(var u="log,debug,info,warn,warning,error,critical,global,configure,handleUncaughtException,handleUnhandledRejection,captureEvent,captureDomContentLoaded,captureLoad".split(","),f=0;f<u.length;++f)t.prototype[u[f]]=l(u[f]);r.exports={setupShim:a,Rollbar:p}},function(r,e){"use strict";function o(r,e,o){if(r){var t;if("function"==typeof e._rollbarOldOnError)t=e._rollbarOldOnError;else if(r.onerror){for(t=r.onerror;t._rollbarOldOnError;)t=t._rollbarOldOnError;e._rollbarOldOnError=t}var a=function(){var o=Array.prototype.slice.call(arguments,0);n(r,e,t,o)};o&&(a._rollbarOldOnError=t),r.onerror=a}}function n(r,e,o,n){r._rollbarWrappedError&&(n[4]||(n[4]=r._rollbarWrappedError),n[5]||(n[5]=r._rollbarWrappedError._rollbarContext),r._rollbarWrappedError=null),e.handleUncaughtException.apply(e,n),o&&o.apply(r,n)}function t(r,e,o){if(r){"function"==typeof r._rollbarURH&&r._rollbarURH.belongsToShim&&r.removeEventListener("unhandledrejection",r._rollbarURH);var n=function(r){var o,n,t;try{o=r.reason}catch(r){o=void 0}try{n=r.promise}catch(r){n="[unhandledrejection] error getting `promise` from event"}try{t=r.detail,!o&&t&&(o=t.reason,n=t.promise)}catch(r){t="[unhandledrejection] error getting `detail` from event"}o||(o="[unhandledrejection] error getting `reason` from event"),e&&e.handleUnhandledRejection&&e.handleUnhandledRejection(o,n)};n.belongsToShim=o,r._rollbarURH=n,r.addEventListener("unhandledrejection",n)}}function a(r,e,o){if(r){var n,t,a="EventTarget,Window,Node,ApplicationCache,AudioTrackList,ChannelMergerNode,CryptoOperation,EventSource,FileReader,HTMLUnknownElement,IDBDatabase,IDBRequest,IDBTransaction,KeyOperation,MediaController,MessagePort,ModalWindow,Notification,SVGElementInstance,Screen,TextTrack,TextTrackCue,TextTrackList,WebSocket,WebSocketWorker,Worker,XMLHttpRequest,XMLHttpRequestEventTarget,XMLHttpRequestUpload".split(",");for(n=0;n<a.length;++n)t=a[n],r[t]&&r[t].prototype&&l(e,r[t].prototype,o)}}function l(r,e,o){if(e.hasOwnProperty&&e.hasOwnProperty("addEventListener")){for(var n=e.addEventListener;n._rollbarOldAdd&&n.belongsToShim;)n=n._rollbarOldAdd;var t=function(e,o,t){n.call(this,e,r.wrap(o),t)};t._rollbarOldAdd=n,t.belongsToShim=o,e.addEventListener=t;for(var a=e.removeEventListener;a._rollbarOldRemove&&a.belongsToShim;)a=a._rollbarOldRemove;var l=function(r,e,o){a.call(this,r,e&&e._rollbar_wrapped||e,o)};l._rollbarOldRemove=a,l.belongsToShim=o,e.removeEventListener=l}}r.exports={captureUncaughtExceptions:o,captureUnhandledRejections:t,wrapGlobals:a}},function(r,e){"use strict";function o(r,e){this.impl=r(e,this),this.options=e,n(o.prototype)}function n(r){for(var e=function(r){return function(){var e=Array.prototype.slice.call(arguments,0);if(this.impl[r])return this.impl[r].apply(this.impl,e)}},o="log,debug,info,warn,warning,error,critical,global,configure,handleUncaughtException,handleUnhandledRejection,_createItem,wrap,loadFull,shimId,captureEvent,captureDomContentLoaded,captureLoad".split(","),n=0;n<o.length;n++)r[o[n]]=e(o[n])}o.prototype._swapAndProcessMessages=function(r,e){this.impl=r(this.options);for(var o,n,t;o=e.shift();)n=o.method,t=o.args,this[n]&&"function"==typeof this[n]&&("captureDomContentLoaded"===n||"captureLoad"===n?this[n].apply(this,[t[0],o.ts]):this[n].apply(this,t));return this},r.exports=o},function(r,e){"use strict";r.exports=function(r){return function(e){if(!e&&!window._rollbarInitialized){r=r||{};for(var o,n,t=r.globalAlias||"Rollbar",a=window.rollbar,l=function(r){return new a(r)},i=0;o=window._rollbarShims[i++];)n||(n=o.handler),o.handler._swapAndProcessMessages(l,o.messages);window[t]=n,window._rollbarInitialized=!0}}}}]);</script>
+<title>Мутация - JS: Предметно-ориентированное проектирование - Hexlet</title>
+<link rel="shortcut icon" type="image/png" href="https://cdn2.hexlet.io/assets/icons/default/favicon-16x16-76a7cc0d10decf8b3923e1b51d563e38a94a4bdb51318d2db3290763b928d3a0.png" sizes="16x16" />
+<link rel="shortcut icon" type="image/png" href="https://cdn2.hexlet.io/assets/icons/default/favicon-32x32-17169d8194b2cac3aa9a6bac8e522ed43f8555ffa0e426a1041964e7b0ae8725.png" sizes="32x32" />
+<link rel="shortcut icon" type="image/png" href="https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_96x96-c21c74cba95d022d2ff9b3efe82641b1cdc2a8b64c4d3ae66170fae967bf0d48.png" sizes="96x96" />
+<link rel="shortcut icon" type="image/png" href="https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_128x128-7bef1baf3d4c6d9888aaeaad22a2c127ed9416b0dd4c97ef68588465739efc1d.png" sizes="128x128" />
+<link rel="shortcut icon" type="image/png" href="https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_196x196-27f3aa70536c927d5563627d62db6de880899eceacfd490cf6fa5e82d344b782.png" sizes="196x196" />
+<link rel="apple-touch-icon-precomposed" type="image/x-icon" href="https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_96x96-c21c74cba95d022d2ff9b3efe82641b1cdc2a8b64c4d3ae66170fae967bf0d48.png" sizes="57x57" />
+<link rel="apple-touch-icon-precomposed" type="image/x-icon" href="https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_128x128-7bef1baf3d4c6d9888aaeaad22a2c127ed9416b0dd4c97ef68588465739efc1d.png" sizes="114x114" />
+<link rel="apple-touch-icon-precomposed" type="image/x-icon" href="https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_96x96-c21c74cba95d022d2ff9b3efe82641b1cdc2a8b64c4d3ae66170fae967bf0d48.png" sizes="72x72" />
+<link rel="apple-touch-icon-precomposed" type="image/x-icon" href="https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_128x128-7bef1baf3d4c6d9888aaeaad22a2c127ed9416b0dd4c97ef68588465739efc1d.png" sizes="144x144" />
+<link rel="apple-touch-icon-precomposed" type="image/x-icon" href="https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_96x96-c21c74cba95d022d2ff9b3efe82641b1cdc2a8b64c4d3ae66170fae967bf0d48.png" sizes="60x60" />
+<link rel="apple-touch-icon-precomposed" type="image/x-icon" href="https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_128x128-7bef1baf3d4c6d9888aaeaad22a2c127ed9416b0dd4c97ef68588465739efc1d.png" sizes="120x120" />
+<link rel="apple-touch-icon-precomposed" type="image/x-icon" href="https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_96x96-c21c74cba95d022d2ff9b3efe82641b1cdc2a8b64c4d3ae66170fae967bf0d48.png" sizes="76x76" />
+<link rel="apple-touch-icon-precomposed" type="image/x-icon" href="https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_196x196-27f3aa70536c927d5563627d62db6de880899eceacfd490cf6fa5e82d344b782.png" sizes="152x152" />
+<meta content='Hexlet' name='application-name'>
+<meta content='#FFFFFF' name='msapplication-TileColor'>
+<meta content='https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_128x128-7bef1baf3d4c6d9888aaeaad22a2c127ed9416b0dd4c97ef68588465739efc1d.png' name='msapplication-TileImage'>
+<meta content='https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_96x96-c21c74cba95d022d2ff9b3efe82641b1cdc2a8b64c4d3ae66170fae967bf0d48.png' name='msapplication-square70x70logo'>
+<meta content='https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_128x128-7bef1baf3d4c6d9888aaeaad22a2c127ed9416b0dd4c97ef68588465739efc1d.png' name='msapplication-square150x150logo'>
+
+<meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="hIVjYM6TowBdcG4ypsb2Jaik53+SYzjkvIHTCifWAPUJtlY4R37dyhDb90lN/3Kf/o0PXsQAUDYTRv/ktDL9lQ==" />
+<meta content='width=device-width, initial-scale=1.0' name='viewport'>
+<link href='https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,500,700&amp;subset=cyrillic' rel='stylesheet'>
+<script>
+//<![CDATA[
+window.gon={};gon.hs={"modal":true};gon.applications={};gon.current_user={"id":111320,"email":"riumkin@gmail.com","username":"user-62af874f7ef1c3dd","created_at":"2016-08-06T02:47:30.092+10:00","text":"riumkin@gmail.com (user-62af874f7ef1c3dd)","last_viewed_notification_id":268381,"full_name":"Дмитрий Рюмкин","public_name":"Дмитрий Рюмкин","admin":false,"url":"/u/user-62af874f7ef1c3dd","can_use_paid_features":true,"isGuest":false,"isAdmin":false,"can_send_emails":true,"isMentor":true};gon.token="LgymOUcM4m6tDh3gRw\/0JJq9dDJ7XPg9RvI4+iusUsyjP5NhzuGcpOClhJusNnCezJScEy0\/kO\/pNRQUuEivrA==";gon.disqus_name="hexletio";gon.locale="ru";gon.rails_env="production";gon.analytics_events="AnalyticsEvents";gon.subdomains=["en.hexlet.io","ru.hexlet.io"];gon.images={"secure_payment":"https:\/\/cdn2.hexlet.io\/assets\/secure_payment-e636c1338a89fba0419c29fb02e716be511e9bce25c60fd53b8fdc8f8bf210a4.png"};gon.notifications=[{"id":268381,"message":"\u003cspan class=\"fa fa-star\"\u003e\u003c/span\u003e\u0026nbsp;Добавлен урок \u003cb\u003eЛексическое окружение (LexicalEnvironment)\u003c/b\u003e в курсе \u003cb\u003eJS: Функции\u003c/b\u003e","url":"http://ru.hexlet.io/courses/js-functions/lessons/lexical-environment/theory_unit","human_created_at":"28 января 2018"},{"id":218975,"message":"\u003cspan class=\"fa fa-star\"\u003e\u003c/span\u003e\u0026nbsp;Добавлен урок \u003cb\u003eЧто дальше?\u003c/b\u003e в курсе \u003cb\u003eВведение в программирование\u003c/b\u003e","url":"http://ru.hexlet.io/courses/introduction_to_programming/lessons/next/theory_unit","human_created_at":"25 августа 2017"},{"id":215934,"message":"\u003cspan class=\"fa fa-star\"\u003e\u003c/span\u003e\u0026nbsp;Добавлен урок \u003cb\u003eUI как конечный автомат\u003c/b\u003e в курсе \u003cb\u003eJS: DOM API\u003c/b\u003e","url":"http://ru.hexlet.io/courses/js-dom/lessons/fsm/theory_unit","human_created_at":"17 августа 2017"},{"id":214942,"message":"\u003cspan class=\"fa fa-star\"\u003e\u003c/span\u003e\u0026nbsp;Добавлен урок \u003cb\u003eТесты\u003c/b\u003e в курсе \u003cb\u003eJS: DOM API\u003c/b\u003e","url":"http://ru.hexlet.io/courses/js-dom/lessons/tests/theory_unit","human_created_at":"14 августа 2017"},{"id":211407,"message":"\u003cspan class=\"fa fa-star\"\u003e\u003c/span\u003e\u0026nbsp;Добавлен урок \u003cb\u003eМоделирование\u003c/b\u003e в курсе \u003cb\u003eJS: Составные данные\n\u003c/b\u003e","url":"http://ru.hexlet.io/courses/compound_data/lessons/modeling/theory_unit","human_created_at":"08 августа 2017"},{"id":194946,"message":"\u003cspan class=\"fa fa-star\"\u003e\u003c/span\u003e\u0026nbsp;\u0026nbsp;New lesson \u003cb\u003eJQuery\u003c/b\u003e in \u003cb\u003eJS: DOM API\u003c/b\u003e","url":"http://ru.hexlet.io/courses/js-dom/lessons/jquery/theory_unit","human_created_at":"05 июня 2017"}];gon.lesson={"id":841,"slug":"mutability"};gon.course={"slug":"js-ddd"};gon.topics=[{"id":17243,"title":"В ридми у ```Ticket``` у ```uniqueness``` не хватает ```conditions: { _fsm: { state: 'active' } },``` \n\nВопрос: refundTicket возвращает \n```\ntrue/false в зависимости от состояния билета для того, чтобы система могла как-то реагировать на этот кейс? Я сделал простой return, и тесты прошли. Может, отразить это в тестах?\n```","creator":{"id":132122,"public_name":"Евгений Михайлов","can_use_paid_features":true,"can_use_mentorship":true,"public_profile_enabled":null,"public_profile_url":"/u/eem","avatar_img_url":"https://cdn2.hexlet.io/attachments/0d459fa8c2600602d5ea938c7ab4a0781c1d7814/store/fill/185/185/8f7c409997267459178250f952cdede46f8facf043a885e4c727c0ca8ec8/avatar.png"},"communitable":{"id":841,"slug":"mutability","name":"Мутация","location":"/courses/js-ddd/lessons/mutability/theory_unit","link":"Курс «\u003ca href=\"https://ru.hexlet.io/courses/js-ddd\"\u003eJS: Предметно-ориентированное проектирование\u003c/a\u003e»\u003cbr\u003e\u0026#8627; Урок «\u003ca href=\"/courses/js-ddd/lessons/mutability/theory_unit\"\u003eМутация\u003c/a\u003e» "},"created_at":"25 июля 2018","location":"/topics/17243","has_solutions":true,"can_show_mentor_info":true,"can_destroy":false,"can_like":true,"can_update":false,"can_subscribe":true,"kind":"question","likes":[],"comments":[{"id":36430,"body":"\u003e В ридми у Ticket у uniqueness не хватает conditions: { _fsm: { state: 'active' } },\n\nFixed!\n\n\u003e Может, отразить это в тестах?\n\nПредложишь тесты?","creator":{"id":1,"public_name":"Kirill Mokevnin","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/mokevnin","avatar_img_url":"https://bitbucket.org/account/mokevnin/avatar/32/?ts=1500267653"},"created_at":"26 июля 2018","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]},{"id":36435,"body":"Добавил в существующий тест\n\n```\n  it('refundTicket', () =\u003e {\n    const place = { row: 5, col: 3 };\n    const [ticket] = services.Money.buyTicket(user.id, filmScreening.id, place);\n    const isRefunded = services.Money.refundTicket(ticket.id);\n    expect(ticket).toMatchObject({ _fsm: { state: 'returned' } });\n    expect(isRefunded).toBeTruthy();\n\n    const capitalTransactions = repositories.CapitalTransaction.findAllBy({ ticket });\n    expect(capitalTransactions).toHaveLength(2);\n    expect(capitalTransactions.reduce((acc, { cost }) =\u003e acc + cost, 0)).toBe(0);\n\n    const isDoubleRefunded = services.Money.refundTicket(ticket.id);\n    expect(isDoubleRefunded).toBeFalsy();\n\n    const capitalTransactions2 = repositories.CapitalTransaction.findAllBy({ ticket });\n    expect(capitalTransactions2).toHaveLength(2);\n    expect(capitalTransactions2.reduce((acc, { cost }) =\u003e acc + cost, 0)).toBe(0);\n  });\n```","creator":{"id":132122,"public_name":"Евгений Михайлов","can_use_paid_features":true,"can_use_mentorship":true,"public_profile_enabled":null,"public_profile_url":"/u/eem","avatar_img_url":"https://cdn2.hexlet.io/attachments/0d459fa8c2600602d5ea938c7ab4a0781c1d7814/store/fill/185/185/8f7c409997267459178250f952cdede46f8facf043a885e4c727c0ca8ec8/avatar.png"},"created_at":"26 июля 2018","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[{"id":8680,"user_id":1,"comment_id":36435}]},{"id":36640,"body":"Добавил, спасибо!","creator":{"id":1,"public_name":"Kirill Mokevnin","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/mokevnin","avatar_img_url":"https://bitbucket.org/account/mokevnin/avatar/32/?ts=1500267653"},"created_at":"30 июля 2018","solution":true,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]}],"subscribers":[{"id":34311,"user_id":1},{"id":34290,"user_id":132122}],"mentor":{"id":17,"user_id":1,"full_name":"Кирилл Мокевнин","username":"mokevnin"}},{"id":14636,"title":"Обьясните пожалуйста, почему после рефанда тикет не сохраняется в репозиторий, его ведь нужно сохранить (т.е. проапдейтить состояние существующего)?\n```\n  refundTicket(ticketId) {\n    const ticket = this.repositories.FilmScreeningTicket.find(ticketId);\n    const capitalTransaction = new this.entities.CapitalTransaction(ticket, 'loss');\n    this.repositories.CapitalTransaction.save(capitalTransaction);\n    return ticket.refund();\n  }\n```","creator":{"id":94542,"public_name":"Alexandr Kositsky","can_use_paid_features":false,"can_use_mentorship":false,"public_profile_enabled":null,"public_profile_url":"/u/felixcatto","avatar_img_url":"https://avatars0.githubusercontent.com/u/6022888?v=4"},"communitable":{"id":841,"slug":"mutability","name":"Мутация","location":"/courses/js-ddd/lessons/mutability/theory_unit","link":"Курс «\u003ca href=\"https://ru.hexlet.io/courses/js-ddd\"\u003eJS: Предметно-ориентированное проектирование\u003c/a\u003e»\u003cbr\u003e\u0026#8627; Урок «\u003ca href=\"/courses/js-ddd/lessons/mutability/theory_unit\"\u003eМутация\u003c/a\u003e» "},"created_at":"31 марта 2018","location":"/topics/14636","has_solutions":false,"can_show_mentor_info":true,"can_destroy":false,"can_like":true,"can_update":false,"can_subscribe":true,"kind":"question","likes":[],"comments":[{"id":30769,"body":"Спасибо! Поправил.","creator":{"id":1,"public_name":"Kirill Mokevnin","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/mokevnin","avatar_img_url":"https://bitbucket.org/account/mokevnin/avatar/32/?ts=1500267653"},"created_at":"31 марта 2018","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]},{"id":35767,"body":"А можно поподробнее пояснить зачем нам нужно два одинаковых тикета в репозитории?\n```\nthis.repositories.FilmScreeningTicket.save(ticket);\n```","creator":{"id":172380,"public_name":"Игорь Бабенков","can_use_paid_features":false,"can_use_mentorship":false,"public_profile_enabled":null,"public_profile_url":"/u/user-983677a9578b6851","avatar_img_url":"https://avatars1.githubusercontent.com/u/36734311?v=4"},"created_at":"12 июля 2018","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]}],"subscribers":[{"id":33633,"user_id":172380},{"id":29108,"user_id":1},{"id":29092,"user_id":94542}],"mentor":{"id":17,"user_id":1,"full_name":"Кирилл Мокевнин","username":"mokevnin"}},{"id":10339,"title":"Можете пояснить синтаксис:\nthis._fsm(); \nКак это технически устроено? Мы же не импортируем функцию _fsm, мы импортируем библиотеку javascript-state-machine под именем StateMachine...\n\nВ документации толкового объяснения я не нашел, есть только вот: \"...however you must now take responsibility for initialization by calling this._fsm() from within your class constructor method: \"\n\nПытаясь понять самостоятельно пришел к такому умозаключению: когда вызывается метод StateMachine.factory ему в кач-ве аргумента передается имя класса/функции-конструктора который по сути является объектом в который (в prototype) метод factory просто добавляет новые свойства нужные для обеспечения работы FSM в том числе специальный метод _fsm необходимый для инициализации FSM в будущих объектов класса. Надеюсь что описал понятно. Верно ли я мыслю? ","creator":{"id":134518,"public_name":"Vladimir Veselov","can_use_paid_features":false,"can_use_mentorship":false,"public_profile_enabled":null,"public_profile_url":"/u/vladv","avatar_img_url":"https://cdn2.hexlet.io/attachments/5b2f1c94eb266661c4b764a1b7932adfd14e7a14/store/fill/185/185/05b0ba5ca3e502f8c4f23f86ea88d043c139ad7f85a5f93c55f06b563ed2/avatar.png"},"communitable":{"id":841,"slug":"mutability","name":"Мутация","location":"/courses/js-ddd/lessons/mutability/theory_unit","link":"Курс «\u003ca href=\"https://ru.hexlet.io/courses/js-ddd\"\u003eJS: Предметно-ориентированное проектирование\u003c/a\u003e»\u003cbr\u003e\u0026#8627; Урок «\u003ca href=\"/courses/js-ddd/lessons/mutability/theory_unit\"\u003eМутация\u003c/a\u003e» "},"created_at":"22 сентября 2017","location":"/topics/10339","has_solutions":true,"can_show_mentor_info":true,"can_destroy":false,"can_like":true,"can_update":false,"can_subscribe":true,"kind":"question","likes":[{"id":5248,"user_id":125248,"topic_id":10339}],"comments":[{"id":21364,"body":"https://github.com/jakesgordon/javascript-state-machine/blob/master/src/app.js#L81\n\nа эта функция build вызывается в функции factory","creator":{"id":1,"public_name":"Kirill Mokevnin","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/mokevnin","avatar_img_url":"https://bitbucket.org/account/mokevnin/avatar/32/?ts=1500267653"},"created_at":"23 сентября 2017","solution":true,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]}],"subscribers":[{"id":20625,"user_id":1},{"id":20600,"user_id":134518}],"mentor":{"id":17,"user_id":1,"full_name":"Кирилл Мокевнин","username":"mokevnin"}},{"id":7406,"title":"Вероятно в Ticket.js и ридми о нем опечатка - вместо filmScreening везде fileScreening","creator":{"id":112007,"public_name":"Ярослав Ветер","can_use_paid_features":false,"can_use_mentorship":false,"public_profile_enabled":null,"public_profile_url":"/u/iskaldvind","avatar_img_url":"https://cdn2.hexlet.io/attachments/91ba5b7264dcc0d3feaeec27fb98c981a93dd1b8/store/fill/185/185/ce1c44e02d8d154c54979623b368f9b5a6605f836dcc49e9332f839e7ccd/avatar.png"},"communitable":{"id":841,"slug":"mutability","name":"Мутация","location":"/courses/js-ddd/lessons/mutability/theory_unit","link":"Курс «\u003ca href=\"https://ru.hexlet.io/courses/js-ddd\"\u003eJS: Предметно-ориентированное проектирование\u003c/a\u003e»\u003cbr\u003e\u0026#8627; Урок «\u003ca href=\"/courses/js-ddd/lessons/mutability/theory_unit\"\u003eМутация\u003c/a\u003e» "},"created_at":"01 апреля 2017","location":"/topics/7406","has_solutions":false,"can_show_mentor_info":false,"can_destroy":false,"can_like":true,"can_update":false,"can_subscribe":true,"kind":"question","likes":[],"comments":[{"id":13869,"body":"Спасибо большое. Все поправил.","creator":{"id":1,"public_name":"Kirill Mokevnin","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/mokevnin","avatar_img_url":"https://bitbucket.org/account/mokevnin/avatar/32/?ts=1500267653"},"created_at":"02 апреля 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]}],"subscribers":[{"id":14570,"user_id":1},{"id":14552,"user_id":112007}],"mentor":{"id":17,"user_id":1,"full_name":"Кирилл Мокевнин","username":"mokevnin"}},{"id":9315,"title":"1.\nВ решении учителя в CapitalTransaction.js:\n```\nthrow new Error(`Unknown type '${type}'`);\n```\n\nЗачем это, если проверка type делается через validate?\n\n2.\nrefundTicket в решении учителя возвращает значение refund(), хотя логичнее было бы возвращать true, если иначе возвращается false. В задании кстати не указано, что должно возвращаться.\n\n3.\n\u003e conditions: { fsm: { current: 'active' } }\n\nУ вас здесь вторая версия state-machine. В третьей версии current заменили на state.","creator":{"id":299,"public_name":"user-060fea03108324dd","can_use_paid_features":false,"can_use_mentorship":false,"public_profile_enabled":null,"public_profile_url":"/u/user-060fea03108324dd","avatar_img_url":"https://avatars3.githubusercontent.com/u/31385948?v=4"},"communitable":{"id":841,"slug":"mutability","name":"Мутация","location":"/courses/js-ddd/lessons/mutability/theory_unit","link":"Курс «\u003ca href=\"https://ru.hexlet.io/courses/js-ddd\"\u003eJS: Предметно-ориентированное проектирование\u003c/a\u003e»\u003cbr\u003e\u0026#8627; Урок «\u003ca href=\"/courses/js-ddd/lessons/mutability/theory_unit\"\u003eМутация\u003c/a\u003e» "},"created_at":"17 июля 2017","location":"/topics/9315","has_solutions":false,"can_show_mentor_info":true,"can_destroy":false,"can_like":true,"can_update":false,"can_subscribe":true,"kind":"question","likes":[],"comments":[{"id":18942,"body":"1. fixed\n1. А refund как раз вернет true если все ок\n1. fixed\n\nСпасибо!","creator":{"id":1,"public_name":"Kirill Mokevnin","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/mokevnin","avatar_img_url":"https://bitbucket.org/account/mokevnin/avatar/32/?ts=1500267653"},"created_at":"17 июля 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]},{"id":19068,"body":"У меня ничего не изменилось.","creator":{"id":299,"public_name":"user-060fea03108324dd","can_use_paid_features":false,"can_use_mentorship":false,"public_profile_enabled":null,"public_profile_url":"/u/user-060fea03108324dd","avatar_img_url":"https://avatars3.githubusercontent.com/u/31385948?v=4"},"created_at":"19 июля 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]},{"id":19075,"body":"Эх, не собралось. Сейчас переотправлю.","creator":{"id":1,"public_name":"Kirill Mokevnin","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/mokevnin","avatar_img_url":"https://bitbucket.org/account/mokevnin/avatar/32/?ts=1500267653"},"created_at":"19 июля 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]},{"id":19148,"body":"\u003e 2. А refund как раз вернет true если все ок\n\nКогда я проверял, refund возвращал единицу, сейчас возвращает true. Или я ошибся или в третьей версии исправили.\n\n\u003e 3. fixed\n\nВ README еще current остался.","creator":{"id":299,"public_name":"user-060fea03108324dd","can_use_paid_features":false,"can_use_mentorship":false,"public_profile_enabled":null,"public_profile_url":"/u/user-060fea03108324dd","avatar_img_url":"https://avatars3.githubusercontent.com/u/31385948?v=4"},"created_at":"21 июля 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]},{"id":19163,"body":"опс","creator":{"id":1,"public_name":"Kirill Mokevnin","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/mokevnin","avatar_img_url":"https://bitbucket.org/account/mokevnin/avatar/32/?ts=1500267653"},"created_at":"21 июля 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]}],"subscribers":[{"id":18553,"user_id":1},{"id":18526,"user_id":299}],"mentor":{"id":17,"user_id":1,"full_name":"Кирилл Мокевнин","username":"mokevnin"}},{"id":7925,"title":"в MoneyService.js метод createTicket создает Юзера, и вообще он наверное ошибочно туда добавлен.","creator":{"id":125440,"public_name":"Дмитрий Круглов","can_use_paid_features":false,"can_use_mentorship":false,"public_profile_enabled":null,"public_profile_url":"/u/kruglovdv","avatar_img_url":"https://avatars0.githubusercontent.com/u/24638253?v=4"},"communitable":{"id":841,"slug":"mutability","name":"Мутация","location":"/courses/js-ddd/lessons/mutability/theory_unit","link":"Курс «\u003ca href=\"https://ru.hexlet.io/courses/js-ddd\"\u003eJS: Предметно-ориентированное проектирование\u003c/a\u003e»\u003cbr\u003e\u0026#8627; Урок «\u003ca href=\"/courses/js-ddd/lessons/mutability/theory_unit\"\u003eМутация\u003c/a\u003e» "},"created_at":"01 мая 2017","location":"/topics/7925","has_solutions":false,"can_show_mentor_info":true,"can_destroy":false,"can_like":true,"can_update":false,"can_subscribe":true,"kind":"question","likes":[],"comments":[{"id":15180,"body":"Ага, убрал.","creator":{"id":1,"public_name":"Kirill Mokevnin","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/mokevnin","avatar_img_url":"https://bitbucket.org/account/mokevnin/avatar/32/?ts=1500267653"},"created_at":"01 мая 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]}],"subscribers":[{"id":15645,"user_id":1},{"id":15624,"user_id":125440}],"mentor":{"id":17,"user_id":1,"full_name":"Кирилл Мокевнин","username":"mokevnin"}}];gon.topic_type="community";gon.communitable_type="Lesson";gon.communitable_id=841;gon.can_render_new_topic_box=true;
+//]]>
+</script>
+<script>
+  // in development mode
+  if (!window.Rollbar) {
+    Rollbar = {
+      error: function() {
+      },
+      configure: function() {
+      }
+    }
+  }
+  
+  Rollbar.configure({
+    payload: {
+      person: gon.current_user
+    }
+  });
+</script>
+
+<script type='application/ld+json'>
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "Hexlet",
+  "url": "https://ru.hexlet.io",
+  "logo": "https://cdn2.hexlet.io/assets/hexlet_logo-e99fc2b3b7c1eec88899f3af1435a39aaac6fd29d011dfe2342499c0884b7a96.png",
+  "sameAs": [
+    "https://www.facebook.com/Hexlet",
+    "https://www.youtube.com/user/HexletUniversity",
+    "http://twitter.com/HexletHQ",
+    "https://plus.google.com/b/108226937214888198279/+HexletOrg/posts",
+    "https://soundcloud.com/hexlet"
+  ]
+}
+
+</script>
+
+<script src="https://www.googletagmanager.com/gtag/js?id=UA-1360700-51" async="async"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+  
+  gtag('config', "UA-1360700-51", {
+    'user_id': gon.current_user.id
+  });
+  
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-WK88TH');
+</script>
+
+
+<link rel="stylesheet" media="all" href="https://cdn2.hexlet.io/assets/application-8ce03079c6bc137ea6f0013b0bc7e6110e865912947a64d80d5cc2d6b6451d9f.css" />
+<link href='/courses/js-ddd/lessons/mutability/theory_unit' rel='canonical'>
+<meta content='article' property='og:type'>
+<meta content='Мутация / JS: Предметно-ориентированное проектирование' property='og:title'>
+<meta content='Рассмотреть сценарий изменения сущности и выявить первое правило мутации: «не мутируй!». Взглянуть на несколько примеров изменений в нашей системе.
+' property='og:description'>
+<meta content='Рассмотреть сценарий изменения сущности и выявить первое правило мутации: «не мутируй!». Взглянуть на несколько примеров изменений в нашей системе.
+' name='description'>
+<meta content='https://cdn2.hexlet.io/attachments/58d6bebeba695dc3b1568e7272abf90034eaa2a3/store/fill/600/400/15e77ad793c1830ddca69521c95bd56e3232e24775144569290bdf26e13d/image.png' property='og:image'>
+<link href='https://cdn2.hexlet.io/attachments/58d6bebeba695dc3b1568e7272abf90034eaa2a3/store/fill/600/400/15e77ad793c1830ddca69521c95bd56e3232e24775144569290bdf26e13d/image.png' rel='image_src'>
+
+</head>
+<body>
+<div class='container-fluid px-0'>
+<div class='d-flex flex-row'>
+<div class='hexlet-lesson-container px-3 px-sm-5 pt-3 pt-sm-4 pb-5 flex-fill tab-content'>
+<div class='container px-0 mb-3'>
+<h1 class='h6 pb-3'>
+<span class='x-font-weight-bolder'><a class="x-unstyled-link" href="/courses/js-ddd">JS: Предметно-ориентированное проектирование</a></span>
+<span class='mx-1'>→</span>
+<a class='x-btn-no-active-decor' data-keyboard='true' data-target='#coursenav-modal' data-toggle='modal' href='#coursenav-modal'>
+Мутация
+<span class='fal fa-sitemap'></span>
+</a>
+</h1>
+
+</div>
+<div aria-labelledby='lesson-tab' class='tab-pane fade show active' id='lesson' role='tabpanel'>
+<div class='container px-0' itemscope itemtype='http://schema.org/Article'>
+<div class='hexlet-theory-body'>
+<div class='mt-3'>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html><body>
+<p>На протяжении всего курса, в практической части, мы разрабатывали сценарии,
+в которых происходило только добавление сущностей. Добавление это наиболее
+простая операция из всех возможных, потому что в ней отсутствует (почти) изменяемость
+данных. Но большинство сценариев в реальной жизни, обычно, связано с изменением:</p>
+
+<ul>
+<li>Обновление расписания</li>
+<li>Возврат билета</li>
+<li>Удаление кинозала</li>
+<li>Изменение конфигурации кинозала</li>
+</ul>
+
+<p>И вот тут начинаются настоящие проблемы. Попробуйте ответить себе на следующие вопросы:</p>
+
+<ul>
+<li>Можно ли безопасно удалить из системы кинозал?</li>
+<li>Можно ли безопасно изменить конфигурацию зала в любой момент времени?</li>
+<li>Простая ли операция возврат билета?</li>
+</ul>
+
+<p>На все эти (и многие другие) вопросы ответ: нет. Возврат билета затрагивает
+множество связанных сущностей, например, в зале нужно освободить место для возможности
+перепродажи. Удаление кинозала из системы приведет к тому, что все предыдущие
+просмотры фильмов в этом зале станут не консистентными, мы потеряем историю операций.
+Изменение конфигурации зала приведет к поломке старых покупок. Удаление сеанса
+связано с возвратом билетов, а эта операция, в свою очередь, порождает цепочку
+других изменений.</p>
+
+<p>Итак, чем же нам грозит изменяемость:</p>
+
+<ul>
+<li>Сложное обновление связанных сущностей</li>
+<li>Отсутствие истории</li>
+<li>Рассинхронизация</li>
+<li>Повреждение старых связей</li>
+</ul>
+
+<p>В связи с этим хочется сформулировать первое правило мутации:</p>
+
+<blockquote>
+<p>Не мутируй!</p>
+</blockquote>
+
+<p>И действительно, на практике, часто, можно и нужно проектировать систему так,
+чтобы изменяющие действия превращались в <code>append only</code>. Проницательный читатель, вероятно,
+заметил что эта идея очень сильно коррелирует с главным принципом функционального программирования,
+а именно отсутствием изменений. Это действительно так, проблема изменяемого состояния это
+не проблема кода и программирования, это особенность физической реальности. И на
+практике гораздо лучше пытаться уйти от изменений, чем пытаться создать систему,
+которая консистентно обновляет все нужные связи, что в общем случае невозможно и рождает
+очень много случайной сложности.</p>
+
+<p>Разберем несколько простых примеров.</p>
+
+<h4>Изменение конфигурации зала</h4>
+
+<p>В такой ситуации правильно создать новый зал с другой конфигурацией, а предыдущий архивировать.
+То есть перевести конечный автомат жизненного цикла зала в состояние <code>archived</code>. Соответственно,
+все старые данные остаются в согласованном виде. У нас появляется история, и мы можем отследить
+момент в который произошла физическая перепланировка зала.</p>
+
+<h4>Возврат билетов</h4>
+
+<p>При возврате билета, правильно не удалять записи о том что был приход денег. Правильно создать
+новую запись, в которой отражается расход. Кроме стандартных плюсов, мы получаем возможность
+проводить глубокий бизнес-анализ ситуации с возвратами. Сам билет так же может быть переведен
+в состояние (везде конечные автоматы) <code>возвращен</code>.</p>
+
+<h3>Current</h3>
+
+<p>Еще один подход для ухода от мутации связан с тем, что вводится понятие <code>current</code>. Например
+на хекслете есть понятие "Упражнение", это задание, которое выполняется в нашей <code>ide</code>. Перед
+тем как новая версия упражнения попадает на сайт, она проходит этап сборки и верификации.
+На этом этапе происходит упаковка всех зависимостей, кода упражнения в докер образ, а так же
+выполнение различных проверок на работоспособность, в первую очередь, конечно же, тестов.</p>
+
+<p>Исправлять упражнение ни в коем случае нельзя. Потому что всегда есть пользователи, которые
+проходят старую версию упражнения. И если бы мы делали изменение текущей версии, то у части
+упражнение перестало бы работать. Выход из ситуации очень простой, мы разделяем понятия
+<code>Exercise</code> и <code>Exercise::Build</code>. И после того как успешно пройдет новый <code>Exercise::Build</code>, то
+в <code>Exercise</code> будет записан <code>Current Exercise Build</code>. После этого все новые старты будут
+использовать эту сборку, а старые - ту, которая была актуальна на момент старта. Для функционирования
+такого механизма нужно всегда записывать <code>Current Exercise Build</code> в объект, представляющий
+собой запущенную практику, тогда все будет работать даже если появится новая сборка.</p>
+
+<p>На практике это очень простая тактика. Хекслет использует ее просто повсеместно, и, таким образом,
+мы сильно снижаем затраты на синхронизацию данных.</p>
+</body></html>
+
+</div>
+</div>
+</div>
+
+</div>
+<div aria-labelledby='community-tab' class='tab-pane fade' id='community' role='tabpanel'>
+<div class='row justify-content-center w-100'>
+<div class='col-12 col-lg-10 col-xl-9'>
+<div class='hexlet-community d-flex flex-fill'>
+<div class='container' id='community-box'></div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+<div class='px-0 d-flex flex-column justify-content-between sticky-top' id='hexlet-lesson-sidebar'>
+<div class='d-flex flex-column flex-shrink-0'>
+<a role="button" data-disable-with="<span class=&quot;fa fa-spinner fa-spin&quot;></span>" aria-expanded="false" data-html="true" class="btn btn-primary btn-block px-5 rounded-0 d-flex justify-content-center align-items-center" id="finish-button" rel="nofollow" data-method="patch" href="/courses/js-ddd/lessons/mutability/finish_unit?unit=theory"><span class='d-none d-sm-block mr-2'>Далее</span>
+<span class='far fa-arrow-right'></span>
+</a><div class='mt-3'>
+<div class='px-2 mb-4'>
+<span class='d-none d-sm-block small text-center mb-2'>
+пройдено 15 шагов из 21
+</span>
+<div class='mr-2 px-1'>
+<div class='progress mb-1 rounded-0'>
+<div class='progress-bar m-0 bg-success' style='width: 72%'></div>
+</div>
+</div>
+</div>
+<ul class='nav nav-tabs d-flex flex-column pr-2 border-0' id='myTab' role='tablist'>
+<li class='nav-item'>
+<a aria-controls='lesson' aria-selected='true' class='nav-link active rounded-0' data-toggle='tab' href='#lesson' id='lesson-tab' role='tab'>
+<span class='d-none d-sm-inline-block'>
+Шаг:
+</span>
+<span class='d-none d-sm-inline-block'>теория</span>
+<span class='d-inline-block d-sm-none'>
+<span class='far fa-file-alt'></span>
+</span>
+</a>
+</li>
+<li class='nav-item'>
+<a aria-controls='community' aria-selected='false' class='nav-link rounded-0' data-toggle='tab' href='#community' id='community-tab' role='tab'>
+<span class='d-none d-sm-inline-block'>Обсуждение</span>
+<span class='d-inline-block d-sm-none'>
+<span class='far fa-comments'></span>
+</span>
+</a>
+</li>
+</ul>
+
+</div>
+</div>
+<div class='d-flex flex-column mt-3'>
+<a class='hexlet-lesson-sidebar-secondary-button x-btn-no-active-decor' data-keyboard='true' data-target='#coursenav-modal' data-toggle='modal' href='#coursenav-modal'>
+<div class='py-2 pl-3 pr-2 border-left-0 border-right-0 border-bottom-0 border-top'>
+<span class='fal fa-sitemap'></span>
+<span class='d-none d-sm-inline-block ml-2'>Навигация</span>
+</div>
+</a>
+<a class='hexlet-lesson-sidebar-secondary-button x-btn-no-active-decor' href='/my'>
+<div class='py-2 pl-3 pr-2 border-left-0 border-right-0 border-bottom-0 border-top'>
+<span class='fal fa-home'></span>
+<span class='d-none d-sm-inline-block ml-2'>Мой Хекслет</span>
+</div>
+</a>
+<a class='hexlet-lesson-sidebar-secondary-button x-btn-no-active-decor' href='#' id='open-lesson-beacon'>
+<div class='py-2 pl-3 pr-2 border-left-0 border-right-0 border-bottom-0 border-top'>
+<span class='fal fa-question-circle'></span>
+<span class='d-none d-sm-inline-block ml-2'>Техподдержка</span>
+</div>
+</a>
+</div>
+
+</div>
+</div>
+<div aria-hidden='true' aria-labelledby='exampleModalLabel' class='modal fade' id='coursenav-modal' role='dialog' tabindex='-1'>
+<div class='modal-dialog' role='document'>
+<div class='modal-content'>
+<div class='modal-header'>
+<h6 class='modal-title'>
+<a class="x-link" href="/my">Мой Хекслет
+</a>→
+<a class="x-link" href="/courses/js-ddd"><span>Курс</span>
+<span>
+«JS: Предметно-ориентированное проектирование»
+</span>
+</a></h6>
+<button aria-label='Close' class='close' data-dismiss='modal' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+</div>
+<div class='modal-body scrollable px-4'>
+<div class='mb-3'>
+<span class=''>
+1.
+Введение
+</span>
+<p class='m-0'>
+<div class='small'>
+<span class='mr-2'>↳</span>
+<a class=" " href="/courses/js-ddd/lessons/intro/theory_unit"><span class='x-striked'>
+теория
+(текст)
+</span>
+</a></div>
+
+</p>
+</div>
+<div class='mb-3'>
+<span class=''>
+2.
+Use cases
+</span>
+<p class='m-0'>
+<div class='small'>
+<span class='mr-2'>↳</span>
+<a class=" " href="/courses/js-ddd/lessons/use-cases/theory_unit"><span class='x-striked'>
+теория
+(текст)
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/use-cases/quiz_unit"><span class='x-striked'>
+тесты
+</span>
+</a></div>
+
+</p>
+</div>
+<div class='mb-3'>
+<span class=''>
+3.
+Сущности и связи
+</span>
+<p class='m-0'>
+<div class='small'>
+<span class='mr-2'>↳</span>
+<a class=" " href="/courses/js-ddd/lessons/entity-relation/theory_unit"><span class='x-striked'>
+теория
+(текст)
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/entity-relation/quiz_unit"><span class='x-striked'>
+тесты
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/entity-relation/exercise_unit"><span class='x-striked'>
+упражнение
+</span>
+</a></div>
+
+</p>
+</div>
+<div class='mb-3'>
+<span class=''>
+4.
+Архитектура
+</span>
+<p class='m-0'>
+<div class='small'>
+<span class='mr-2'>↳</span>
+<a class=" " href="/courses/js-ddd/lessons/architecture/theory_unit"><span class='x-striked'>
+теория
+(текст)
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/architecture/quiz_unit"><span class='x-striked'>
+тесты
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/architecture/exercise_unit"><span class='x-striked'>
+упражнение
+</span>
+</a></div>
+
+</p>
+</div>
+<div class='mb-3'>
+<span class=''>
+5.
+Валидация
+</span>
+<p class='m-0'>
+<div class='small'>
+<span class='mr-2'>↳</span>
+<a class=" " href="/courses/js-ddd/lessons/validation/theory_unit"><span class='x-striked'>
+теория
+(текст)
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/validation/quiz_unit"><span class='x-striked'>
+тесты
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/validation/exercise_unit"><span class='x-striked'>
+упражнение
+</span>
+</a></div>
+
+</p>
+</div>
+<div class='mb-3'>
+<span class=''>
+6.
+Dependency Injection Container
+</span>
+<p class='m-0'>
+<div class='small'>
+<span class='mr-2'>↳</span>
+<a class=" " href="/courses/js-ddd/lessons/container/theory_unit"><span class='x-striked'>
+теория
+(текст)
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/container/quiz_unit"><span class='x-striked'>
+тесты
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/container/exercise_unit"><span class=''>
+упражнение
+</span>
+</a></div>
+
+</p>
+</div>
+<div class='mb-3'>
+<span class=''>
+7.
+Предметная область
+</span>
+<p class='m-0'>
+<div class='small'>
+<span class='mr-2'>↳</span>
+<a class=" " href="/courses/js-ddd/lessons/domain/theory_unit"><span class='x-striked'>
+теория
+(текст)
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/domain/quiz_unit"><span class=''>
+тесты
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/domain/exercise_unit"><span class=''>
+упражнение
+</span>
+</a></div>
+
+</p>
+</div>
+<div class='mb-3'>
+<span class='x-font-weight-bolder'>
+8.
+Мутация
+</span>
+<p class='m-0'>
+<div class='small'>
+<span class='mr-2'>↳</span>
+<a class=" " href="/courses/js-ddd/lessons/mutability/theory_unit"><span class=''>
+<span class='x-font-weight-bolder text-dark'>
+теория
+</span>
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/mutability/quiz_unit"><span class=''>
+<span class=''>
+тесты
+</span>
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/mutability/exercise_unit"><span class=''>
+<span class=''>
+упражнение
+</span>
+</span>
+</a></div>
+
+</p>
+</div>
+</div>
+<div class='modal-footer'>
+<button class='btn hexlet-btn-main' data-dismiss='modal' type='button'>Закрыть</button>
+</div>
+</div>
+</div>
+</div>
+
+
+</div>
+<script src="https://cdn2.hexlet.io/assets/essential-6773aaf65563d774c8eaf34a9e68d4b66e90d0946f559e78a8cd43a054f4804e.js"></script>
+<script src="https://cdn2.hexlet.io/assets/application-bee47b5de66ce12a65b837dabbc737469aa260f7e7526c6bf154ca1a01a18061.js" defer="defer"></script>
+<script src="https://cdn2.hexlet.io/packs/vendor-87d7e1452406f93a5a7e.chunk.js" defer="defer"></script>
+<script src="https://cdn2.hexlet.io/packs/application-859c8abb3aec62db64c2.js" defer="defer"></script>
+<script src="https://cdn2.hexlet.io/packs/community-b989d308581e4fea4820.js" defer="defer"></script>
+<script>
+  var el = document.getElementById('open-lesson-beacon');
+  el.addEventListener('click', function() {
+    HS.beacon.open();
+  });
+</script>
+
+<script>
+  !function(e,o,n){window.HSCW=o,window.HS=n,n.beacon=n.beacon||{};var t=n.beacon;t.userConfig={},t.readyQueue=[],t.config=function(e){this.userConfig=e},t.ready=function(e){this.readyQueue.push(e)},o.config={docs:{enabled:!0,baseUrl:"//hexlet.helpscoutdocs.com/"},contact:{enabled:!0,formId:"4d3729f5-96ac-11e6-91aa-0a5fecc78a4d"}};var r=e.getElementsByTagName("script")[0],c=e.createElement("script");c.type="text/javascript",c.async=!0,c.src="https://djtflbt20bdde.cloudfront.net/",r.parentNode.insertBefore(c,r)}(document,window.HSCW||{},window.HS||{});
+</script>
+<script>
+  HS.beacon.config({
+    poweredBy: false,
+    modal: gon.hs.modal,
+    icon: 'question',
+    color: "#79afb8",
+    topArticles: true,
+    translation: {
+      searchLabel: 'Чем можем помочь?',
+      searchErrorLabel: 'Запрос занял слишком много времени. Пожалуйста, проверьте свое соединение с интернетом и попробуйте заново.',
+      noResultsLabel: 'Ничего не найдено по запросу',
+      contactLabel: 'Написать в поддержку',
+      attachFileLabel: 'Приложить файл',
+      attachFileError: 'Максимальный размер файла 10мб',
+      nameLabel: 'Ваше имя',
+      nameError: 'Пожалуйста, введите ваше имя',
+      emailLabel: 'Email',
+      emailError: 'Пожалуйста, введите правильный email',
+      topicLabel: 'Выберите тему',
+      topicError: 'Пожалуйста, выберите тему из списка',
+      subjectLabel: 'Заголовок',
+      subjectError: 'Пожалуйста, введите заголовок',
+      messageLabel: 'Чем можем помочь?',
+      messageError: 'Пожалуйста, введите сообщение',
+      sendLabel: 'Отправить',
+      contactSuccessLabel: 'Сообщение отправлено!',
+      contactSuccessDescription: 'Спасибо! Сотрудник Хекслета ответит вам в ближайшее время.'
+    }
+  });
+</script>
+<script>
+  if (!gon.current_user.isGuest) {
+    HS.beacon.ready(function() {
+      HS.beacon.identify({
+        name: gon.current_user.public_name,
+        email: gon.current_user.email,
+        CreatedAt: gon.current_user.created_at,
+        CanUsePaidFeatures: gon.current_user.can_use_paid_features
+      });
+    });
+  }
+</script>
+
+<script>
+  if (!gon.current_user.isGuest) {
+    (function(i,s,o,g,r,a,m){i['ProfitWellObject']=r;i[r]=i[r]||function(){  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m);  })(window,document,'script','https://dna8twue3dlxq.cloudfront.net/js/profitwell.js','profitwell');
+    profitwell('auth_token', '69620c83ec136781432c55c6cb740d8f');
+    profitwell('user_email', gon.current_user.email);
+  }
+</script>
+
+
+</body>
+</html>
