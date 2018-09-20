@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">var _rollbarConfig = {"accessToken":"fc27636027d0460bbc1578d97d0d27ad","captureUncaught":true,"captureUnhandledRejections":true,"hostWhiteList":["https://cdn2.hexlet.io"],"ignoredMessages":["Script error"],"payload":{"client":{"source_map_enabled":true,"code_version":null,"guess_uncaught_frames":true},"environment":"production","person":{"id":111320,"username":"Дмитрий Рюмкин","email":null}}};</script>
+<script type="text/javascript">!function(r){function e(n){if(o[n])return o[n].exports;var t=o[n]={exports:{},id:n,loaded:!1};return r[n].call(t.exports,t,t.exports,e),t.loaded=!0,t.exports}var o={};return e.m=r,e.c=o,e.p="",e(0)}([function(r,e,o){"use strict";var n=o(1),t=o(4);_rollbarConfig=_rollbarConfig||{},_rollbarConfig.rollbarJsUrl=_rollbarConfig.rollbarJsUrl||"https://cdnjs.cloudflare.com/ajax/libs/rollbar.js/2.4.4/rollbar.min.js",_rollbarConfig.async=void 0===_rollbarConfig.async||_rollbarConfig.async;var a=n.setupShim(window,_rollbarConfig),l=t(_rollbarConfig);window.rollbar=n.Rollbar,a.loadFull(window,document,!_rollbarConfig.async,_rollbarConfig,l)},function(r,e,o){"use strict";function n(r){return function(){try{return r.apply(this,arguments)}catch(r){try{console.error("[Rollbar]: Internal error",r)}catch(r){}}}}function t(r,e){this.options=r,this._rollbarOldOnError=null;var o=s++;this.shimId=function(){return o},"undefined"!=typeof window&&window._rollbarShims&&(window._rollbarShims[o]={handler:e,messages:[]})}function a(r,e){if(r){var o=e.globalAlias||"Rollbar";if("object"==typeof r[o])return r[o];r._rollbarShims={},r._rollbarWrappedError=null;var t=new p(e);return n(function(){e.captureUncaught&&(t._rollbarOldOnError=r.onerror,i.captureUncaughtExceptions(r,t,!0),i.wrapGlobals(r,t,!0)),e.captureUnhandledRejections&&i.captureUnhandledRejections(r,t,!0);var n=e.autoInstrument;return e.enabled!==!1&&(void 0===n||n===!0||"object"==typeof n&&n.network)&&r.addEventListener&&(r.addEventListener("load",t.captureLoad.bind(t)),r.addEventListener("DOMContentLoaded",t.captureDomContentLoaded.bind(t))),r[o]=t,t})()}}function l(r){return n(function(){var e=this,o=Array.prototype.slice.call(arguments,0),n={shim:e,method:r,args:o,ts:new Date};window._rollbarShims[this.shimId()].messages.push(n)})}var i=o(2),s=0,d=o(3),c=function(r,e){return new t(r,e)},p=function(r){return new d(c,r)};t.prototype.loadFull=function(r,e,o,t,a){var l=function(){var e;if(void 0===r._rollbarDidLoad){e=new Error("rollbar.js did not load");for(var o,n,t,l,i=0;o=r._rollbarShims[i++];)for(o=o.messages||[];n=o.shift();)for(t=n.args||[],i=0;i<t.length;++i)if(l=t[i],"function"==typeof l){l(e);break}}"function"==typeof a&&a(e)},i=!1,s=e.createElement("script"),d=e.getElementsByTagName("script")[0],c=d.parentNode;s.crossOrigin="",s.src=t.rollbarJsUrl,o||(s.async=!0),s.onload=s.onreadystatechange=n(function(){if(!(i||this.readyState&&"loaded"!==this.readyState&&"complete"!==this.readyState)){s.onload=s.onreadystatechange=null;try{c.removeChild(s)}catch(r){}i=!0,l()}}),c.insertBefore(s,d)},t.prototype.wrap=function(r,e,o){try{var n;if(n="function"==typeof e?e:function(){return e||{}},"function"!=typeof r)return r;if(r._isWrap)return r;if(!r._rollbar_wrapped&&(r._rollbar_wrapped=function(){o&&"function"==typeof o&&o.apply(this,arguments);try{return r.apply(this,arguments)}catch(o){var e=o;throw e&&("string"==typeof e&&(e=new String(e)),e._rollbarContext=n()||{},e._rollbarContext._wrappedSource=r.toString(),window._rollbarWrappedError=e),e}},r._rollbar_wrapped._isWrap=!0,r.hasOwnProperty))for(var t in r)r.hasOwnProperty(t)&&(r._rollbar_wrapped[t]=r[t]);return r._rollbar_wrapped}catch(e){return r}};for(var u="log,debug,info,warn,warning,error,critical,global,configure,handleUncaughtException,handleUnhandledRejection,captureEvent,captureDomContentLoaded,captureLoad".split(","),f=0;f<u.length;++f)t.prototype[u[f]]=l(u[f]);r.exports={setupShim:a,Rollbar:p}},function(r,e){"use strict";function o(r,e,o){if(r){var t;if("function"==typeof e._rollbarOldOnError)t=e._rollbarOldOnError;else if(r.onerror){for(t=r.onerror;t._rollbarOldOnError;)t=t._rollbarOldOnError;e._rollbarOldOnError=t}var a=function(){var o=Array.prototype.slice.call(arguments,0);n(r,e,t,o)};o&&(a._rollbarOldOnError=t),r.onerror=a}}function n(r,e,o,n){r._rollbarWrappedError&&(n[4]||(n[4]=r._rollbarWrappedError),n[5]||(n[5]=r._rollbarWrappedError._rollbarContext),r._rollbarWrappedError=null),e.handleUncaughtException.apply(e,n),o&&o.apply(r,n)}function t(r,e,o){if(r){"function"==typeof r._rollbarURH&&r._rollbarURH.belongsToShim&&r.removeEventListener("unhandledrejection",r._rollbarURH);var n=function(r){var o,n,t;try{o=r.reason}catch(r){o=void 0}try{n=r.promise}catch(r){n="[unhandledrejection] error getting `promise` from event"}try{t=r.detail,!o&&t&&(o=t.reason,n=t.promise)}catch(r){t="[unhandledrejection] error getting `detail` from event"}o||(o="[unhandledrejection] error getting `reason` from event"),e&&e.handleUnhandledRejection&&e.handleUnhandledRejection(o,n)};n.belongsToShim=o,r._rollbarURH=n,r.addEventListener("unhandledrejection",n)}}function a(r,e,o){if(r){var n,t,a="EventTarget,Window,Node,ApplicationCache,AudioTrackList,ChannelMergerNode,CryptoOperation,EventSource,FileReader,HTMLUnknownElement,IDBDatabase,IDBRequest,IDBTransaction,KeyOperation,MediaController,MessagePort,ModalWindow,Notification,SVGElementInstance,Screen,TextTrack,TextTrackCue,TextTrackList,WebSocket,WebSocketWorker,Worker,XMLHttpRequest,XMLHttpRequestEventTarget,XMLHttpRequestUpload".split(",");for(n=0;n<a.length;++n)t=a[n],r[t]&&r[t].prototype&&l(e,r[t].prototype,o)}}function l(r,e,o){if(e.hasOwnProperty&&e.hasOwnProperty("addEventListener")){for(var n=e.addEventListener;n._rollbarOldAdd&&n.belongsToShim;)n=n._rollbarOldAdd;var t=function(e,o,t){n.call(this,e,r.wrap(o),t)};t._rollbarOldAdd=n,t.belongsToShim=o,e.addEventListener=t;for(var a=e.removeEventListener;a._rollbarOldRemove&&a.belongsToShim;)a=a._rollbarOldRemove;var l=function(r,e,o){a.call(this,r,e&&e._rollbar_wrapped||e,o)};l._rollbarOldRemove=a,l.belongsToShim=o,e.removeEventListener=l}}r.exports={captureUncaughtExceptions:o,captureUnhandledRejections:t,wrapGlobals:a}},function(r,e){"use strict";function o(r,e){this.impl=r(e,this),this.options=e,n(o.prototype)}function n(r){for(var e=function(r){return function(){var e=Array.prototype.slice.call(arguments,0);if(this.impl[r])return this.impl[r].apply(this.impl,e)}},o="log,debug,info,warn,warning,error,critical,global,configure,handleUncaughtException,handleUnhandledRejection,_createItem,wrap,loadFull,shimId,captureEvent,captureDomContentLoaded,captureLoad".split(","),n=0;n<o.length;n++)r[o[n]]=e(o[n])}o.prototype._swapAndProcessMessages=function(r,e){this.impl=r(this.options);for(var o,n,t;o=e.shift();)n=o.method,t=o.args,this[n]&&"function"==typeof this[n]&&("captureDomContentLoaded"===n||"captureLoad"===n?this[n].apply(this,[t[0],o.ts]):this[n].apply(this,t));return this},r.exports=o},function(r,e){"use strict";r.exports=function(r){return function(e){if(!e&&!window._rollbarInitialized){r=r||{};for(var o,n,t=r.globalAlias||"Rollbar",a=window.rollbar,l=function(r){return new a(r)},i=0;o=window._rollbarShims[i++];)n||(n=o.handler),o.handler._swapAndProcessMessages(l,o.messages);window[t]=n,window._rollbarInitialized=!0}}}}]);</script>
+<title>Валидация - JS: Предметно-ориентированное проектирование - Hexlet</title>
+<link rel="shortcut icon" type="image/png" href="https://cdn2.hexlet.io/assets/icons/default/favicon-16x16-76a7cc0d10decf8b3923e1b51d563e38a94a4bdb51318d2db3290763b928d3a0.png" sizes="16x16" />
+<link rel="shortcut icon" type="image/png" href="https://cdn2.hexlet.io/assets/icons/default/favicon-32x32-17169d8194b2cac3aa9a6bac8e522ed43f8555ffa0e426a1041964e7b0ae8725.png" sizes="32x32" />
+<link rel="shortcut icon" type="image/png" href="https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_96x96-c21c74cba95d022d2ff9b3efe82641b1cdc2a8b64c4d3ae66170fae967bf0d48.png" sizes="96x96" />
+<link rel="shortcut icon" type="image/png" href="https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_128x128-7bef1baf3d4c6d9888aaeaad22a2c127ed9416b0dd4c97ef68588465739efc1d.png" sizes="128x128" />
+<link rel="shortcut icon" type="image/png" href="https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_196x196-27f3aa70536c927d5563627d62db6de880899eceacfd490cf6fa5e82d344b782.png" sizes="196x196" />
+<link rel="apple-touch-icon-precomposed" type="image/x-icon" href="https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_96x96-c21c74cba95d022d2ff9b3efe82641b1cdc2a8b64c4d3ae66170fae967bf0d48.png" sizes="57x57" />
+<link rel="apple-touch-icon-precomposed" type="image/x-icon" href="https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_128x128-7bef1baf3d4c6d9888aaeaad22a2c127ed9416b0dd4c97ef68588465739efc1d.png" sizes="114x114" />
+<link rel="apple-touch-icon-precomposed" type="image/x-icon" href="https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_96x96-c21c74cba95d022d2ff9b3efe82641b1cdc2a8b64c4d3ae66170fae967bf0d48.png" sizes="72x72" />
+<link rel="apple-touch-icon-precomposed" type="image/x-icon" href="https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_128x128-7bef1baf3d4c6d9888aaeaad22a2c127ed9416b0dd4c97ef68588465739efc1d.png" sizes="144x144" />
+<link rel="apple-touch-icon-precomposed" type="image/x-icon" href="https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_96x96-c21c74cba95d022d2ff9b3efe82641b1cdc2a8b64c4d3ae66170fae967bf0d48.png" sizes="60x60" />
+<link rel="apple-touch-icon-precomposed" type="image/x-icon" href="https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_128x128-7bef1baf3d4c6d9888aaeaad22a2c127ed9416b0dd4c97ef68588465739efc1d.png" sizes="120x120" />
+<link rel="apple-touch-icon-precomposed" type="image/x-icon" href="https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_96x96-c21c74cba95d022d2ff9b3efe82641b1cdc2a8b64c4d3ae66170fae967bf0d48.png" sizes="76x76" />
+<link rel="apple-touch-icon-precomposed" type="image/x-icon" href="https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_196x196-27f3aa70536c927d5563627d62db6de880899eceacfd490cf6fa5e82d344b782.png" sizes="152x152" />
+<meta content='Hexlet' name='application-name'>
+<meta content='#FFFFFF' name='msapplication-TileColor'>
+<meta content='https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_128x128-7bef1baf3d4c6d9888aaeaad22a2c127ed9416b0dd4c97ef68588465739efc1d.png' name='msapplication-TileImage'>
+<meta content='https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_96x96-c21c74cba95d022d2ff9b3efe82641b1cdc2a8b64c4d3ae66170fae967bf0d48.png' name='msapplication-square70x70logo'>
+<meta content='https://cdn2.hexlet.io/assets/icons/default/hexlet_logo_sea_128x128-7bef1baf3d4c6d9888aaeaad22a2c127ed9416b0dd4c97ef68588465739efc1d.png' name='msapplication-square150x150logo'>
+
+<meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="AXZUab4Kan6IShhDaf9Q6pW3o/HFuw2rzcufSZ48qNOMRWExN+cUtMXhgTiCxtRQw55L0JPYZXliDLOnDdhVsw==" />
+<meta content='width=device-width, initial-scale=1.0' name='viewport'>
+<link href='https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,500,700&amp;subset=cyrillic' rel='stylesheet'>
+<script>
+//<![CDATA[
+window.gon={};gon.hs={"modal":true};gon.applications={};gon.current_user={"id":111320,"email":"riumkin@gmail.com","username":"user-62af874f7ef1c3dd","created_at":"2016-08-06T02:47:30.092+10:00","text":"riumkin@gmail.com (user-62af874f7ef1c3dd)","last_viewed_notification_id":268381,"full_name":"Дмитрий Рюмкин","public_name":"Дмитрий Рюмкин","admin":false,"url":"/u/user-62af874f7ef1c3dd","can_use_paid_features":true,"isGuest":false,"isAdmin":false,"can_send_emails":true,"isMentor":true};gon.token="xOcKiBPkJs9HTaWQ\/ylmtQBW9YE1wF1Ihj3x0uV+2JFJ1D\/QmglYBQrmPOsUEOIPVn8doGOjNZop+t08dpol8Q==";gon.disqus_name="hexletio";gon.locale="ru";gon.rails_env="production";gon.analytics_events="AnalyticsEvents";gon.subdomains=["en.hexlet.io","ru.hexlet.io"];gon.images={"secure_payment":"https:\/\/cdn2.hexlet.io\/assets\/secure_payment-e636c1338a89fba0419c29fb02e716be511e9bce25c60fd53b8fdc8f8bf210a4.png"};gon.notifications=[{"id":268381,"message":"\u003cspan class=\"fa fa-star\"\u003e\u003c/span\u003e\u0026nbsp;Добавлен урок \u003cb\u003eЛексическое окружение (LexicalEnvironment)\u003c/b\u003e в курсе \u003cb\u003eJS: Функции\u003c/b\u003e","url":"http://ru.hexlet.io/courses/js-functions/lessons/lexical-environment/theory_unit","human_created_at":"28 января 2018"},{"id":218975,"message":"\u003cspan class=\"fa fa-star\"\u003e\u003c/span\u003e\u0026nbsp;Добавлен урок \u003cb\u003eЧто дальше?\u003c/b\u003e в курсе \u003cb\u003eВведение в программирование\u003c/b\u003e","url":"http://ru.hexlet.io/courses/introduction_to_programming/lessons/next/theory_unit","human_created_at":"25 августа 2017"},{"id":215934,"message":"\u003cspan class=\"fa fa-star\"\u003e\u003c/span\u003e\u0026nbsp;Добавлен урок \u003cb\u003eUI как конечный автомат\u003c/b\u003e в курсе \u003cb\u003eJS: DOM API\u003c/b\u003e","url":"http://ru.hexlet.io/courses/js-dom/lessons/fsm/theory_unit","human_created_at":"17 августа 2017"},{"id":214942,"message":"\u003cspan class=\"fa fa-star\"\u003e\u003c/span\u003e\u0026nbsp;Добавлен урок \u003cb\u003eТесты\u003c/b\u003e в курсе \u003cb\u003eJS: DOM API\u003c/b\u003e","url":"http://ru.hexlet.io/courses/js-dom/lessons/tests/theory_unit","human_created_at":"14 августа 2017"},{"id":211407,"message":"\u003cspan class=\"fa fa-star\"\u003e\u003c/span\u003e\u0026nbsp;Добавлен урок \u003cb\u003eМоделирование\u003c/b\u003e в курсе \u003cb\u003eJS: Составные данные\n\u003c/b\u003e","url":"http://ru.hexlet.io/courses/compound_data/lessons/modeling/theory_unit","human_created_at":"08 августа 2017"},{"id":194946,"message":"\u003cspan class=\"fa fa-star\"\u003e\u003c/span\u003e\u0026nbsp;\u0026nbsp;New lesson \u003cb\u003eJQuery\u003c/b\u003e in \u003cb\u003eJS: DOM API\u003c/b\u003e","url":"http://ru.hexlet.io/courses/js-dom/lessons/jquery/theory_unit","human_created_at":"05 июня 2017"}];gon.lesson={"id":842,"slug":"validation"};gon.course={"slug":"js-ddd"};gon.topics=[{"id":17230,"title":"Возможно, стоит в описании к заданию как-то разграничить валидатор, который находится в `validation.js` и валидаторы, которые описаны в сущностях. Сейчас они называются одинаково `валидаторы`, но в сущностях описаны, по сути, ограничения, а не валидаторы-функции.\n\nЕще вопрос глупый, но все же: где в доке к `validate.js` упоминается ограничитель `uniqueness`? Из-за того, что не нашел его пришлось смотреть решение учителя. Ни через поиск по странице, ни через гугл такой ограничитель не нашелся.","creator":{"id":22488,"public_name":"Артем Лебедев","can_use_paid_features":true,"can_use_mentorship":true,"public_profile_enabled":null,"public_profile_url":"/u/excesst","avatar_img_url":"https://media.licdn.com/dms/image/C5603AQFjHkPTCn474A/profile-displayphoto-shrink_100_100/0?e=1539820800\u0026v=beta\u0026t=Uu9Dbnxzn2ppA_CUGnSBV38EUtmhezfPPsNjYY9mVpY"},"communitable":{"id":842,"slug":"validation","name":"Валидация","location":"/courses/js-ddd/lessons/validation/theory_unit","link":"Курс «\u003ca href=\"https://ru.hexlet.io/courses/js-ddd\"\u003eJS: Предметно-ориентированное проектирование\u003c/a\u003e»\u003cbr\u003e\u0026#8627; Урок «\u003ca href=\"/courses/js-ddd/lessons/validation/theory_unit\"\u003eВалидация\u003c/a\u003e» "},"created_at":"25 июля 2018","location":"/topics/17230","has_solutions":true,"can_show_mentor_info":true,"can_destroy":false,"can_like":true,"can_update":false,"can_subscribe":true,"kind":"question","likes":[],"comments":[{"id":36429,"body":"1. Fixed\n2. Этот валидатор реализован в файле lib/validation.js. Добавил подсказку в REadme.\n","creator":{"id":1,"public_name":"Kirill Mokevnin","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/mokevnin","avatar_img_url":"https://bitbucket.org/account/mokevnin/avatar/32/?ts=1500267653"},"created_at":"26 июля 2018","solution":true,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]}],"subscribers":[{"id":34310,"user_id":1},{"id":34260,"user_id":22488}],"mentor":{"id":17,"user_id":1,"full_name":"Кирилл Мокевнин","username":"mokevnin"}},{"id":14585,"title":"Может мои рассуждения помогут кому-то лучше понять этот урок (надеюсь что все правильно):\n- Каждый сервис внутри себя содержит все репозитории (что в принципе логично, ибо если нужно найти посетителя работая с сервисом билетов, нужно обратиться к репозиторию с посетителями).\n- В определении каждой  сущности привязываются правила для её валидации (тоже логично, ибо все что связано с сущностью находится \"рядом\")\n- Всякие пугающие наследования - это задел на будущее и некоторое разграничение. Т.е более общие свойства и методы можно вынести в нижние \"слои\", например в ApplicationService\n\nПри запуске приложения (например в тестах) происходит:\n1. Инициализация репозиториев\n2. Инициализация функции validate с привязанными репозиториями.\n3. Вызывается какой-либо сервис (например покупка билета)\n4. В каждом сервисе перед созданием сущности вызывается валидатор.\n\nВот и всё :)\n","creator":{"id":141465,"public_name":"sayo Bye","can_use_paid_features":false,"can_use_mentorship":false,"public_profile_enabled":null,"public_profile_url":"/u/sayobye","avatar_img_url":"https://cdn2.hexlet.io/attachments/f20fb0bcc7148a769bb30f7f57ebed7e5aa703b0/store/fill/185/185/c5690093dc8313beb04edd49c1eb45c8f383bba6e0bf434c888fe2ab1986/avatar.png"},"communitable":{"id":842,"slug":"validation","name":"Валидация","location":"/courses/js-ddd/lessons/validation/theory_unit","link":"Курс «\u003ca href=\"https://ru.hexlet.io/courses/js-ddd\"\u003eJS: Предметно-ориентированное проектирование\u003c/a\u003e»\u003cbr\u003e\u0026#8627; Урок «\u003ca href=\"/courses/js-ddd/lessons/validation/theory_unit\"\u003eВалидация\u003c/a\u003e» "},"created_at":"29 марта 2018","location":"/topics/14585","has_solutions":false,"can_show_mentor_info":false,"can_destroy":false,"can_like":true,"can_update":false,"can_subscribe":true,"kind":"common","likes":[{"id":6154,"user_id":94542,"topic_id":14585}],"comments":[{"id":30751,"body":"\u003e 3. Вызывается какой-либо сервис (например покупка билета)\n\nсервисы ведь не вызываются, а также инициализируются, только им передаются репозитории, сущности и валидатор\n\n\u003e 4. В каждом сервисе перед созданием сущности вызывается валидатор.\n\nэто мы уже делаем в ручную, а не при запуске приложения","creator":{"id":94542,"public_name":"Alexandr Kositsky","can_use_paid_features":false,"can_use_mentorship":false,"public_profile_enabled":null,"public_profile_url":"/u/felixcatto","avatar_img_url":"https://avatars0.githubusercontent.com/u/6022888?v=4"},"created_at":"31 марта 2018","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[{"id":8873,"user_id":22488,"comment_id":30751}]}],"subscribers":[{"id":29091,"user_id":94542},{"id":28997,"user_id":141465}],"mentor":null},{"id":12363,"title":"Не совсем понятна строчка:\n```\nconst isEntity = result instanceof BaseEntity;\n```\nЗдесь мы проверяем принадлежит ли result классу, наследующему от BaseEntity. От BaseEntity наследуется ApplicationEntity. А вот от него ничего не наследуется. И при этом смущает импорт ApplicationEntity в User, который потом никак не используется.\n\nТакже непонятна эта проверка:\n```\n(result || (isEntity \u0026\u0026 result.id !== value.id))\n```\nЕсли я правильно понимаю, то Value - это значение проверяемого свойства объекта. В случае с User - это емайл. В каком случае Value будет объектом со свойством id?\nИ в случае, когда совпадений не будет найдено, result будет равен null.\nВ таком случае будет проверятся условие после || и если isEntity будет true, то вызов result.id упадет с ошибкой. \nИ если result равен null, то он не может принадлежать никакому классу. В общем совершенно не понятен смысл второй проверки. ","creator":{"id":143344,"public_name":"Дмитрий Рытиков","can_use_paid_features":false,"can_use_mentorship":false,"public_profile_enabled":null,"public_profile_url":"/u/drytikov","avatar_img_url":"https://cdn2.hexlet.io/attachments/cfad095c9d14428e12d99d4a133f9820b1bb2d4b/store/fill/185/185/491efed79a138866bfee08d08e70c10ecafe5b282d1dc3d014a82ec42dee/avatar.png"},"communitable":{"id":842,"slug":"validation","name":"Валидация","location":"/courses/js-ddd/lessons/validation/theory_unit","link":"Курс «\u003ca href=\"https://ru.hexlet.io/courses/js-ddd\"\u003eJS: Предметно-ориентированное проектирование\u003c/a\u003e»\u003cbr\u003e\u0026#8627; Урок «\u003ca href=\"/courses/js-ddd/lessons/validation/theory_unit\"\u003eВалидация\u003c/a\u003e» "},"created_at":"28 декабря 2017","location":"/topics/12363","has_solutions":false,"can_show_mentor_info":true,"can_destroy":false,"can_like":true,"can_update":false,"can_subscribe":true,"kind":"question","likes":[],"comments":[{"id":25777,"body":"\u003e  А вот от него ничего не наследуется\n\nправлю!\n\n\u003e В общем совершенно не понятен смысл второй проверки.\n\nПроверка isEntity гарантирует что у сущности есть id. Дальше нам важно убедиться что мы нашли в репозитории не ту же самую сущность. Ведь если это она и есть, то с уникальностью все ок, а если мы нашли ДРУГУЮ сущность, у которой такое же значение, значит у нас дубль.\n","creator":{"id":1,"public_name":"Kirill Mokevnin","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/mokevnin","avatar_img_url":"https://bitbucket.org/account/mokevnin/avatar/32/?ts=1500267653"},"created_at":"29 декабря 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]},{"id":25778,"body":"В таком случае должно быть \u0026\u0026, а не ||. А то получается, что если в репозитории мы нашли сущность, то вторая проверка не выполнится.","creator":{"id":143344,"public_name":"Дмитрий Рытиков","can_use_paid_features":false,"can_use_mentorship":false,"public_profile_enabled":null,"public_profile_url":"/u/drytikov","avatar_img_url":"https://cdn2.hexlet.io/attachments/cfad095c9d14428e12d99d4a133f9820b1bb2d4b/store/fill/185/185/491efed79a138866bfee08d08e70c10ecafe5b282d1dc3d014a82ec42dee/avatar.png"},"created_at":"29 декабря 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]},{"id":25779,"body":"Ага, поправил и упростил.","creator":{"id":1,"public_name":"Kirill Mokevnin","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/mokevnin","avatar_img_url":"https://bitbucket.org/account/mokevnin/avatar/32/?ts=1500267653"},"created_at":"29 декабря 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]},{"id":25781,"body":"Возник еще вопрос по ходу дела. В проверке используется value.id. Но в нашем случае value не является объектом. В value содержится значение свойства, которое мы валидируем. В случае с User - это емайл. \n\nИ на тот момент, когда мы проверяем значения свойств объекта на валиднось, мы же еще не сохранили эту новую сущность в репозитарий.  Зачем же нам сравнивать дополнительно result с value, когда новый объект еще по сути не создан, а будет создан только после успешного прохождения валидации?","creator":{"id":143344,"public_name":"Дмитрий Рытиков","can_use_paid_features":false,"can_use_mentorship":false,"public_profile_enabled":null,"public_profile_url":"/u/drytikov","avatar_img_url":"https://cdn2.hexlet.io/attachments/cfad095c9d14428e12d99d4a133f9820b1bb2d4b/store/fill/185/185/491efed79a138866bfee08d08e70c10ecafe5b282d1dc3d014a82ec42dee/avatar.png"},"created_at":"29 декабря 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]},{"id":25789,"body":"Текущая проверка покрывает этот кейс, id не будет равен тому что мы взяли из базы, так как в одном случае он undefined, а в другом число из базы. С точки зрения семантики можно было бы в коде явно выделить этот кейс, но по большому счету не принципиально.","creator":{"id":1,"public_name":"Kirill Mokevnin","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/mokevnin","avatar_img_url":"https://bitbucket.org/account/mokevnin/avatar/32/?ts=1500267653"},"created_at":"29 декабря 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]},{"id":25800,"body":"Так в Value нет id. Сам экземпляр класса передается в attributes. И каким образом у нас будут случаи, когда id будет совпадать, когда при каждом создании сущности генерируется уникальный идентификатор? По сути даже если мы создадим нового пользователя с емайл, который уже есть в репозитории у другого пользователя, его идентификатор будет отличатся, так как каждый раз генерируется новое значение. Мне кажется, что проверка должна быть:\n```\nif (result) {\n  return 'already exists';\n}\n\n```","creator":{"id":143344,"public_name":"Дмитрий Рытиков","can_use_paid_features":false,"can_use_mentorship":false,"public_profile_enabled":null,"public_profile_url":"/u/drytikov","avatar_img_url":"https://cdn2.hexlet.io/attachments/cfad095c9d14428e12d99d4a133f9820b1bb2d4b/store/fill/185/185/491efed79a138866bfee08d08e70c10ecafe5b282d1dc3d014a82ec42dee/avatar.png"},"created_at":"30 декабря 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]},{"id":25807,"body":"Такая проверка сработает на самого себя и скажет что есть дубль, хотя найденная запись и будет той записью которую мы редактируем. Из этой ситуации есть два выхода, либо в запрос передавать `where id != current.id` либо делать проверку уже после выборки.","creator":{"id":1,"public_name":"Kirill Mokevnin","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/mokevnin","avatar_img_url":"https://bitbucket.org/account/mokevnin/avatar/32/?ts=1500267653"},"created_at":"30 декабря 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]},{"id":25823,"body":"Если рассматривать этот кейс в случае с редактированием, тогда эта проверка актуальна. Только тогда не value.id, а attributes.id. Сам экземпляр класса передается в attributes.","creator":{"id":143344,"public_name":"Дмитрий Рытиков","can_use_paid_features":false,"can_use_mentorship":false,"public_profile_enabled":null,"public_profile_url":"/u/drytikov","avatar_img_url":"https://cdn2.hexlet.io/attachments/cfad095c9d14428e12d99d4a133f9820b1bb2d4b/store/fill/185/185/491efed79a138866bfee08d08e70c10ecafe5b282d1dc3d014a82ec42dee/avatar.png"},"created_at":"30 декабря 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]},{"id":25867,"body":"ааа, это я лоханулся)","creator":{"id":1,"public_name":"Kirill Mokevnin","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/mokevnin","avatar_img_url":"https://bitbucket.org/account/mokevnin/avatar/32/?ts=1500267653"},"created_at":"02 января 2018","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]}],"subscribers":[{"id":24580,"user_id":1},{"id":24563,"user_id":143344}],"mentor":{"id":17,"user_id":1,"full_name":"Кирилл Мокевнин","username":"mokevnin"}},{"id":12387,"title":"А что делает валидатор association и зачем он здесь нужен?","creator":{"id":143344,"public_name":"Дмитрий Рытиков","can_use_paid_features":false,"can_use_mentorship":false,"public_profile_enabled":null,"public_profile_url":"/u/drytikov","avatar_img_url":"https://cdn2.hexlet.io/attachments/cfad095c9d14428e12d99d4a133f9820b1bb2d4b/store/fill/185/185/491efed79a138866bfee08d08e70c10ecafe5b282d1dc3d014a82ec42dee/avatar.png"},"communitable":{"id":842,"slug":"validation","name":"Валидация","location":"/courses/js-ddd/lessons/validation/theory_unit","link":"Курс «\u003ca href=\"https://ru.hexlet.io/courses/js-ddd\"\u003eJS: Предметно-ориентированное проектирование\u003c/a\u003e»\u003cbr\u003e\u0026#8627; Урок «\u003ca href=\"/courses/js-ddd/lessons/validation/theory_unit\"\u003eВалидация\u003c/a\u003e» "},"created_at":"30 декабря 2017","location":"/topics/12387","has_solutions":false,"can_show_mentor_info":true,"can_destroy":false,"can_like":true,"can_update":false,"can_subscribe":true,"kind":"question","likes":[],"comments":[{"id":25813,"body":"http://guides.rubyonrails.org/active_record_validations.html#validates-associated\n\nбывает нужно валидировать не только сущность, но и ее зависимости","creator":{"id":1,"public_name":"Kirill Mokevnin","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/mokevnin","avatar_img_url":"https://bitbucket.org/account/mokevnin/avatar/32/?ts=1500267653"},"created_at":"30 декабря 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]}],"subscribers":[{"id":24621,"user_id":1},{"id":24608,"user_id":143344}],"mentor":{"id":17,"user_id":1,"full_name":"Кирилл Мокевнин","username":"mokevnin"}},{"id":12042,"title":"Не пойму этого теста:\n```\nit('buyTicket (errors)', () =\u003e {\n    const f = () =\u003e moneyService.buyTicket();\n\n    expect(f).toThrow();\n  });\n```\nПочему мы ожидаем что функция выбросит исключение?\nИли я не так понимаю эту конструкцию?","creator":{"id":6107,"public_name":"Николай Артамонов","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/rende11","avatar_img_url":"https://media.licdn.com/mpr/mprx/0_7vJgEU5xNR1419xnLX7pT7cYrYB4nFTwQX7g27UYNsiM1ctwiX3pFWuYcsE4nnun2l7gX4fOj0pJz_TRh6pTC7a-Z0pZzi9c56pYWmR0POdq0zDwdBErdVza4E6eyiT625Zlarj1K2R"},"communitable":{"id":842,"slug":"validation","name":"Валидация","location":"/courses/js-ddd/lessons/validation/theory_unit","link":"Курс «\u003ca href=\"https://ru.hexlet.io/courses/js-ddd\"\u003eJS: Предметно-ориентированное проектирование\u003c/a\u003e»\u003cbr\u003e\u0026#8627; Урок «\u003ca href=\"/courses/js-ddd/lessons/validation/theory_unit\"\u003eВалидация\u003c/a\u003e» "},"created_at":"10 декабря 2017","location":"/topics/12042","has_solutions":false,"can_show_mentor_info":false,"can_destroy":false,"can_like":true,"can_update":false,"can_subscribe":true,"kind":"question","likes":[],"comments":[{"id":25118,"body":"Вероятно валидация? Видно же что в эту функцию ничего не передается.","creator":{"id":1,"public_name":"Kirill Mokevnin","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/mokevnin","avatar_img_url":"https://bitbucket.org/account/mokevnin/avatar/32/?ts=1500267653"},"created_at":"11 декабря 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]},{"id":25154,"body":"ну у нас же если валидация не пройдена, массив errors заполняется ошибками..","creator":{"id":6107,"public_name":"Николай Артамонов","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/rende11","avatar_img_url":"https://media.licdn.com/mpr/mprx/0_7vJgEU5xNR1419xnLX7pT7cYrYB4nFTwQX7g27UYNsiM1ctwiX3pFWuYcsE4nnun2l7gX4fOj0pJz_TRh6pTC7a-Z0pZzi9c56pYWmR0POdq0zDwdBErdVza4E6eyiT625Zlarj1K2R"},"created_at":"12 декабря 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]},{"id":25188,"body":"А там же внутри выборка из репозитория, и если такой сущности нет то возникает исключение `Entity not found`.","creator":{"id":1,"public_name":"Kirill Mokevnin","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/mokevnin","avatar_img_url":"https://bitbucket.org/account/mokevnin/avatar/32/?ts=1500267653"},"created_at":"13 декабря 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]},{"id":25213,"body":"Похоже что я обошел этот момент, подумаю как это протестить и добавить в тесты","creator":{"id":6107,"public_name":"Николай Артамонов","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/rende11","avatar_img_url":"https://media.licdn.com/mpr/mprx/0_7vJgEU5xNR1419xnLX7pT7cYrYB4nFTwQX7g27UYNsiM1ctwiX3pFWuYcsE4nnun2l7gX4fOj0pJz_TRh6pTC7a-Z0pZzi9c56pYWmR0POdq0zDwdBErdVza4E6eyiT625Zlarj1K2R"},"created_at":"13 декабря 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]}],"subscribers":[{"id":23988,"user_id":1},{"id":23940,"user_id":6107}],"mentor":{"id":17,"user_id":1,"full_name":"Кирилл Мокевнин","username":"mokevnin"}},{"id":10506,"title":"При выполнении задания начал искать про валидацию даты, и [оказалось, что предикат на базе instanceof не особо корректен](https://stackoverflow.com/questions/643782/how-to-check-whether-an-object-is-a-date). \nИбо: \n```\ndate = new Date('ля-ля-ля')\ndate instanceof Date  //true\n```","creator":{"id":117329,"public_name":"Andy","can_use_paid_features":false,"can_use_mentorship":false,"public_profile_enabled":null,"public_profile_url":"/u/just_another_andy","avatar_img_url":"https://avatars1.githubusercontent.com/u/10694949?v=4"},"communitable":{"id":842,"slug":"validation","name":"Валидация","location":"/courses/js-ddd/lessons/validation/theory_unit","link":"Курс «\u003ca href=\"https://ru.hexlet.io/courses/js-ddd\"\u003eJS: Предметно-ориентированное проектирование\u003c/a\u003e»\u003cbr\u003e\u0026#8627; Урок «\u003ca href=\"/courses/js-ddd/lessons/validation/theory_unit\"\u003eВалидация\u003c/a\u003e» "},"created_at":"01 октября 2017","location":"/topics/10506","has_solutions":true,"can_show_mentor_info":true,"can_destroy":false,"can_like":true,"can_update":false,"can_subscribe":true,"kind":"question","likes":[],"comments":[{"id":21792,"body":"Это таки зависит от того что мы проверяем. Понятно что `new Date()` при неправильных датах должен падать с ошибкой, но раз он не падает, то мы формально получаем тип `Date`.","creator":{"id":1,"public_name":"Kirill Mokevnin","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/mokevnin","avatar_img_url":"https://bitbucket.org/account/mokevnin/avatar/32/?ts=1500267653"},"created_at":"03 октября 2017","solution":true,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]},{"id":21795,"body":"Ну, я это написал, чтоб в реальном проекте так не делали, хотя, если будут хоть сколько-нибудь подробные тесты, то такая смешная вещь отловится.","creator":{"id":117329,"public_name":"Andy","can_use_paid_features":false,"can_use_mentorship":false,"public_profile_enabled":null,"public_profile_url":"/u/just_another_andy","avatar_img_url":"https://avatars1.githubusercontent.com/u/10694949?v=4"},"created_at":"03 октября 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]}],"subscribers":[{"id":20985,"user_id":1},{"id":20941,"user_id":117329}],"mentor":{"id":17,"user_id":1,"full_name":"Кирилл Мокевнин","username":"mokevnin"}},{"id":10411,"title":"почему в структуре папок приложения в entities есть отдельная директория FilmScreeng в которой находится Ticket.js, а FilmScreeng.js находится непосредственно в entities?","creator":{"id":88518,"public_name":"Андрей Соколов","can_use_paid_features":true,"can_use_mentorship":true,"public_profile_enabled":null,"public_profile_url":"/u/andreanos","avatar_img_url":"https://media.licdn.com/dms/image/C5603AQEAQNHSKUik5g/profile-displayphoto-shrink_100_100/0?e=1542844800\u0026v=beta\u0026t=5CZrxRPohirkLGkxx2h0RMvC0MmtUBykL0gggK-2pfE"},"communitable":{"id":842,"slug":"validation","name":"Валидация","location":"/courses/js-ddd/lessons/validation/theory_unit","link":"Курс «\u003ca href=\"https://ru.hexlet.io/courses/js-ddd\"\u003eJS: Предметно-ориентированное проектирование\u003c/a\u003e»\u003cbr\u003e\u0026#8627; Урок «\u003ca href=\"/courses/js-ddd/lessons/validation/theory_unit\"\u003eВалидация\u003c/a\u003e» "},"created_at":"27 сентября 2017","location":"/topics/10411","has_solutions":false,"can_show_mentor_info":true,"can_destroy":false,"can_like":true,"can_update":false,"can_subscribe":true,"kind":"question","likes":[],"comments":[{"id":21564,"body":"Представьте что у вас большое приложение и в нем, скажем, 400 сущностей. И вот вам надо открыть эту папку).\n\nЕсли говорить про сам принцип, по которому делается вложеннось, то он простой. Зависимая сущность находится внутри. Ticket невозможен без конкретного показа фильма.","creator":{"id":1,"public_name":"Kirill Mokevnin","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/mokevnin","avatar_img_url":"https://bitbucket.org/account/mokevnin/avatar/32/?ts=1500267653"},"created_at":"28 сентября 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]}],"subscribers":[{"id":20803,"user_id":1},{"id":20743,"user_id":88518}],"mentor":{"id":17,"user_id":1,"full_name":"Кирилл Мокевнин","username":"mokevnin"}},{"id":10386,"title":"в задании:\n\u003e filmScreening не может быть пустым и должен быть уникальным в паре с place\n\nпоясните пожалуйста этот пункт, что такое place ?","creator":{"id":88518,"public_name":"Андрей Соколов","can_use_paid_features":true,"can_use_mentorship":true,"public_profile_enabled":null,"public_profile_url":"/u/andreanos","avatar_img_url":"https://media.licdn.com/dms/image/C5603AQEAQNHSKUik5g/profile-displayphoto-shrink_100_100/0?e=1542844800\u0026v=beta\u0026t=5CZrxRPohirkLGkxx2h0RMvC0MmtUBykL0gggK-2pfE"},"communitable":{"id":842,"slug":"validation","name":"Валидация","location":"/courses/js-ddd/lessons/validation/theory_unit","link":"Курс «\u003ca href=\"https://ru.hexlet.io/courses/js-ddd\"\u003eJS: Предметно-ориентированное проектирование\u003c/a\u003e»\u003cbr\u003e\u0026#8627; Урок «\u003ca href=\"/courses/js-ddd/lessons/validation/theory_unit\"\u003eВалидация\u003c/a\u003e» "},"created_at":"25 сентября 2017","location":"/topics/10386","has_solutions":false,"can_show_mentor_info":true,"can_destroy":false,"can_like":true,"can_update":false,"can_subscribe":true,"kind":"question","likes":[],"comments":[{"id":21416,"body":"нашел, прошу прощения за невнимательность!","creator":{"id":88518,"public_name":"Андрей Соколов","can_use_paid_features":true,"can_use_mentorship":true,"public_profile_enabled":null,"public_profile_url":"/u/andreanos","avatar_img_url":"https://media.licdn.com/dms/image/C5603AQEAQNHSKUik5g/profile-displayphoto-shrink_100_100/0?e=1542844800\u0026v=beta\u0026t=5CZrxRPohirkLGkxx2h0RMvC0MmtUBykL0gggK-2pfE"},"created_at":"25 сентября 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]},{"id":21418,"body":"Тут все как в жизни, нельзя на одно место посадить двух людей.","creator":{"id":1,"public_name":"Kirill Mokevnin","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/mokevnin","avatar_img_url":"https://bitbucket.org/account/mokevnin/avatar/32/?ts=1500267653"},"created_at":"25 сентября 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]},{"id":21502,"body":"а для ticket, вроде нужно создать отдельный репозиторий, по аналогии с остальными сущностями. или нет?","creator":{"id":88518,"public_name":"Андрей Соколов","can_use_paid_features":true,"can_use_mentorship":true,"public_profile_enabled":null,"public_profile_url":"/u/andreanos","avatar_img_url":"https://media.licdn.com/dms/image/C5603AQEAQNHSKUik5g/profile-displayphoto-shrink_100_100/0?e=1542844800\u0026v=beta\u0026t=5CZrxRPohirkLGkxx2h0RMvC0MmtUBykL0gggK-2pfE"},"created_at":"27 сентября 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]},{"id":21503,"body":"вы можете видеть мой код в уроке?","creator":{"id":88518,"public_name":"Андрей Соколов","can_use_paid_features":true,"can_use_mentorship":true,"public_profile_enabled":null,"public_profile_url":"/u/andreanos","avatar_img_url":"https://media.licdn.com/dms/image/C5603AQEAQNHSKUik5g/profile-displayphoto-shrink_100_100/0?e=1542844800\u0026v=beta\u0026t=5CZrxRPohirkLGkxx2h0RMvC0MmtUBykL0gggK-2pfE"},"created_at":"27 сентября 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]},{"id":21514,"body":"\u003e вы можете видеть мой код в уроке? \n\nнет\n\n\u003e а для ticket, вроде нужно создать отдельный репозиторий, по аналогии с остальными сущностями. или нет?\n\nОн есть в папке `FilmScreening`.\n\n\n","creator":{"id":1,"public_name":"Kirill Mokevnin","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/mokevnin","avatar_img_url":"https://bitbucket.org/account/mokevnin/avatar/32/?ts=1500267653"},"created_at":"27 сентября 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]}],"subscribers":[{"id":20687,"user_id":1},{"id":20685,"user_id":88518}],"mentor":{"id":17,"user_id":1,"full_name":"Кирилл Мокевнин","username":"mokevnin"}},{"id":10304,"title":"В программе есть BaseEntity и ApplicationEntity но конкретные сущности не все наследуются от них: UserEntity и TicketEntity \u003e ApplicationEntity \u003e Base Entity, остальные же не наследуются от них (CinemaHall, FilmScreening) Этот момент не совсем понятен. Почему так? И что за ApplicationEntity? У репозиториев и сервисов же цепочка наследования у всех одинаковая. BaseRepository \u003e ApplicationRepository \u003e SpecificRepository.","creator":{"id":125248,"public_name":"Akav","can_use_paid_features":false,"can_use_mentorship":false,"public_profile_enabled":null,"public_profile_url":"/u/user-704073b70dde8e58","avatar_img_url":"https://graph.facebook.com/v2.6/1373209346119691/picture?width=175\u0026height=175"},"communitable":{"id":842,"slug":"validation","name":"Валидация","location":"/courses/js-ddd/lessons/validation/theory_unit","link":"Курс «\u003ca href=\"https://ru.hexlet.io/courses/js-ddd\"\u003eJS: Предметно-ориентированное проектирование\u003c/a\u003e»\u003cbr\u003e\u0026#8627; Урок «\u003ca href=\"/courses/js-ddd/lessons/validation/theory_unit\"\u003eВалидация\u003c/a\u003e» "},"created_at":"19 сентября 2017","location":"/topics/10304","has_solutions":true,"can_show_mentor_info":true,"can_destroy":false,"can_like":true,"can_update":false,"can_subscribe":true,"kind":"question","likes":[],"comments":[{"id":21236,"body":"А какой урок? Я последний открыл, там везде наследование идет...","creator":{"id":97715,"public_name":"Григорий Грудинин","can_use_paid_features":false,"can_use_mentorship":false,"public_profile_enabled":null,"public_profile_url":"/u/g_grigori","avatar_img_url":"https://avatars2.githubusercontent.com/u/25131978?v=4"},"created_at":"19 сентября 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]},{"id":21238,"body":"JS: Предметно-ориентированное проектирование → Валидация","creator":{"id":125248,"public_name":"Akav","can_use_paid_features":false,"can_use_mentorship":false,"public_profile_enabled":null,"public_profile_url":"/u/user-704073b70dde8e58","avatar_img_url":"https://graph.facebook.com/v2.6/1373209346119691/picture?width=175\u0026height=175"},"created_at":"19 сентября 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]},{"id":21268,"body":"Отнаследовал!\n\nПрямо сейчас там нет логики, но в реальном приложении он бы была, плюс общее можно скидывать в ApplicationEntity по ходу дела.","creator":{"id":1,"public_name":"Kirill Mokevnin","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/mokevnin","avatar_img_url":"https://bitbucket.org/account/mokevnin/avatar/32/?ts=1500267653"},"created_at":"20 сентября 2017","solution":true,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]}],"subscribers":[{"id":20549,"user_id":1},{"id":20530,"user_id":97715},{"id":20528,"user_id":125248}],"mentor":{"id":17,"user_id":1,"full_name":"Кирилл Мокевнин","username":"mokevnin"}},{"id":10276,"title":"Здравствуйте! Поясните синтаксис в строке:\nconst params = { [key]: value, ..._.pick(attributes, scope) };\n\nнепонятно именно вот это: ..._.pick(attributes, scope) - тут spread вроде, но _.pick() - не совсем понимаю \n","creator":{"id":134518,"public_name":"Vladimir Veselov","can_use_paid_features":false,"can_use_mentorship":false,"public_profile_enabled":null,"public_profile_url":"/u/vladv","avatar_img_url":"https://cdn2.hexlet.io/attachments/5b2f1c94eb266661c4b764a1b7932adfd14e7a14/store/fill/185/185/05b0ba5ca3e502f8c4f23f86ea88d043c139ad7f85a5f93c55f06b563ed2/avatar.png"},"communitable":{"id":842,"slug":"validation","name":"Валидация","location":"/courses/js-ddd/lessons/validation/theory_unit","link":"Курс «\u003ca href=\"https://ru.hexlet.io/courses/js-ddd\"\u003eJS: Предметно-ориентированное проектирование\u003c/a\u003e»\u003cbr\u003e\u0026#8627; Урок «\u003ca href=\"/courses/js-ddd/lessons/validation/theory_unit\"\u003eВалидация\u003c/a\u003e» "},"created_at":"18 сентября 2017","location":"/topics/10276","has_solutions":false,"can_show_mentor_info":true,"can_destroy":false,"can_like":true,"can_update":false,"can_subscribe":true,"kind":"question","likes":[],"comments":[{"id":21177,"body":"Посмотрите откуда импортируется идентификатор `_`. Загуглите эту библиотеку и изучите документацию по соответствующей функции.","creator":{"id":1,"public_name":"Kirill Mokevnin","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/mokevnin","avatar_img_url":"https://bitbucket.org/account/mokevnin/avatar/32/?ts=1500267653"},"created_at":"18 сентября 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]}],"subscribers":[{"id":20482,"user_id":1},{"id":20461,"user_id":134518}],"mentor":{"id":17,"user_id":1,"full_name":"Кирилл Мокевнин","username":"mokevnin"}},{"id":9319,"title":"1.\n\nВ BaseRepository.js:\n\n```\nexport default class {\n  data = [];\n  ...\n}\n```\n\nтак же вроде нельзя писать? Свойства надо в конструкторе создавать.\n\n2.\n\nВ validation.js:\n\n```\nconst conditions = options.conditions || {};\n```\n\nconditions используется только в последнем уроке курса, а здесь это только сбивает с толку.","creator":{"id":299,"public_name":"user-060fea03108324dd","can_use_paid_features":false,"can_use_mentorship":false,"public_profile_enabled":null,"public_profile_url":"/u/user-060fea03108324dd","avatar_img_url":"https://avatars3.githubusercontent.com/u/31385948?v=4"},"communitable":{"id":842,"slug":"validation","name":"Валидация","location":"/courses/js-ddd/lessons/validation/theory_unit","link":"Курс «\u003ca href=\"https://ru.hexlet.io/courses/js-ddd\"\u003eJS: Предметно-ориентированное проектирование\u003c/a\u003e»\u003cbr\u003e\u0026#8627; Урок «\u003ca href=\"/courses/js-ddd/lessons/validation/theory_unit\"\u003eВалидация\u003c/a\u003e» "},"created_at":"17 июля 2017","location":"/topics/9319","has_solutions":false,"can_show_mentor_info":true,"can_destroy":false,"can_like":true,"can_update":false,"can_subscribe":true,"kind":"question","likes":[],"comments":[{"id":19134,"body":"1. https://babeljs.io/docs/plugins/transform-class-properties/ с бабелем можно все ;)\n1. Убрал","creator":{"id":1,"public_name":"Kirill Mokevnin","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/mokevnin","avatar_img_url":"https://bitbucket.org/account/mokevnin/avatar/32/?ts=1500267653"},"created_at":"20 июля 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]},{"id":19150,"body":"\u003e Убрал\n\nИзменений нет.","creator":{"id":299,"public_name":"user-060fea03108324dd","can_use_paid_features":false,"can_use_mentorship":false,"public_profile_enabled":null,"public_profile_url":"/u/user-060fea03108324dd","avatar_img_url":"https://avatars3.githubusercontent.com/u/31385948?v=4"},"created_at":"21 июля 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]},{"id":19165,"body":"Эх, сломалась автозагрузка похоже. Будем чинить.","creator":{"id":1,"public_name":"Kirill Mokevnin","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/mokevnin","avatar_img_url":"https://bitbucket.org/account/mokevnin/avatar/32/?ts=1500267653"},"created_at":"21 июля 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]}],"subscribers":[{"id":18688,"user_id":1},{"id":18530,"user_id":299}],"mentor":{"id":17,"user_id":1,"full_name":"Кирилл Мокевнин","username":"mokevnin"}},{"id":9052,"title":"```\nimport makeValidator from './lib/validator';\nconst validate = validator(repositories);\n```\nМожет имелось ввиду ```makeValidator(repositories)```?\n","creator":{"id":299,"public_name":"user-060fea03108324dd","can_use_paid_features":false,"can_use_mentorship":false,"public_profile_enabled":null,"public_profile_url":"/u/user-060fea03108324dd","avatar_img_url":"https://avatars3.githubusercontent.com/u/31385948?v=4"},"communitable":{"id":842,"slug":"validation","name":"Валидация","location":"/courses/js-ddd/lessons/validation/theory_unit","link":"Курс «\u003ca href=\"https://ru.hexlet.io/courses/js-ddd\"\u003eJS: Предметно-ориентированное проектирование\u003c/a\u003e»\u003cbr\u003e\u0026#8627; Урок «\u003ca href=\"/courses/js-ddd/lessons/validation/theory_unit\"\u003eВалидация\u003c/a\u003e» "},"created_at":"05 июля 2017","location":"/topics/9052","has_solutions":true,"can_show_mentor_info":true,"can_destroy":false,"can_like":true,"can_update":false,"can_subscribe":true,"kind":"question","likes":[],"comments":[{"id":18266,"body":"Поправил!","creator":{"id":1,"public_name":"Kirill Mokevnin","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/mokevnin","avatar_img_url":"https://bitbucket.org/account/mokevnin/avatar/32/?ts=1500267653"},"created_at":"05 июля 2017","solution":true,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]}],"subscribers":[{"id":18019,"user_id":1},{"id":17978,"user_id":299}],"mentor":{"id":17,"user_id":1,"full_name":"Кирилл Мокевнин","username":"mokevnin"}},{"id":7609,"title":"Такой подход делает сущность невалидной, а концепция DDD этого не позволяет, сущность должна быть валидна после инициализации.\n\n```\nconst ticket = new FilmScreeningTicket(screening, user, place);\nconst errors = this.validate(ticket);\n```\n\nПочему решили использовать такой подход? Какие критерии для местонахождения валидации стоит учитывать?","creator":{"id":36683,"public_name":"Юрий Быков","can_use_paid_features":false,"can_use_mentorship":false,"public_profile_enabled":null,"public_profile_url":"/u/bykov","avatar_img_url":"https://cdn2.hexlet.io/assets/team/you-11dc1782520375a399be30e82f4392ded9c055e8a27c49f38d6128c06f1fb9f3.jpg"},"communitable":{"id":842,"slug":"validation","name":"Валидация","location":"/courses/js-ddd/lessons/validation/theory_unit","link":"Курс «\u003ca href=\"https://ru.hexlet.io/courses/js-ddd\"\u003eJS: Предметно-ориентированное проектирование\u003c/a\u003e»\u003cbr\u003e\u0026#8627; Урок «\u003ca href=\"/courses/js-ddd/lessons/validation/theory_unit\"\u003eВалидация\u003c/a\u003e» "},"created_at":"13 апреля 2017","location":"/topics/7609","has_solutions":false,"can_show_mentor_info":true,"can_destroy":false,"can_like":true,"can_update":false,"can_subscribe":true,"kind":"question","likes":[],"comments":[{"id":14358,"body":"\u003e концепция DDD этого не позволяет\n\nЭто всего лишь один из вариантов реализации, DDD в первую очередь про колоборацию между экспертами и разработчиками, оно применимо в любой экосистеме, даже там где нет ООП, в привычном для многих понимании\nэтого слова\n\nЧто касается конкретной имплементации, то так устроено подавляющее большинство ORM.","creator":{"id":1,"public_name":"Kirill Mokevnin","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/mokevnin","avatar_img_url":"https://bitbucket.org/account/mokevnin/avatar/32/?ts=1500267653"},"created_at":"14 апреля 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]},{"id":14374,"body":"Скорость разработки важнее академической/концептуальной правильности?","creator":{"id":36683,"public_name":"Юрий Быков","can_use_paid_features":false,"can_use_mentorship":false,"public_profile_enabled":null,"public_profile_url":"/u/bykov","avatar_img_url":"https://cdn2.hexlet.io/assets/team/you-11dc1782520375a399be30e82f4392ded9c055e8a27c49f38d6128c06f1fb9f3.jpg"},"created_at":"14 апреля 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]},{"id":14389,"body":"Важно понимать что в DDD (и многом другом) нет академической правильности это не строгая система. Все DDD это просто видение одного конкретного человека на то как эффективно решать задачи бизнеса с примерами на конкретном языке. А что из этого принимать или нет зависит от многих факторов. А инженерия она про пользу, а не теоретическую чистоту.\n\nЧтобы понять что такое академические вещи в программирвании посмотрите такие темы как: \"конечные автоматы\" или \"теория типов\". Вот там да)","creator":{"id":1,"public_name":"Kirill Mokevnin","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/mokevnin","avatar_img_url":"https://bitbucket.org/account/mokevnin/avatar/32/?ts=1500267653"},"created_at":"14 апреля 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]}],"subscribers":[{"id":14995,"user_id":1},{"id":14962,"user_id":36683}],"mentor":{"id":17,"user_id":1,"full_name":"Кирилл Мокевнин","username":"mokevnin"}},{"id":7342,"title":"Зачем нам валидатор `association`?","creator":{"id":18689,"public_name":"Тимур Карпенок","can_use_paid_features":false,"can_use_mentorship":false,"public_profile_enabled":null,"public_profile_url":"/u/nbvehbq","avatar_img_url":"https://avatars2.githubusercontent.com/u/23618586?v=3"},"communitable":{"id":842,"slug":"validation","name":"Валидация","location":"/courses/js-ddd/lessons/validation/theory_unit","link":"Курс «\u003ca href=\"https://ru.hexlet.io/courses/js-ddd\"\u003eJS: Предметно-ориентированное проектирование\u003c/a\u003e»\u003cbr\u003e\u0026#8627; Урок «\u003ca href=\"/courses/js-ddd/lessons/validation/theory_unit\"\u003eВалидация\u003c/a\u003e» "},"created_at":"28 марта 2017","location":"/topics/7342","has_solutions":false,"can_show_mentor_info":false,"can_destroy":false,"can_like":true,"can_update":false,"can_subscribe":true,"kind":"question","likes":[],"comments":[],"subscribers":[{"id":14405,"user_id":18689}],"mentor":null},{"id":7128,"title":"\u003e filmScreening не может быть пустым и должен быть уникальным в паре с place\n\nЧто значит \"должен быть уникальным в паре с place\"?\n\nИмелось в виду, что по этому полю нужно реализовать проверку того что два чела не купили билет на одно и то же место?","creator":{"id":293,"public_name":"Кирилл Садовник","can_use_paid_features":false,"can_use_mentorship":false,"public_profile_enabled":false,"public_profile_url":"/u/cyril","avatar_img_url":"https://avatars.githubusercontent.com/u/5960795?v=3"},"communitable":{"id":842,"slug":"validation","name":"Валидация","location":"/courses/js-ddd/lessons/validation/theory_unit","link":"Курс «\u003ca href=\"https://ru.hexlet.io/courses/js-ddd\"\u003eJS: Предметно-ориентированное проектирование\u003c/a\u003e»\u003cbr\u003e\u0026#8627; Урок «\u003ca href=\"/courses/js-ddd/lessons/validation/theory_unit\"\u003eВалидация\u003c/a\u003e» "},"created_at":"14 марта 2017","location":"/topics/7128","has_solutions":false,"can_show_mentor_info":true,"can_destroy":false,"can_like":true,"can_update":false,"can_subscribe":true,"kind":"question","likes":[],"comments":[{"id":13217,"body":"Да. Нужно организовтаь ограничение уникальности по двум полям.","creator":{"id":81,"public_name":"Василий Колесников","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/v_kolesnikov","avatar_img_url":"https://avatars2.githubusercontent.com/u/6506296?v=4"},"created_at":"15 марта 2017","solution":null,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]}],"subscribers":[{"id":14022,"user_id":81},{"id":13967,"user_id":293}],"mentor":{"id":7,"user_id":81,"full_name":"Василий Колесников","username":"v_kolesnikov"}},{"id":6329,"title":"\u003e entities/FilmScreening/Ticket.js\nДобавьте валидаторы:\n\n\u003e name не может быть пустым\n\nТам не name, a user не должен быть пустым. Не проверил этот момент и потратил целый день:)","creator":{"id":106130,"public_name":"Dmitriy Bataev","can_use_paid_features":false,"can_use_mentorship":false,"public_profile_enabled":null,"public_profile_url":"/u/rdb","avatar_img_url":"https://graph.facebook.com/v2.6/133452873863352/picture?width=175\u0026height=175"},"communitable":{"id":842,"slug":"validation","name":"Валидация","location":"/courses/js-ddd/lessons/validation/theory_unit","link":"Курс «\u003ca href=\"https://ru.hexlet.io/courses/js-ddd\"\u003eJS: Предметно-ориентированное проектирование\u003c/a\u003e»\u003cbr\u003e\u0026#8627; Урок «\u003ca href=\"/courses/js-ddd/lessons/validation/theory_unit\"\u003eВалидация\u003c/a\u003e» "},"created_at":"15 января 2017","location":"/topics/6329","has_solutions":true,"can_show_mentor_info":true,"can_destroy":false,"can_like":true,"can_update":false,"can_subscribe":true,"kind":"question","likes":[],"comments":[{"id":11576,"body":"Спасибо за фидбек! Поправил","creator":{"id":1,"public_name":"Kirill Mokevnin","can_use_paid_features":true,"can_use_mentorship":false,"public_profile_enabled":true,"public_profile_url":"/u/mokevnin","avatar_img_url":"https://bitbucket.org/account/mokevnin/avatar/32/?ts=1500267653"},"created_at":"15 января 2017","solution":true,"can_destroy":false,"can_like":true,"can_update":false,"can_mark_as_solution":false,"likes":[]}],"subscribers":[{"id":12377,"user_id":1},{"id":12376,"user_id":106130}],"mentor":{"id":17,"user_id":1,"full_name":"Кирилл Мокевнин","username":"mokevnin"}}];gon.topic_type="community";gon.communitable_type="Lesson";gon.communitable_id=842;gon.can_render_new_topic_box=true;
+//]]>
+</script>
+<script>
+  // in development mode
+  if (!window.Rollbar) {
+    Rollbar = {
+      error: function() {
+      },
+      configure: function() {
+      }
+    }
+  }
+  
+  Rollbar.configure({
+    payload: {
+      person: gon.current_user
+    }
+  });
+</script>
+
+<script type='application/ld+json'>
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "Hexlet",
+  "url": "https://ru.hexlet.io",
+  "logo": "https://cdn2.hexlet.io/assets/hexlet_logo-e99fc2b3b7c1eec88899f3af1435a39aaac6fd29d011dfe2342499c0884b7a96.png",
+  "sameAs": [
+    "https://www.facebook.com/Hexlet",
+    "https://www.youtube.com/user/HexletUniversity",
+    "http://twitter.com/HexletHQ",
+    "https://plus.google.com/b/108226937214888198279/+HexletOrg/posts",
+    "https://soundcloud.com/hexlet"
+  ]
+}
+
+</script>
+
+<script src="https://www.googletagmanager.com/gtag/js?id=UA-1360700-51" async="async"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+  
+  gtag('config', "UA-1360700-51", {
+    'user_id': gon.current_user.id
+  });
+  
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-WK88TH');
+</script>
+
+
+<link rel="stylesheet" media="all" href="https://cdn2.hexlet.io/assets/application-8ce03079c6bc137ea6f0013b0bc7e6110e865912947a64d80d5cc2d6b6451d9f.css" />
+<link href='/courses/js-ddd/lessons/validation/theory_unit' rel='canonical'>
+<meta content='article' property='og:type'>
+<meta content='Валидация / JS: Предметно-ориентированное проектирование' property='og:title'>
+<meta content='Познакомиться с темой валидации, рассмотреть пример использования библиотеки validation.js и добавить валидацию в нашу систему.
+' property='og:description'>
+<meta content='Познакомиться с темой валидации, рассмотреть пример использования библиотеки validation.js и добавить валидацию в нашу систему.
+' name='description'>
+<meta content='https://cdn2.hexlet.io/attachments/58d6bebeba695dc3b1568e7272abf90034eaa2a3/store/fill/600/400/15e77ad793c1830ddca69521c95bd56e3232e24775144569290bdf26e13d/image.png' property='og:image'>
+<link href='https://cdn2.hexlet.io/attachments/58d6bebeba695dc3b1568e7272abf90034eaa2a3/store/fill/600/400/15e77ad793c1830ddca69521c95bd56e3232e24775144569290bdf26e13d/image.png' rel='image_src'>
+
+</head>
+<body>
+<div class='container-fluid px-0'>
+<div class='d-flex flex-row'>
+<div class='hexlet-lesson-container px-3 px-sm-5 pt-3 pt-sm-4 pb-5 flex-fill tab-content'>
+<div class='container px-0 mb-3'>
+<h1 class='h6 pb-3'>
+<span class='x-font-weight-bolder'><a class="x-unstyled-link" href="/courses/js-ddd">JS: Предметно-ориентированное проектирование</a></span>
+<span class='mx-1'>→</span>
+<a class='x-btn-no-active-decor' data-keyboard='true' data-target='#coursenav-modal' data-toggle='modal' href='#coursenav-modal'>
+Валидация
+<span class='fal fa-sitemap'></span>
+</a>
+</h1>
+
+</div>
+<div aria-labelledby='lesson-tab' class='tab-pane fade show active' id='lesson' role='tabpanel'>
+<div class='container px-0' itemscope itemtype='http://schema.org/Article'>
+<div class='hexlet-theory-body'>
+<div class='mt-3'>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html><body>
+<pre><code class="javascript">const cinemaHall = new CinemaHall(undefined, -5, 0);
+cinemaHallRepository.save(cinemaHall);
+</code></pre>
+
+<p>Обратите внимание на то, что <code>CinemaHall</code> создается с неверными параметрами.
+Что будет, если мы попробуем выполнить такой код? Он выполнится и репозиторий
+с удовольствием сохранит сущность, которая не должна существовать. Вряд ли
+такое поведение системы можно назвать удачным. Очевидно, что должен существовать
+дополнительный механизм, предотвращающий подобные ошибки. Этот механизм
+существует и называется "валидация".</p>
+
+<p>Валидаций существует много разных типов, и делаться они могут на разных уровнях.
+Для начала давайте ответим на вопрос: А что необходимо валидировать? Первое
+правило валидации: никогда не доверяй пользовательским данным. Все, что приходит
+из внешних источников, должно проходить валидацию. Даже если ваши пользователи
+это менеджеры, которые сидят в соседнем кабинете, это не повод им доверять.
+Хотя бы потому, что они могут ошибиться.</p>
+
+<p>Второй вопрос связан с тем, а какая, собственно, валидация существует. Можно
+выделить следующие виды:</p>
+
+<ul>
+<li>Клиентская валидация</li>
+<li>Валидация сообщений</li>
+<li>Валидация на уровне обработчиков</li>
+<li>Валидация сущностей (Бизнес-Правила)</li>
+<li>Ограничения на уровне хранилища</li>
+</ul>
+
+<p>В этом уроке мы будем говорить про валидацию сущностей. Ту валидацию, которая
+отвечает за то, что наше представление предметной области находится в консистентном
+(согласованном) состоянии.</p>
+
+<h3>validate.js</h3>
+
+<p><code>validate.js</code> - это простая и мощная библиотека для валидации объектов <code>js</code>.
+Из всего, что было на просторах сети, мне она показалась наиболее удачной, для
+наших задач.</p>
+
+<pre><code class="javascript">const constraints = {
+  username: {
+    presence: true,
+    exclusion: {
+      within: ["nicklas"],
+      message: "'%{value}' is not allowed"
+    }
+  },
+  password: {
+    presence: true,
+    length: {
+      minimum: 6,
+      message: "must be at least 6 characters"
+    }
+  }
+};
+</code></pre>
+
+<p>Для ее использования, первым делом необходимо описать ограничения (<code>constraints</code>).
+К каждому свойству привязывается набор констрейнов. Каждый констрейн может
+быть настроен согласно документации. Например, констрейн <code>length</code> конфигурируется
+параметром <code>minimum</code>. Подробнее о том, какие правила встроены в <code>validate.js</code>
+можно прочитать на <a href="http://validatejs.org/" target="_blank">официальном сайте</a>.</p>
+
+<h3>validate.js: check</h3>
+
+<p>Дальше сконфигурированный объект с правилами передается в функцию
+<code>validate</code> вместе с проверяемым объектом. На выходе мы получаем
+либо массив с ошибками, либо <code>undefined</code> (в случае, если ошибок не было).</p>
+
+<pre><code class="javascript">import validate from 'validate';
+
+validate({password: 'bad'}, constraints);
+// =&gt; {
+//   username: ["Username can't be blank"],
+//   password: ['Password must be at least 6 characters']
+// }
+
+validate({username: 'nick', password: 'better'}, constraints);
+// =&gt; undefined
+
+validate({username: 'nicklas', password: 'better'}, constraints);
+// =&gt; {username: ["Username 'nicklas' is not allowed"]}
+
+validate({password: 'better'}, constraints, {fullMessages: false});
+// =&gt; {username: ["can't be blank"]}
+</code></pre>
+
+<p>Теперь попробуем прикрутить эту библиотеку к нашей системе. Вот
+как это будет выглядеть:</p>
+
+<pre><code class="javascript">class CinemaService {
+  createFilm(name, duration) {
+    const film = new Film(name, duration);
+    const errors = this.validate(film);
+    // { name: "can't be blank" }
+    if (!errors) {
+      this.FilmRepository.save(film);
+    }
+    return [film, errors];
+  }
+}
+</code></pre>
+
+<p>Здесь есть пара тонкостей, про которые нужно сказать. Во-первых,
+массив с ошибками нужен, в том числе, снаружи, например для вывода
+сообщений об ошибках в формах. Во-вторых, мы не можем использовать функцию
+<code>validate</code> напрямую. Связано это с тем, что есть некоторые виды валидаторов,
+например <code>uniqueness</code>, которые проверяют уникальность сущности, делая обращения к
+репозиторию.  А это значит, что валидатору нужен доступ к объектам репозиториям
+(ведь объекты мы храним в памяти). То есть в проекте появляется процесс инициализации,
+в рамках которого мы конфигурируем наш валидатор, передавая репозитории во внутрь.</p>
+
+<pre><code>Обязательно изучите процесс инициализации приложения в практике к этому
+уроку
+</code></pre>
+
+<p>Такой подход к валидации, который подразумевает то, что сущность может быть создана
+в невалидном состоянии, не единственный способ организации валидации. Более того,
+в определенных кругах этот подход считается неверным. Я оставлю этот вопрос
+за рамками урока, но скажу так. На практике, в подавляющем большинстве проектов
+используются <code>orm</code>, валидация в которых устроена так же, как описано выше.
+Более того, ограничения, обычно, описываются прямо в самой сущности.</p>
+
+<h3>Собирая все вместе</h3>
+
+<pre><code class="javascript">export default class User {
+  static constraints = {
+    email: {
+      presence: true,
+      email: true,
+      uniqueness: true,
+    },
+  };
+
+  constructor(email) {
+    this.id = uuid.create().hex;
+    this.email = email;
+  }
+}
+</code></pre>
+
+<pre><code class="javascript">import makeValidator from './lib/validator';
+const validate = makeValidator(repositories);
+
+// const validate = entity =&gt; validate(entity, entity.constructor.constraints);
+const user = new User('test@gmail.com');
+const errors = validate(user);
+</code></pre>
+</body></html>
+
+</div>
+</div>
+</div>
+
+</div>
+<div aria-labelledby='community-tab' class='tab-pane fade' id='community' role='tabpanel'>
+<div class='row justify-content-center w-100'>
+<div class='col-12 col-lg-10 col-xl-9'>
+<div class='hexlet-community d-flex flex-fill'>
+<div class='container' id='community-box'></div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+<div class='px-0 d-flex flex-column justify-content-between sticky-top' id='hexlet-lesson-sidebar'>
+<div class='d-flex flex-column flex-shrink-0'>
+<a role="button" data-disable-with="<span class=&quot;fa fa-spinner fa-spin&quot;></span>" aria-expanded="false" data-html="true" class="btn btn-primary btn-block px-5 rounded-0 d-flex justify-content-center align-items-center" id="finish-button" rel="nofollow" data-method="patch" href="/courses/js-ddd/lessons/validation/finish_unit?unit=theory"><span class='d-none d-sm-block mr-2'>Далее</span>
+<span class='far fa-arrow-right'></span>
+</a><div class='mt-3'>
+<div class='px-2 mb-4'>
+<span class='d-none d-sm-block small text-center mb-2'>
+пройдено 15 шагов из 21
+</span>
+<div class='mr-2 px-1'>
+<div class='progress mb-1 rounded-0'>
+<div class='progress-bar m-0 bg-success' style='width: 72%'></div>
+</div>
+</div>
+</div>
+<ul class='nav nav-tabs d-flex flex-column pr-2 border-0' id='myTab' role='tablist'>
+<li class='nav-item'>
+<a aria-controls='lesson' aria-selected='true' class='nav-link active rounded-0' data-toggle='tab' href='#lesson' id='lesson-tab' role='tab'>
+<span class='d-none d-sm-inline-block'>
+Шаг:
+</span>
+<span class='d-none d-sm-inline-block'>теория</span>
+<span class='d-inline-block d-sm-none'>
+<span class='far fa-file-alt'></span>
+</span>
+</a>
+</li>
+<li class='nav-item'>
+<a aria-controls='community' aria-selected='false' class='nav-link rounded-0' data-toggle='tab' href='#community' id='community-tab' role='tab'>
+<span class='d-none d-sm-inline-block'>Обсуждение</span>
+<span class='d-inline-block d-sm-none'>
+<span class='far fa-comments'></span>
+</span>
+</a>
+</li>
+</ul>
+
+</div>
+</div>
+<div class='d-flex flex-column mt-3'>
+<a class='hexlet-lesson-sidebar-secondary-button x-btn-no-active-decor' data-keyboard='true' data-target='#coursenav-modal' data-toggle='modal' href='#coursenav-modal'>
+<div class='py-2 pl-3 pr-2 border-left-0 border-right-0 border-bottom-0 border-top'>
+<span class='fal fa-sitemap'></span>
+<span class='d-none d-sm-inline-block ml-2'>Навигация</span>
+</div>
+</a>
+<a class='hexlet-lesson-sidebar-secondary-button x-btn-no-active-decor' href='/my'>
+<div class='py-2 pl-3 pr-2 border-left-0 border-right-0 border-bottom-0 border-top'>
+<span class='fal fa-home'></span>
+<span class='d-none d-sm-inline-block ml-2'>Мой Хекслет</span>
+</div>
+</a>
+<a class='hexlet-lesson-sidebar-secondary-button x-btn-no-active-decor' href='#' id='open-lesson-beacon'>
+<div class='py-2 pl-3 pr-2 border-left-0 border-right-0 border-bottom-0 border-top'>
+<span class='fal fa-question-circle'></span>
+<span class='d-none d-sm-inline-block ml-2'>Техподдержка</span>
+</div>
+</a>
+</div>
+
+</div>
+</div>
+<div aria-hidden='true' aria-labelledby='exampleModalLabel' class='modal fade' id='coursenav-modal' role='dialog' tabindex='-1'>
+<div class='modal-dialog' role='document'>
+<div class='modal-content'>
+<div class='modal-header'>
+<h6 class='modal-title'>
+<a class="x-link" href="/my">Мой Хекслет
+</a>→
+<a class="x-link" href="/courses/js-ddd"><span>Курс</span>
+<span>
+«JS: Предметно-ориентированное проектирование»
+</span>
+</a></h6>
+<button aria-label='Close' class='close' data-dismiss='modal' type='button'>
+<span aria-hidden='true'>×</span>
+</button>
+</div>
+<div class='modal-body scrollable px-4'>
+<div class='mb-3'>
+<span class=''>
+1.
+Введение
+</span>
+<p class='m-0'>
+<div class='small'>
+<span class='mr-2'>↳</span>
+<a class=" " href="/courses/js-ddd/lessons/intro/theory_unit"><span class='x-striked'>
+теория
+(текст)
+</span>
+</a></div>
+
+</p>
+</div>
+<div class='mb-3'>
+<span class=''>
+2.
+Use cases
+</span>
+<p class='m-0'>
+<div class='small'>
+<span class='mr-2'>↳</span>
+<a class=" " href="/courses/js-ddd/lessons/use-cases/theory_unit"><span class='x-striked'>
+теория
+(текст)
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/use-cases/quiz_unit"><span class='x-striked'>
+тесты
+</span>
+</a></div>
+
+</p>
+</div>
+<div class='mb-3'>
+<span class=''>
+3.
+Сущности и связи
+</span>
+<p class='m-0'>
+<div class='small'>
+<span class='mr-2'>↳</span>
+<a class=" " href="/courses/js-ddd/lessons/entity-relation/theory_unit"><span class='x-striked'>
+теория
+(текст)
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/entity-relation/quiz_unit"><span class='x-striked'>
+тесты
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/entity-relation/exercise_unit"><span class='x-striked'>
+упражнение
+</span>
+</a></div>
+
+</p>
+</div>
+<div class='mb-3'>
+<span class=''>
+4.
+Архитектура
+</span>
+<p class='m-0'>
+<div class='small'>
+<span class='mr-2'>↳</span>
+<a class=" " href="/courses/js-ddd/lessons/architecture/theory_unit"><span class='x-striked'>
+теория
+(текст)
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/architecture/quiz_unit"><span class='x-striked'>
+тесты
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/architecture/exercise_unit"><span class='x-striked'>
+упражнение
+</span>
+</a></div>
+
+</p>
+</div>
+<div class='mb-3'>
+<span class='x-font-weight-bolder'>
+5.
+Валидация
+</span>
+<p class='m-0'>
+<div class='small'>
+<span class='mr-2'>↳</span>
+<a class=" " href="/courses/js-ddd/lessons/validation/theory_unit"><span class='x-striked'>
+<span class='x-font-weight-bolder text-dark'>
+теория
+</span>
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/validation/quiz_unit"><span class='x-striked'>
+<span class=''>
+тесты
+</span>
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/validation/exercise_unit"><span class='x-striked'>
+<span class=''>
+упражнение
+</span>
+</span>
+</a></div>
+
+</p>
+</div>
+<div class='mb-3'>
+<span class=''>
+6.
+Dependency Injection Container
+</span>
+<p class='m-0'>
+<div class='small'>
+<span class='mr-2'>↳</span>
+<a class=" " href="/courses/js-ddd/lessons/container/theory_unit"><span class='x-striked'>
+теория
+(текст)
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/container/quiz_unit"><span class='x-striked'>
+тесты
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/container/exercise_unit"><span class=''>
+упражнение
+</span>
+</a></div>
+
+</p>
+</div>
+<div class='mb-3'>
+<span class=''>
+7.
+Предметная область
+</span>
+<p class='m-0'>
+<div class='small'>
+<span class='mr-2'>↳</span>
+<a class=" " href="/courses/js-ddd/lessons/domain/theory_unit"><span class='x-striked'>
+теория
+(текст)
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/domain/quiz_unit"><span class=''>
+тесты
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/domain/exercise_unit"><span class=''>
+упражнение
+</span>
+</a></div>
+
+</p>
+</div>
+<div class='mb-3'>
+<span class=''>
+8.
+Мутация
+</span>
+<p class='m-0'>
+<div class='small'>
+<span class='mr-2'>↳</span>
+<a class=" " href="/courses/js-ddd/lessons/mutability/theory_unit"><span class=''>
+теория
+(текст)
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/mutability/quiz_unit"><span class=''>
+тесты
+</span>
+</a><span class='mx-1'>/</span>
+<a class=" " href="/courses/js-ddd/lessons/mutability/exercise_unit"><span class=''>
+упражнение
+</span>
+</a></div>
+
+</p>
+</div>
+</div>
+<div class='modal-footer'>
+<button class='btn hexlet-btn-main' data-dismiss='modal' type='button'>Закрыть</button>
+</div>
+</div>
+</div>
+</div>
+
+
+</div>
+<script src="https://cdn2.hexlet.io/assets/essential-6773aaf65563d774c8eaf34a9e68d4b66e90d0946f559e78a8cd43a054f4804e.js"></script>
+<script src="https://cdn2.hexlet.io/assets/application-bee47b5de66ce12a65b837dabbc737469aa260f7e7526c6bf154ca1a01a18061.js" defer="defer"></script>
+<script src="https://cdn2.hexlet.io/packs/vendor-87d7e1452406f93a5a7e.chunk.js" defer="defer"></script>
+<script src="https://cdn2.hexlet.io/packs/application-859c8abb3aec62db64c2.js" defer="defer"></script>
+<script src="https://cdn2.hexlet.io/packs/community-b989d308581e4fea4820.js" defer="defer"></script>
+<script>
+  var el = document.getElementById('open-lesson-beacon');
+  el.addEventListener('click', function() {
+    HS.beacon.open();
+  });
+</script>
+
+<script>
+  !function(e,o,n){window.HSCW=o,window.HS=n,n.beacon=n.beacon||{};var t=n.beacon;t.userConfig={},t.readyQueue=[],t.config=function(e){this.userConfig=e},t.ready=function(e){this.readyQueue.push(e)},o.config={docs:{enabled:!0,baseUrl:"//hexlet.helpscoutdocs.com/"},contact:{enabled:!0,formId:"4d3729f5-96ac-11e6-91aa-0a5fecc78a4d"}};var r=e.getElementsByTagName("script")[0],c=e.createElement("script");c.type="text/javascript",c.async=!0,c.src="https://djtflbt20bdde.cloudfront.net/",r.parentNode.insertBefore(c,r)}(document,window.HSCW||{},window.HS||{});
+</script>
+<script>
+  HS.beacon.config({
+    poweredBy: false,
+    modal: gon.hs.modal,
+    icon: 'question',
+    color: "#79afb8",
+    topArticles: true,
+    translation: {
+      searchLabel: 'Чем можем помочь?',
+      searchErrorLabel: 'Запрос занял слишком много времени. Пожалуйста, проверьте свое соединение с интернетом и попробуйте заново.',
+      noResultsLabel: 'Ничего не найдено по запросу',
+      contactLabel: 'Написать в поддержку',
+      attachFileLabel: 'Приложить файл',
+      attachFileError: 'Максимальный размер файла 10мб',
+      nameLabel: 'Ваше имя',
+      nameError: 'Пожалуйста, введите ваше имя',
+      emailLabel: 'Email',
+      emailError: 'Пожалуйста, введите правильный email',
+      topicLabel: 'Выберите тему',
+      topicError: 'Пожалуйста, выберите тему из списка',
+      subjectLabel: 'Заголовок',
+      subjectError: 'Пожалуйста, введите заголовок',
+      messageLabel: 'Чем можем помочь?',
+      messageError: 'Пожалуйста, введите сообщение',
+      sendLabel: 'Отправить',
+      contactSuccessLabel: 'Сообщение отправлено!',
+      contactSuccessDescription: 'Спасибо! Сотрудник Хекслета ответит вам в ближайшее время.'
+    }
+  });
+</script>
+<script>
+  if (!gon.current_user.isGuest) {
+    HS.beacon.ready(function() {
+      HS.beacon.identify({
+        name: gon.current_user.public_name,
+        email: gon.current_user.email,
+        CreatedAt: gon.current_user.created_at,
+        CanUsePaidFeatures: gon.current_user.can_use_paid_features
+      });
+    });
+  }
+</script>
+
+<script>
+  if (!gon.current_user.isGuest) {
+    (function(i,s,o,g,r,a,m){i['ProfitWellObject']=r;i[r]=i[r]||function(){  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m);  })(window,document,'script','https://dna8twue3dlxq.cloudfront.net/js/profitwell.js','profitwell');
+    profitwell('auth_token', '69620c83ec136781432c55c6cb740d8f');
+    profitwell('user_email', gon.current_user.email);
+  }
+</script>
+
+
+</body>
+</html>

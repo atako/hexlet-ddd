@@ -1,0 +1,33 @@
+lib/validation.js
+Добавьте кастомный валидатор и назовите его dateObject, который проверяет, является ли свойство датой. Подробности смотрите в документации библиотеки.
+
+entities/CinemaHall.js
+Добавьте следующие ограничения:
+
+name не может быть пустым
+rows не может быть пустым и должно быть числом
+cols не может быть пустым и должно быть числом
+entities/Film.js
+Добавьте ограничения:
+
+name не может быть пустым
+duration не может быть пустым
+entities/FilmScreening.js
+Добавьте ограничения:
+
+film не может быть пустым
+cinemaHall не может быть пустым
+time не может быть пустым
+entities/FilmScreening/Ticket.js
+Добавьте ограничения:
+
+filmScreening не может быть пустым и должен быть уникальным в паре с place
+user не может быть пустым
+place не может быть пустым
+services/MoneyService.js
+Реализуйте покупку билета
+
+const place = { row: 5, col: 3 };
+const [ticket] = moneyService.buyTicket(user.id, filmScreening.id, place);
+Подсказки
+Валидатор uniqueness реализован в файле lib/validation.js
